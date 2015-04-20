@@ -1,0 +1,22 @@
+<project name="ant_test" default="test" basedir=".">
+    <description>
+        Ant test file.
+    </description>
+
+    <macrodef name="testing">
+        <attribute name="v" default="NOT SET"/>
+        <element name="some-tasks" optional="yes"/>
+        <sequential>
+            <echo>v is @{v}</echo>
+            <some-tasks/>
+        </sequential>
+    </macrodef>
+
+    <target name="test">
+        <testing v="This is v">
+            <some-tasks>
+                <echo>this is a test</echo>
+            </some-tasks>
+        </testing>
+    </target>
+</project>
