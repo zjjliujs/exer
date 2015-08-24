@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Angular Directive Test</title>
+  <style></style>
+  <script src="/angular/angular/angular.js"></script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="Controller">
+        {{message}}
+        <my-dialog ng-hide="dialogIsHidden" on-close="hideDialog(msg)">
+            Check out the contents, {{name}}!
+        </my-dialog>
+    </div>
+    <script src="scope_amp_attr.js"></script>
+</body>
+</html>

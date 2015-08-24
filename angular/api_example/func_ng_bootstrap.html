@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<body>
+<div ng-controller="WelcomeController">
+  {{greeting}}
+</div>
+<div> 
+  {{greeting}}
+</div>
+
+<script src="angular/angular.min.js"></script>
+<script>
+  var app = angular.module('demo', [])
+  .controller('WelcomeController', ["$rootScope", "$scope", function($rootScope, $scope) {
+      $scope.greeting = 'Welcome!';
+      $rootScope.greeting = '欢迎!';
+  }]);
+  angular.bootstrap(document, ['demo']);
+</script>
+</body>
+</html>

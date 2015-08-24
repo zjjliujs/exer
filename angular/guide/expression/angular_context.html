@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" ng-app="angularCtxApp">
+<head>
+  <meta charset="utf-8">
+  <title>Angular app for protractor test</title>
+
+  <link rel="stylesheet" href="../../node_modules/bootstrap/css/bootstrap.css">
+  <script src="../../node_modules/jquery/jquery.min.js"></script>
+  <script src="../../node_modules/angular/angular.js"></script>
+  <script src="../../node_modules/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div class="example2" ng-controller="ExampleController">
+    Name: <input ng-model="name" type="text"/>
+    <button ng-click="greet()">Greet</button>
+    <button ng-click="window.alert('Should not see me')">Won't greet</button>
+  </div>
+</body>
+<script>
+angular.module('angularCtxApp', [])
+.controller('ExampleController', ['$window', '$scope', function($window, $scope) {
+  $scope.name = 'World';
+
+  $scope.greet = function() {
+    $window.alert('Hello ' + $scope.name);
+  };
+}]);
+</script>
+</html>

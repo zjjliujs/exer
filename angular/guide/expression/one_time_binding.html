@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" ng-app="oneTimeBindingApp">
+<head>
+  <meta charset="utf-8">
+  <title>Angular app for protractor test</title>
+
+  <link rel="stylesheet" href="../../node_modules/bootstrap/css/bootstrap.css">
+  <script src="../../node_modules/jquery/jquery.min.js"></script>
+  <script src="../../node_modules/angular/angular.js"></script>
+  <script src="../../node_modules/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div ng-controller="EventController">
+    <button ng-click="clickMe($event)">Click Me</button>
+    <p id="one-time-binding-example">One time binding: {{::name}}</p>
+    <p id="normal-binding-example">Normal binding: {{name}}</p>
+  </div>
+</body>
+<script>
+angular.module('oneTimeBindingApp', []).
+controller('EventController', ['$scope', function($scope) {
+  var counter = 0;
+  var names = ['Igor', 'Misko', 'Chirayu', 'Lucas'];
+  /*
+  * expose the event object to the scope
+  */
+  $scope.clickMe = function(clickEvent) {
+    $scope.name = names[counter % names.length];
+    counter++;
+  };
+}]);
+</script>
+</html>

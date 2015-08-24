@@ -1,0 +1,40 @@
+<html ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>Angular scope test</title>
+  <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.css">
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="../../lib/angular/angular.js"></script>
+  <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div ng-controller="MyController">
+    <button ng-click="sayHello()">Hello</button>
+  </div>
+  <script>
+  // Provide the wiring information in a module
+  var myModule = angular.module('myApp', []);
+
+  myModule.factory('greeter', function($window) {
+    return {
+      greet: function(text) {
+        $window.alert(text);
+      }
+    };
+  });
+
+  var injector = angular.injector(['myApp', 'ng']);
+  var greeter = injector.get('greeter');
+
+  greeter.greet("Hello, angular DI");
+
+  function MyController($scope, greeter) {
+    $scope.sayHello = function() {
+      greeter.greet('Hello World');
+    };
+  }
+
+  myModule.controller("MyController", ["$scope", "greeter", MyController]);
+  </script>
+</body>
+</html>

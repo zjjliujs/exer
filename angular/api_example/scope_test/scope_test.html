@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Angular scope test</title>
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+  <script src="../jquery/jquery.min.js"></script>
+  <script src="../angular/angular.js"></script>
+  <script src="../bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body ng-app='scopeExample'>
+  <div ng-controller="MyController">
+    Your name:
+    <input type="text" ng-model="username">
+    <button ng-click='sayHello()'>greet</button>
+    <hr>
+    {{greeting}}
+  </div>
+
+  <script>
+    angular.module('scopeExample', [])
+    .controller('MyController', ['$scope',function($scope){
+      $scope.username = 'world';
+
+      $scope.sayHello = function (){
+        $scope.greeting = 'Hello,' + $scope.username + '!';
+      };
+    }]);
+  </script>
+</body>
+</html>

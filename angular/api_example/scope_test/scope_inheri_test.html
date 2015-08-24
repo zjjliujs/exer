@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="scopeInheriApp">
+<head>
+  <meta charset="utf-8">
+  <title>Scope inheritence test</title>
+
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+  <script src="../jquery/jquery.min.js"></script>
+  <script src="../angular/angular.js"></script>
+  <script src="../bootstrap/js/bootstrap.min.js"></script>
+  <style>
+  .show-scope-demo.ng-scope,
+  .show-scope-demo .ng-scope  {
+    border: 1px solid red;
+    margin: 3px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="show-scope-demo">
+    <div ng-controller="GreetController">
+      Hello {{name}}!
+    </div>
+    <div ng-controller="ListController">
+      <ol>
+        <li ng-repeat="name in names">{{name}} from {{department}}</li>
+      </ol>
+    </div>
+  </div>
+</body>
+
+<script>
+angular.module('scopeInheriApp', [])
+.controller('GreetController', ['$scope', '$rootScope', function($scope, $rootScope) {
+  $scope.name = 'World';
+  $rootScope.department = 'Angular';
+}])
+.controller('ListController', ['$scope', function($scope) {
+  $scope.names = ['Igor', 'Misko', 'Vojta'];
+}]);
+</script>
+
+</html>

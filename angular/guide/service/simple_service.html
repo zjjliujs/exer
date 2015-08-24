@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My angular controller test!</title>
+
+  <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.css">
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="../../lib/angular/angular.js"></script>
+  <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+  <style>
+  </style>
+</head>
+
+<body>
+  <div ng-app="myServiceModule" ng-controller="MyController">
+    <p>Let's try this simple notify service, injected into the controller...</p>
+    <input ng-init="message='test'" ng-model="message" >
+    <button ng-click="callNotify(message);">NOTIFY</button>
+    <p>(you have to click 3 times to see an alert)</p>
+  </div>
+</body>
+
+<script>
+angular.module('myServiceModule', []).
+controller('MyController', ['$scope','notify', function ($scope, notify) {
+  $scope.callNotify = function(msg) {
+    notify(msg);
+  };
+}]).
+factory('notify', ['$window', function(win) {
+  var msgs = [];
+  return function(msg) {
+    msgs.push(msg);
+    if (msgs.length == 3) {
+      win.alert(msgs.join("\n"));
+      msgs = [];
+    }
+  };
+}]);
+</script>
+
+</html>

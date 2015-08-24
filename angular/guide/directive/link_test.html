@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" ng-app="docsTimeDirective">
+<head>
+  <meta charset="UTF-8">
+  <title>Angular Directive Test</title>
+  <style></style>
+  <script src="/angular/angular/angular.js"></script>
+</head>
+<body>
+    <div ng-controller="Controller">
+        Date format: <input ng-model="format"> <hr/>
+        Current time is: <span my-current-time="format"></span>
+    </div>
+    <script src="link_test.js"></script>
+</body>
+</html>
