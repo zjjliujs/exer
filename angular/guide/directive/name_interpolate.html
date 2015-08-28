@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Angular Directive Test</title>
+  <style></style>
+  <script src="/angular/angular/angular.js"></script>
+  <script src="name_interpolate.js"></script>
+</head>
+<body ng-app="docsBindExample">
+    <div ng-controller="Controller">
+        Hello <input ng-model='name'> <hr/>
+        <span ng-bind="name"></span> <br/>
+        <span ng:bind="name"></span> <br/>
+        <span ng_bind="name"></span> <br/>
+        <span data-ng-bind="name"></span> <br/>
+        <span x-ng-bind="name"></span> <br/>
+    </div>
+</body>
+</html>

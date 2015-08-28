@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="FilterInControllerModule">
+<head>
+  <meta charset="utf-8">
+  <title>Angular app for protractor test</title>
+
+  <link rel="stylesheet" href="../../node_modules/bootstrap/css/bootstrap.css">
+  <script src="../../node_modules/jquery/jquery.min.js"></script>
+  <script src="../../node_modules/angular/angular.js"></script>
+  <script src="../../node_modules/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div ng-controller="FilterController as ctrl">
+    <div>
+      All entries:
+      <span ng-repeat="entry in ctrl.array">{{entry.name}} </span>
+    </div>
+    <div>
+      Entries that contain an "a":
+      <span ng-repeat="entry in ctrl.filteredArray">{{entry.name}} </span>
+    </div>
+  </div>
+</body>
+<script>
+angular.module('FilterInControllerModule', []).
+controller('FilterController', ['filterFilter', function(filterFilter) {
+  this.array = [
+    {name: 'Tobias'},
+    {name: 'Jeff'},
+    {name: 'Brian'},
+    {name: 'Igor'},
+    {name: 'James'},
+    {name: 'Brad'}
+  ];
+  this.filteredArray = filterFilter(this.array, 'a');
+}]);
+</script>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app="myApp" ng-strict-di>
+<head>
+  <meta charset="utf-8">
+  <title>Angular scope test</title>
+  <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.css">
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="../../lib/angular/angular.js"></script>
+  <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <p>This is a negtive test, please see if the js console print out the error message</p>
+  I can add: {{ 1 + 2 }}.
+  <script>
+  angular.module('myApp', [])
+  .factory('willBreak', function($rootScope) {
+    // $rootScope is implicitly injected
+  })
+  .run(['willBreak', function(willBreak) {
+    // Angular will throw when this runs
+  }]);
+  </script>
+</body>
+</html>

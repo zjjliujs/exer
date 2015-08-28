@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app="myStatefulFilterApp">
+<head>
+  <meta charset="utf-8">
+  <title>Angular app for protractor test</title>
+
+  <link rel="stylesheet" href="../../node_modules/bootstrap/css/bootstrap.css">
+  <script src="../../node_modules/jquery/jquery.min.js"></script>
+  <script src="../../node_modules/angular/angular.js"></script>
+  <script src="../../node_modules/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div ng-controller="MyController">
+    Input: <input ng-model="greeting" type="text"><br>
+    Decoration: <input ng-model="decoration.symbol" type="text"><br>
+    No filter: {{greeting}}<br>
+    Decorated: {{greeting | decorate}}<br>
+  </div>
+</body>
+<script>
+angular.module('myStatefulFilterApp', [])
+.filter('decorate', ['decoration', function(decoration) {
+
+  function decorateFilter(input) {
+    return decoration.symbol + input + decoration.symbol;
+  }
+  decorateFilter.$stateful = true;
+
+  return decorateFilter;
+}])
+.controller('MyController', ['$scope', 'decoration', function($scope, decoration) {
+  $scope.greeting = 'hello';
+  $scope.decoration = decoration;
+}])
+.value('decoration', {symbol: '*'});
+</script>
+</html>

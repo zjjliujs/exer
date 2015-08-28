@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" ng-app="exprEvalApp">
+<head>
+  <meta charset="utf-8">
+  <title>Angular app for protractor test</title>
+
+  <link rel="stylesheet" href="../../node_modules/bootstrap/css/bootstrap.css">
+  <script src="../../node_modules/jquery/jquery.min.js"></script>
+  <script src="../../node_modules/angular/angular.js"></script>
+  <script src="../../node_modules/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div ng-controller="ExampleController" class="expressions">
+    Expression:
+    <input type='text' ng-model="expr" size="80"/>
+    <button ng-click="addExp(expr)">Evaluate</button>
+    <ul>
+      <li ng-repeat="expr in exprs track by $index">
+        [ <a href="" ng-click="removeExp($index)">X</a> ]
+        <tt>{{expr}}</tt> => <span ng-bind="$parent.$eval(expr)"></span>
+      </li>
+    </ul>
+  </div>
+  <script>
+  angular.module('exprEvalApp', [])
+  .controller('ExampleController', ['$scope', function($scope) {
+    var exprs = $scope.exprs = [];
+    $scope.expr = '3*10|currency';
+    $scope.addExp = function(expr) {
+      exprs.push(expr);
+    };
+
+    $scope.removeExp = function(index) {
+      exprs.splice(index, 1);
+    };
+  }]);
+  </script>
+</body>
+</html>

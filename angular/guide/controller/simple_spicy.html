@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My angular controller test!</title>
+
+  <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.css">
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="../../lib/angular/angular.js"></script>
+  <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div ng-app="spicyApp1" ng-controller="SpicyController">
+    <button ng-click="chiliSpicy()">Chili</button>
+    <button ng-click="jalapenoSpicy()">Jalapeño</button>
+    <p>The food is {{spice}} spicy!</p>
+  </div>
+</body>
+
+<script>
+var myApp = angular.module('spicyApp1', []);
+
+myApp.controller('SpicyController', ['$scope', function($scope) {
+  $scope.spice = 'very';
+
+  $scope.chiliSpicy = function() {
+    $scope.spice = 'chili';
+  };
+
+  $scope.jalapenoSpicy = function() {
+    $scope.spice = 'jalapeño';
+  };
+}]);
+</script>
+
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Angular Directive Test</title>
+  <link rel="stylesheet" href="/bootstrap/bootstrap/css/bootstrap.min.css">
+  <script src="/jquery/jquery/jquery.min.js"></script>
+  <script src="/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/angular/angular/angular.js"></script>
+</head>
+<body ng-app="myApp">
+    <my-tabs>
+        <my-pane title="Hello">
+            <h4>Hello</h4>
+            <p>Lorem ipsum dolor sit amet</p>
+        </my-pane>
+        <my-pane title="World">
+            <h4>World</h4>
+            <em>Mauris elementum elementum enim at suscipit.</em>
+            <p><a href ng-click="i = i + 1">counter: {{i || 0}}</a></p>
+        </my-pane>
+    </my-tabs>
+    <script src="scope_comm.js"></script>
+</body>
+</html>
