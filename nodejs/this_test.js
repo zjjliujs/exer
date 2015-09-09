@@ -13,7 +13,11 @@ var f1 = function () {
 
 var o =new f1();
 o.f1_1();
-console.log(o.a);
-
 var u = new o.f1_2();
+
+console.log(o.a);
+console.log(u.a);
+
+o.f1_2();
+console.log(o.a);
 console.log(u.a);
