@@ -1,0 +1,13 @@
+<svg  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <text x="10" y="10" style="writing-mode: tb; glyph-orientation-vertical: 0;">
+    Vertical, 0
+  </text>
+  <text x="110" y="10" style="writing-mode: tb; glyph-orientation-vertical: 90;">
+    Vertical, 90
+  </text>
+
+  <text x="210" y="10" style="writing-mode: tb; glyph-orientation-vertical: 45;">
+    Vertical, 90
+  </text>
+</svg>

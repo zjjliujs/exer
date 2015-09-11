@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <text x="20"  y="140"
+    transform="rotate(30 20,140)"
+    style="stroke:none; fill:#000000;">
+    Rotated SVG text
+  </text>
+
+  <text x="220"  y="140"
+    transform="rotate(30 300,140)"
+    style="stroke:none; fill:#000000;">
+    Rotated SVG text
+  </text>
+
+  <line x1="0" y1="140" x2="500" y2="140" style="stroke:red"/>
+</svg>

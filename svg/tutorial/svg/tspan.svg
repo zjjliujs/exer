@@ -1,0 +1,12 @@
+<svg  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <text x="110" y="120">
+    Here is a <tspan style="font-weight: bold;font-size:50">bold</tspan> word.
+  </text>
+
+  <text x="210" y="220" style="font-size:20">
+    Here is a text with <tspan style="baseline-shift: super;font-size:10">superscript</tspan>
+    and <tspan style="baseline-shift: sub;font-size:10">subscript</tspan> mixed with normal
+    text.
+</text>
+</svg>

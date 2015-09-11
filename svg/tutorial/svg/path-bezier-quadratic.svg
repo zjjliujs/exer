@@ -1,0 +1,17 @@
+<svg  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--
+    The example draws a quadratic Bezier curve from 50,50 to the point 100,100
+  with a control point at 50,200. The control point is the first of the two
+  parameters set on the Q command.
+    The control point pulls the curve like a magnet. The closer a point on the
+  curve is to the control point, the more the control point pulls in it, meaning
+  the closer to the control point it will be.
+    In fact, if you draw a line from the start point to the control point, and
+  another line from the control point to the end point, then the line from the
+  middle of the first line to the middle of the second line will be a tangent of
+  the curve. 
+  -->
+  <path d="M50,50 Q10,100 100,200"
+    style="stroke: #006666; fill:none;"/>
+</svg>

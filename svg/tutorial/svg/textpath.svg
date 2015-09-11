@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path id="myTextPath"
+      d="M75,20
+      a1,1 0 0,0 100,0
+      "
+      />
+    <path id="myTextPath2"
+      d="M75,220 l100,0 l100,30 q0,100 150,100"/>
+  </defs>
+
+  <text x="0" y="0" style="stroke: #000000;">
+    <textPath xlink:href="#myTextPath" >
+      Text along a curved path...
+    </textPath>
+  </text>
+  <text x="0" y="0" style="stroke: #000000;">
+    <textPath xlink:href="#myTextPath2">
+      Text along a more advanced path with lines and curves.
+    </textPath>
+  </text>
+</svg>

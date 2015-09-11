@@ -1,0 +1,29 @@
+<svg  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <!--
+  All drawing with the <path> element is specified inside the d attribute.
+  The d attribute contains drawing commands. In the example above the M
+  signals a "move to" command, the A signals an "Arc" command, and the L
+  signals a "Line" command. The commands are given to a "virtual pen".
+  This pen can be moved, made to draw shapes etc.
+  -->
+  <path d="M50,50
+    A30,30 0 0,1 35,20
+    L100,100
+    M110,110
+    L100,0"
+    style="stroke:blue; stroke-width:3; fill:none;"/>
+
+  <!-- l相对位移 -->
+  <path d="M250,250 l100,100"
+    style="stroke:red; stroke-width:5; fill:none;"/>
+
+  <!-- L绝对位移 -->
+  <path d="m250,350 L100,100"
+    style="stroke:black; stroke-width:5; fill:none;"/>
+
+  <path d="M50,450
+    A30,50 0 0,1 100,500"
+    style="stroke:#660000; stroke-width:5; fill:none;"/>
+</svg>

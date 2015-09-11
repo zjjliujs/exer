@@ -1,0 +1,44 @@
+<svg  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <marker id="markerRect" markerWidth="9" markerHeight="9" refX="5" refY="5"
+      orient="auto">
+      <rect x="1" y="1" height="8" width="8" style="fill:#000000"/>
+    </marker>
+
+    <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="2" refY="6"
+      orient="auto">
+      <path d="M2,2 L2,11 L10,6 L2,2" style="fill: #000000;" />
+    </marker>
+  </defs>
+
+  <path d="M100,10 l0,100"
+    style="stroke: #6666ff; stroke-width: 1px; fill: none;
+    marker-start: url(#markerRect);
+    marker-end: url(#markerArrow);
+    "/>
+
+  <path d="M200,10 l20,80"
+    style="stroke: #6666ff; stroke-width: 1px; fill: none;
+    marker-start: url(#markerRect);
+    marker-end: url(#markerArrow);
+    "/>
+
+  <path d="M300,10 l60,70"
+    style="stroke: #6666ff; stroke-width: 1px; fill: none;
+    marker-start: url(#markerRect);
+    marker-end: url(#markerArrow);
+    "/>
+
+  <path d="M400,10 l80,60"
+    style="stroke: #6666ff; stroke-width: 1px; fill: none;
+    marker-start: url(#markerRect);
+    marker-end: url(#markerArrow);
+    "/>
+
+  <path d="M500,10 l100,0"
+    style="stroke: #6666ff; stroke-width: 1px; fill: none;
+    marker-start: url(#markerRect);
+    marker-end: url(#markerArrow);
+    "/>
+</svg>

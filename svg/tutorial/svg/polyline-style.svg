@@ -1,0 +1,13 @@
+<svg  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <polyline points="0,0  30,0  15,30"
+    style="stroke:#006600;"/>
+
+  <polyline points="110,2  160,2  135,52"
+    style="stroke:#0000ff; stroke-width: 2;
+    fill: #33cc33;"/>
+
+  <polyline points="210,2  260,2  235,52  210,2"
+    style="stroke:#006600; fill: #33cc33;"/>
+</svg>

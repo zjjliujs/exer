@@ -1,0 +1,33 @@
+<svg  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <rect x="20" y="20" width="100" height="100"
+    style="stroke: #009900;
+    stroke-width: 3;
+    stroke-dasharray: 10 5;
+    fill: none;"/>
+
+  <rect x="130" y="20" width="100" height="100"
+    style="stroke: #009900;
+    fill: none;
+    "
+    />
+
+  <rect x="240" y="20" width="100" height="100"
+    style="stroke: #009900;
+    fill: #33ff33;
+    "
+    />
+
+  <rect x="20" y="130" width="100" height="100"
+    style="stroke: #009900;
+    fill: #33ff33;
+    "
+    />
+  <rect x="50" y="160" width="100" height="100"
+    style="stroke:5 #000099;
+    fill: #3333ff;
+    fill-opacity: 0.5;
+    "
+    />
+</svg>
