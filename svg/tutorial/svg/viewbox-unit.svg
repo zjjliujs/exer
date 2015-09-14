@@ -1,0 +1,8 @@
+<svg  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="640" height="480" viewBox="0 0 50 20" >
+
+  <rect x="20" y="10" width="10" height="5"
+    style="stroke: #000000; fill:none;"/>
+
+</svg>

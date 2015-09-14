@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <style type="text/css" >
+    <![CDATA[
+
+    circle {
+    stroke: #006600;
+    fill:   #00cc00;
+    }
+
+    ]]>
+  </style>
+
+  <circle  cx="40" cy="40" r="24"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--
+  The SVG <use> element can reuse an SVG shape from elsewhere in the SVG document,
+  including <g> elements and <symbol> elements. The reused shape can be defined
+  inside the <defs> element (which makes the shape invisible until used) or outside. 
+  -->
+  <g id="shape2">
+    <rect x="0" y="0" width="50" height="50" />
+  </g>
+
+  <use xlink:href="#shape2" x="200" y="50" />
+</svg>
