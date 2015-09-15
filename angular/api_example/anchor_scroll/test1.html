@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="anchorScrollExample">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular $anchorScroll test</title>
+    <link rel="stylesheet" href="/modules/bootstrap/css/bootstrap.css">
+    <script src="/modules/jquery/jquery.min.js"></script>
+    <script src="/modules/angular/angular.js"></script>
+    <script src="/modules/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    angular.module('anchorScrollExample', [])
+    .controller('ScrollController', ['$scope', '$location', '$anchorScroll',
+    function ($scope, $location, $anchorScroll) {
+      $scope.gotoBottom = function() {
+        // set the location.hash to the id of
+        // the element you wish to scroll to.
+        $location.hash('bottom');
+
+        // call $anchorScroll()
+        $anchorScroll();
+      };
+      $scope.gotoTop = function() {
+        $location.hash('top');
+        $anchorScroll();
+      }
+    }]);
+    </script>
+    <style media="screen">
+    #scrollArea {
+      height: 280px;
+      overflow: auto;
+    }
+
+    #bottom {
+      display: block;
+      margin-top: 2000px;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="scrollArea" ng-controller="ScrollController">
+      <a id="top" ng-click="gotoBottom()">
+        <h1>Go to bottom</h1>
+      </a>
+      <a id="bottom" ng-click="gotoTop()">
+        <h1>Go to top!</h1>
+      </a>
+    </div>
+  </body>
+  </html>
