@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="simpleAnimateApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Animation</title>
+
+    <link rel="stylesheet" href="/modules/bootstrap/css/bootstrap.css">
+    <script src="/modules/jquery/jquery.min.js"></script>
+    <script src="/modules/angular/angular.js"></script>
+    <script src="/modules/angular/angular-animate.js"></script>
+    <script src="/modules/bootstrap/js/bootstrap.min.js"></script>
+    <style media="screen">
+    .sample-show-hide {
+      padding:10px;
+      border:1px solid black;
+      background:white;
+    }
+
+    .sample-show-hide {
+      -webkit-transition:all linear 0.5s;
+      transition:all linear 0.5s;
+    }
+
+    .sample-show-hide.ng-hide {
+      opacity:0;
+    }
+    </style>
+    <script type="text/javascript">
+    var app = angular.module("simpleAnimateApp", ["ngAnimate"]);
+
+    app.controller("simpeAnimateCtor", ["$scope", function($scope){
+      $scope.checked = false;
+    }]);
+
+    </script>
+  </head>
+  <body>
+    <div ng-controller="simpeAnimateCtor" ng-init="checked=true">
+      <h1>Simple Animate Example</h1>
+      <label>
+        <input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;"> Is Visible...
+      </label>
+      <div class="check-element sample-show-hide" ng-show="checked" style="clear:both;">
+        Visible...
+      </div>
+    </div>
+  </body>
+  </html>
