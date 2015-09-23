@@ -1,4 +1,11 @@
-//date format 2014-08-09 or 2014-08-09 12:23:04
+/*
+ * To parse date string as 2014-08-09 or 2014-08-09 12:23:04
+ * Parameters:
+ *  v: String to parse
+ * return;
+ *  null: if not a date format string.
+ *  Date object: if is a date format string.
+ */
 function parseDate(v) {
   var sreg = /\b(\d{4})-(\d{1,2})-(\d{1,2})\b/g;
   var lreg = /\b(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})\b/g;
