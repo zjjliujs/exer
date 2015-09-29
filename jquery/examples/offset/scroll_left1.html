@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>scrollLeft demo</title>
+    <style>
+    p {
+        margin: 10px;
+        padding: 5px;
+        border: 2px solid #666;
+    }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <div style="width:100%;height:1000px;overflow:auto">
+        <div style="height:2300px;width:100%; background-color:green; border:1px solid">
+        </div>
+        <p>Hello</p><p></p>
+    </div>
+
+    <script>
+    var d = $("div:first");
+    d.scrollTop(1500);
+    var p = $( "p:first" );
+    $( "p:last" ).text( "scrollLeft:" + d.scrollLeft() + " scrollTop:" + d.scrollTop());
+    </script>
+
+</body>
+</html>
