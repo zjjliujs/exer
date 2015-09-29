@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Prevent default test</title>
+        <script type="text/javascript">
+        function no_check(event) {
+            event.preventDefault();
+        }
+        </script>
+    </head>
+    <body>
+        <label>
+            Prevent default:<input type="checkbox" onclick="no_check(event)" name="test">
+        </label>
+    </body>
+</html>
