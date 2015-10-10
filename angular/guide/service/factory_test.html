@@ -14,17 +14,21 @@
 
 <body ng-app="myServiceModule">
     <div ng-controller="MyController">
+        <h1 ng-bind="test_string"></h1>
         <p>Let's try this simple notify service, injected into the controller...</p>
         <input ng-init="message='test'" ng-model="message" >
         <button ng-click="callNotify(message);">NOTIFY</button>
         <p>(you have to click 3 times to see an alert)</p>
+        <h2 ng-bind="notify.cnt"></h2>
     </div>
 
     <div ng-controller="MyController">
+        <h1 ng-bind="test_string"></h1>
         <p>Let's try this simple notify service, injected into the controller...</p>
         <input ng-init="message='test'" ng-model="message" >
         <button ng-click="callNotify(message);">NOTIFY</button>
         <p>(you have to click 3 times to see an alert)</p>
+        <h2 ng-bind="notify.cnt"></h2>
     </div>
 </body>
 
@@ -33,19 +37,31 @@ var app = angular.module('myServiceModule', []);
 
 app.factory('notify', ['$window', function(win) {
     var msgs = [];
-    return function(msg) {
+    var self = this;
+    this.action = function(msg) {
         msgs.push(msg);
         if (msgs.length == 3) {
             win.alert(msgs.join("\n"));
             msgs = [];
+            ++self.cnt;
         }
     };
+
+    this.cnt= 0;
+    this.count = function (){
+        ++self.cnt;
+        return self.cnt;
+    }
+    return this;
 }]);
 
 app.controller('MyController', ['$scope','notify', function ($scope, notify) {
     $scope.callNotify = function(msg) {
-        notify(msg);
+        notify.action(msg);
     };
+
+    $scope.test_string = "test" + notify.count();
+    $scope.notify = notify;
 }]);
 
 </script>
