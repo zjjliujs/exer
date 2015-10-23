@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+img { padding:10px; }
+div { color:red; font-size:24px; }
+</style>
+<script src="http:/modules/jquery/jquery.min.js"></script>
+</head>
+<body>
+
+    <input type="checkbox" checked="checked" />
+    <input type="checkbox" />
+    <input type="checkbox" />
+    <input type="checkbox"  checked="checked" />
+
+    <script>
+    $("input[type='checkbox']").prop({
+        disabled: true
+    });
+    </script>
+
+</body>
+</html>
