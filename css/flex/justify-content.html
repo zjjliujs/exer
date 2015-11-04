@@ -14,29 +14,71 @@
         list-style: none;
     }
 
+    .start {
+        justify-content: flex-start;
+    }
+
+    .end {
+        justify-content: flex-end;
+    }
+
+    .center {
+        justify-content: center;
+    }
+
+    .sp-bt {
+        justify-content: space-between;
+    }
+
     .flex-item {
         background: tomato;
-        padding: 5px;
-        width: 200px;
-        height: 150px;
+        margin: 5px 5px;
+        width: 80px;
+        height: 129px;
         margin-top: 10px;
 
-        line-height: 150px;
         color: white;
         font-weight: bold;
         font-size: 3em;
         text-align: center;
+        display: flex;
+    }
+
+    span {
+        margin:auto;
     }
     </style>
 </head>
 <body>
+    <h3>flex-start</h3>
+    <ul class="flex-container start">
+        <li class="flex-item"><span>1</span></li>
+        <li class="flex-item"><span>2</span></li>
+        <li class="flex-item"><span>3</span></li>
+    </ul>
+    <h3>flex-end</h3>
+    <ul class="flex-container end">
+        <li class="flex-item"><span>1</span></li>
+        <li class="flex-item"><span>2</span></li>
+        <li class="flex-item"><span>3</span></li>
+    </ul>
+    <h3>center</h3>
+    <ul class="flex-container center">
+        <li class="flex-item"><span>1</span></li>
+        <li class="flex-item"><span>2</span></li>
+        <li class="flex-item"><span>3</span></li>
+    </ul>
+    <h3>space-between</h3>
+    <ul class="flex-container sp-bt">
+        <li class="flex-item"><span>1</span></li>
+        <li class="flex-item"><span>2</span></li>
+        <li class="flex-item"><span>3</span></li>
+    </ul>
+    <h3>space-around</h3>
     <ul class="flex-container">
-        <li class="flex-item">1</li>
-        <li class="flex-item">2</li>
-        <li class="flex-item">3</li>
-        <li class="flex-item">4</li>
-        <li class="flex-item">5</li>
-        <li class="flex-item">6</li>
+        <li class="flex-item"><span>1</span></li>
+        <li class="flex-item"><span>2</span></li>
+        <li class="flex-item"><span>3</span></li>
     </ul>
 </body>
 </html>
