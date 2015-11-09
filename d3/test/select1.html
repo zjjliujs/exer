@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="/modules/d3/d3.v3.js">
+        </script>
+        <style media="screen">
+            .box {
+                width:100px;
+                height:100px;
+                /*margin: auto;*/
+                /*padding: 10px 100px 10px 100px;*/
+                border:1px solid red;
+                background-color: blue;
+                color:white;
+                display: inline-flex;
+            }
+        </style>
+    </head>
+    <body>
+        <div>0</div>
+        <div>1</div>
+        <div>2</div>
+        <script type="text/javascript">
+            d3.selectAll('div')
+            .attr("class","box")
+            .each(function(d,i){
+                d3.select(this)
+                .html("<span style='margin:auto'>" + i + "</span>")
+            })
+        </script>
+    </body>
+</html>
