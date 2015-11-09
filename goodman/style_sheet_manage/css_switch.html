@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<style>
+.unhilited {background-color:white}
+.hilited {background-color:yellow; text-decoration:underline}
+</style>
+<script>
+function setHilite(evt) {
+    evt = (evt) ? evt : ((window.event) ? window.event : null);
+    if (evt) {
+        var elem = (evt.srcElement) ? evt.srcElement : evt.target;
+        elem.className = "hilited";
+    }
+}
+function setUnHilite(evt) {
+    evt = (evt) ? evt : ((window.event) ? window.event : null);
+    if (evt) {
+        var elem = (evt.srcElement) ? evt.srcElement : evt.target;
+        elem.className = "unhilited";
+    }
+}
+</script>
+</head>
+<body>
+  <h1 onmouseover="setHilite()" onmouseout="setUnHilite()">对话框的主体</h1>
+</body>
+</html>

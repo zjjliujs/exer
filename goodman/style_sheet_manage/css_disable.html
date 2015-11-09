@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../css/css_disable.css">
+  <script>
+  function disableStyleSheets(){
+    console.log(document.styleSheets);
+    for(var i in document.styleSheets){
+      var ss = document.styleSheets[i];
+      console.log(ss);
+      ss.disabled = true;
+    }
+  }
+  </script>
+</head>
+<body>
+    <h1>对话框的主体</h1>
+    <input type='button' value="Disable 所有的css" onclick="disableStyleSheets();">
+</body>
+</html>

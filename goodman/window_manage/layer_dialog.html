@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <title>Main Application Page</title>
+  <script type="text/javascript" src="../js/dhtml_api.js"></script>
+  <script type="text/javascript" src="../js/layer_dialog.js"></script>
+  <script type="text/javascript" src="../js/layer_dialog_drag.js"></script>
+  <script language="JavaScript" type="text/javascript">
+  // function to run upon closing the dialog with "OK".
+  function setPrefs( ) {
+    // Statements here to apply choices from the dialog window
+  }
+  </script>
+</head>
+<body  onload="initDHTMLAPI( ); initDrag( ); initLayerDialog( )">
+  <!-- PAGE CONTENT HERE -->
+  <a href="noPrefs.html" onmouseover="status='Set preferences...';return true"
+  onmouseout="status='';return true"
+  onclick="openLayerDialog('dialog_main.html', 'User Preferences', setPrefs, null);return false">
+  Preferences
+</a>
+<!-- More Page Content Here -->
+<div id="pseudoWindow">
+  <div id="titlebar" class="draggable">
+    <img id="closebox" src="../images/close_box_win9x.jpg" onclick="closeLayerDialog( )" />
+    <span id="barTitle">Titlebar</span>
+  </div>
+
+  <iframe id="contentFrame" src="" frameborder="0" vspace="0" hspace="0"
+  marginwidth="14" marginHeight="14" width="100%" height="480" scrolling="auto">
+  </iframe>
+</div>
+</body>
+</html>
