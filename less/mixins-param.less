@@ -1,0 +1,18 @@
+.roundedBox( @borderRadius, @borderColour ) {
+  border: 2px solid @borderColour;
+  background-color: #eee;
+  -moz-border-radius: @borderRadius;
+  -webkit-border-radius: @borderRadius;
+  border-radius: @borderRadius;
+  padding: 10px;
+}
+
+blockquote {
+  font-size: 1.5em;
+  .roundedBox( 5px, #6c6 );
+}
+
+.promo {
+  width: 10em;
+  .roundedBox( 10px, #fa6 );
+}

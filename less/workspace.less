@@ -1,0 +1,15 @@
+#articlePage {
+    @outerWidth: 960px;
+    @borderWidth: 10px;
+    @padding: 10px;
+
+    #containerStyle {
+        width: @outerWidth - ( @borderWidth + @padding ) * 2;
+        border: @borderWidth solid #999;
+        padding: @padding;
+    }
+}
+
+#container {
+  #articlePage > #containerStyle;
+}

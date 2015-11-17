@@ -1,0 +1,17 @@
+@h1Size: 6em;
+
+h1 { font-size: @h1Size; }
+h2 { font-size: @h1Size * .8; }
+h3 { font-size: @h1Size * .6; }
+h4 { font-size: @h1Size * .4; }
+h5 { font-size: @h1Size * .2; }
+
+@outerWidth: 960px;
+@borderWidth: 10px;
+@padding: 10px;
+
+#container {
+  width: @outerWidth - ( @borderWidth + @padding ) * 2;
+  border: @borderWidth solid #999;
+  padding: @padding;
+}

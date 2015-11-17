@@ -1,0 +1,28 @@
+@mainColour: #309296;
+
+div {
+    width:100px;
+    height:100px;
+    margin:auto;
+    border:1px solid gray;
+
+    &.container{
+        border:none;
+        width:100%;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+}
+
+.normal {background-color: @mainColour}
+.lighten {background-color: lighten(@mainColour, 10%)}
+.darken {background-color: darken(@mainColour, 10%)}
+.saturate {background-color: saturate(@mainColour, 10%)}
+.desaturate {background-color: desaturate(@mainColour, 10%)}
+.fadein {background-color: fadein(@mainColour, 10%)}
+.fadeout {background-color: fadeout(@mainColour, 10%)}
+.spin {background-color: spin(@mainColour, 10%)}
+.hue {background-color: hue(@mainColour, 10%)}
+.suturation {background-color: saturation(@mainColour, 10%)}
+.lightness {background-color: lightness(@mainColour, 10%)}

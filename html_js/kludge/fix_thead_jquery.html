@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript" src="/modules/jquery/jquery.min.js">
+        </script>
+        <style media="screen">
+        /* your existing container */
+        #wrap {
+            overflow: auto;
+            height: 400px;
+        }
+
+        table{
+            width:100%;
+            background-color: yellow;
+            border-color: yellow;
+        }
+
+        thead {
+        }
+
+        /* css for demo */
+        td {
+            background-color: green;
+            width: auto;
+            height: 100px;
+        }
+
+        th {
+            background-color:yellow;
+        }
+        </style>
+        <script type="text/javascript">
+        $(document).ready(function (){
+            document.getElementById("wrap").addEventListener("scroll",function(){
+                var translate = "translate(0,"+this.scrollTop+"px)";
+                this.querySelector("thead").style.transform = translate;
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <div id="wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Foo</th>
+                        <th>Bar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Test 1 Test 1Test 1Test 1Test 1Test 1Test 1Test 1Test 1Test 1Test 1
+                        </td>
+                        <td>
+                            Test 1 Test 1Test 1Test 1Test 1Test 1Test 1Test 1Test 1Test 1Test 1
+                        </td>
+                    </tr>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                    <tr><td></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+    </html>
