@@ -59,7 +59,7 @@ button#reset {
         <i class='fa fa-undo'></i>
     </button>
 
-    <script src='d3/d3.v3.js'></script>
+    <script src='/modules/d3/d3.v3.js'></script>
     <script>
 
 // Define the dimensions of the visualization. We're using
@@ -182,6 +182,7 @@ var initForce = function() {
     // (0.9) while the second uses a much lower value.
 
     force2.friction(0.1);
+    //force1.friction(0.1);
 
     // Define the `linkDistance` for the graph. This is the
     // distance we desire between connected nodes.

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="applyExample">
+    <head>
+        <meta charset="utf-8">
+        <title>Apply test</title>
+    </head>
+    <body ng-controller="applyController">
+        <input type='button' value="No apply" ng-click="noApply()">
+        <input type='button' value="Do apply" ng-click="doApply()">
+        <hr/>
+        <span ng-bind='count.value'></span>
+    </body>
+    <script src="/modules/jquery/jquery.min.js"></script>
+    <script src="/modules/angular/angular.js"></script>
+    <script type="text/javascript">
+    angular.module('applyExample', [])
+    .controller('applyController', ['$scope', function($scope) {
+        $scope.count = {value:0};
+        function increase () {
+            $scope.count.value++;
+            console.log ($scope.count.value);
+        }
+
+        $scope.noApply = function () {
+            window.setTimeout(increase, 10);
+        };
+
+        function applyIncrease () {
+            $scope.$apply($scope.count.value++);
+            console.log ($scope.count.value);
+        }
+
+        $scope.doApply = function () {
+            setTimeout(applyIncrease, 10);
+        };
+    }]);
+    </script>
+    </html>
