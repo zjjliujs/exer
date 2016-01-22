@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Draggable dialog test</title>
+    </head>
+    <link rel="stylesheet/less" type="text/css" href="drag_div.css">
+    <script type="text/javascript" src="/modules/less/less.min.js">
+    </script>
+    <script type="text/javascript">
+        function allowDrop(e){
+            e.preventDefault();
+        }
+
+    </script>
+    <body ondragover="allowDrop(event)">
+        <div class="container">
+        </div>
+        <div class="dialog" draggable="true">
+            <div class="header">
+                <span>draggable dialog</span>
+            </div>
+            <div class="content">
+                <p>
+                    content of dialog
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

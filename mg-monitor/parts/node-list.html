@@ -1,0 +1,29 @@
+<div class="node-list">
+    <div class="menubar">
+        <div class="item">
+            <label for="clusterSelectId">集群:</label>
+            <select id="clusterSelectId"
+                ng-model="cluster" ng-model-options="{getterSetter:true}"
+                ng-options="c.name for c in clusters">
+                <option value="">--所有节点--</option>
+            </select>
+        </div>
+        <div class="item">
+            <label for="orderTypeId">排序方式:</label>
+            <select id="orderTypeId"
+                ng-model="orderType" ng-model-options="{getterSetter:true}"
+                ng-options="o.name for o in orderTypes">
+                <option value="">--无排序--</option>
+            </select>
+            <i ng-if="orderDown()" class="fa fa-arrow-down fa-lg" ng-click="toggleOrder()"></i>
+            <i ng-if="orderUp()" class="fa fa-arrow-up fa-lg" ng-click="toggleOrder()"></i>
+        </div>
+        <div class="item">
+            <label for="filterId">过滤:</label>
+            <input id="filterId" ng-model="filter" ng-model-options="{getterSetter:true}">
+        </div>
+    </div>
+    <div class="content">
+
+    </div>
+</div>

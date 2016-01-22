@@ -1,0 +1,45 @@
+<div class="overview">
+    <div class="menubar">
+        <i ng-click="showClusterCreator()" class="fa fa-plus-square fa-2x" title="增加集群"></i>
+    </div>
+    <div class="clusters">
+        <div ng-repeat="cluster in clusters" class="cluster">
+            <div class="title" ng-class="cluster.status">
+                <span ng-bind="cluster.name"></span>
+                <i class="fa fa-plus-circle fa-lg" title="增加节点"
+                ng-click="showNodeCreator(cluster)"></i>
+            </div>
+            <div class="body">
+                <div class="item">
+                    <div>
+                        <span class="title">节点数目:</span>
+                        <span ng-bind="cluster.nodeNum"></span>
+                    </div>
+                    <div>
+                        <span class="title">运行时间:</span>
+                        <span ng-bind="cluster.uptime"></span>
+                        <span>小时</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <span class="title">CPU:</span>
+                    <span title="最小占用">{{cluster.cpu.min * 100.0|number:1}}%</span>
+                    <span title="平均占用">{{cluster.cpu.avg * 100.0|number:1}}%</span>
+                    <span title="最大占用">{{cluster.cpu.max * 100.0|number:1}}%</span>
+                </div>
+                <div class="item">
+                    <span class="title">内存:</span>
+                    <span title="最小占用">{{cluster.memory.min * 100.0|number:1}}%</span>
+                    <span title="平均占用">{{cluster.memory.avg * 100.0|number:1}}%</span>
+                    <span title="最大占用">{{cluster.memory.max * 100.0|number:1}}%</span>
+                </div>
+                <div class="item">
+                    <span class="title">硬盘:</span>
+                    <span title="最小占用">{{cluster.diskFree.min * 100.0|number:1}}%</span>
+                    <span title="平均占用">{{cluster.diskFree.avg * 100.0|number:1}}%</span>
+                    <span title="最大占用">{{cluster.diskFree.max * 100.0|number:1}}%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

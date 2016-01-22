@@ -1,0 +1,178 @@
+[
+    {
+        "name":"web集群1",
+        "nodeData":"web1",
+        "status":"good",
+        "nodeNum":2,
+        "uptime":1000.2,
+        "cpu": {
+            "min":0.1,
+            "avg":0.29,
+            "max":0.6
+        },
+        "diskFree": {
+            "min":0.12,
+            "avg":0.23,
+            "max":0.52
+        },
+        "memory": {
+            "min":0.11,
+            "max":0.53,
+            "avg":0.47
+        }
+    },
+    {
+        "name":"web集群2",
+        "nodeData":"web2",
+        "status":"good",
+        "nodeNum":2,
+        "uptime":1000.2,
+        "cpu": {
+            "min":0.1,
+            "avg":0.29,
+            "max":0.6
+        },
+        "diskFree": {
+            "min":0.12,
+            "avg":0.23,
+            "max":0.52
+        },
+        "memory": {
+            "min":0.11,
+            "max":0.53,
+            "avg":0.47
+        }
+    },
+    {
+        "name":"Cassandra集群1",
+        "nodeData":"cassandra1",
+        "status":"good",
+        "nodeNum":2,
+        "uptime":1000.2,
+        "cpu": {
+            "min":0.1,
+            "avg":0.29,
+            "max":0.6
+        },
+        "diskFree": {
+            "min":0.12,
+            "avg":0.23,
+            "max":0.52
+        },
+        "memory": {
+            "min":0.11,
+            "max":0.53,
+            "avg":0.47
+        }
+    },
+    {
+        "name":"Cassandra集群2",
+        "nodeData":"cassandra2",
+        "status":"good",
+        "nodeNum":2,
+        "uptime":1000.2,
+        "cpu": {
+            "min":0.1,
+            "avg":0.29,
+            "max":0.6
+        },
+        "diskFree": {
+            "min":0.12,
+            "avg":0.23,
+            "max":0.52
+        },
+        "memory": {
+            "min":0.11,
+            "max":0.53,
+            "avg":0.47
+        }
+    },
+    {
+        "name":"Cassandra集群3",
+        "nodeData":"cassandra3",
+        "status":"good",
+        "nodeNum":2,
+        "uptime":1000.2,
+        "cpu": {
+            "min":0.1,
+            "avg":0.29,
+            "max":0.6
+        },
+        "diskFree": {
+            "min":0.12,
+            "avg":0.23,
+            "max":0.52
+        },
+        "memory": {
+            "min":0.11,
+            "max":0.53,
+            "avg":0.47
+        }
+    },
+    {
+        "name":"ES集群1",
+        "nodeData":"es1",
+        "status":"good",
+        "nodeNum":2,
+        "uptime":1000.2,
+        "cpu": {
+            "min":0.1,
+            "avg":0.29,
+            "max":0.6
+        },
+        "diskFree": {
+            "min":0.12,
+            "avg":0.23,
+            "max":0.52
+        },
+        "memory": {
+            "min":0.11,
+            "max":0.53,
+            "avg":0.47
+        }
+    },
+    {
+        "name":"ES集群2",
+        "nodeData":"es2",
+        "status":"good",
+        "nodeNum":2,
+        "uptime":1000.2,
+        "cpu": {
+            "min":0.1,
+            "avg":0.29,
+            "max":0.6
+        },
+        "diskFree": {
+            "min":0.12,
+            "avg":0.23,
+            "max":0.52
+        },
+        "memory": {
+            "min":0.11,
+            "max":0.53,
+            "avg":0.47
+        }
+    },
+    {
+        "name":"ES集群3",
+        "nodeData":"es3",
+        "status":"good",
+        "nodeNum":2,
+        "uptime":1000.2,
+        "cpu": {
+            "min":0.1,
+            "avg":0.29,
+            "max":0.6
+        },
+        "diskFree": {
+            "min":0.12,
+            "avg":0.23,
+            "max":0.52
+        },
+        "memory": {
+            "min":0.11,
+            "max":0.53,
+            "avg":0.47
+        }
+    }
+]

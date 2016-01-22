@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="monitorApp" ng-strict-di>
+    <head>
+        <meta charset="utf-8">
+        <title>天合监控系统</title>
+        <link rel="stylesheet" href="/modules/bootstrap/css/bootstrap.css">
+        <script type="text/javascript" src="/modules/jquery/jquery.js">
+        </script>
+        <script type="text/javascript" src="/modules/bootstrap/js/bootstrap.js">
+        </script>
+        <link rel="stylesheet/less" type="text/css" href="css/monitor.css">
+        <script type="text/javascript" src="/modules/less/less.min.js">
+        </script>
+        <base href="http://localhost:8080/exer/mg-monitor/monitor.html">
+    </head>
+    <body ng-controller="mainController">
+        <div class="monitor container-fluid">
+            <!-- start: headbar -->
+            <div class="header row">
+                <div class="title col-lg-11">
+                    天合监控系统
+                </div>
+                <div class="user col-lg-1">
+                    <a href="#">Admin</a>
+                </div>
+            </div>
+            <!-- end: headbar -->
+            <!-- start: main body -->
+            <div class="main row">
+                <!-- start: sidebar -->
+                <div class="sidebar col-lg-1 col-md-2 col-sm-2">
+                    <div class="menu-item">
+                        <a href="overview">集群全景</a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="node-list">节点列表</a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="node-detail">节点详细</a>
+                    </div>
+                </div>
+                <!-- end: sidebar -->
+                <div class="content col-lg-11 col-md-10 col-sm-10">
+                    <div ng-view class="content-view"></div>
+                </div>
+            </div>
+            <!-- end: main body -->
+        </div>
+    </body>
+    <script type="text/javascript" src="/modules/angular/angular.js">
+    </script>
+    <script type="text/javascript" src="/modules/angular/angular-route.js">
+    </script>
+    <script type="text/javascript">
+        var app = angular.module("monitorApp",["ngRoute"]);
+    </script>
+    <script type="text/javascript" src="js/route.js">
+    </script>
+    <script type="text/javascript" src="js/main-ctrl.js">
+    </script>
+    <script type="text/javascript" src="js/overview-ctrl.js">
+    </script>
+    <script type="text/javascript" src="js/node-list-ctrl.js">
+    </script>
+    <script type="text/javascript" src="js/service.js">
+    </script>
+</html>
