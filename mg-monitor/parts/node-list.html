@@ -2,7 +2,7 @@
     <div class="menubar">
         <div class="item">
             <label for="clusterSelectId">集群:</label>
-            <select id="clusterSelectId"
+            <select id="clusterSelectId" ng-change="clusterChanged()"
                 ng-model="cluster" ng-model-options="{getterSetter:true}"
                 ng-options="c.name for c in clusters">
                 <option value="">--所有节点--</option>
@@ -24,6 +24,29 @@
         </div>
     </div>
     <div class="content">
-
+        <div class="node" ng-repeat="node in nodes">
+            <div class="line">
+                <div class="item">
+                    <span class="title">主机名:</span>
+                    <span>{{node.host}}</span>
+                </div>
+                <div class="item">
+                    <span class="title">IP:</span>
+                    <span>{{node.ip}}</span>
+                </div>
+                <div class="item">
+                    <span class="title">状态:</span>
+                    <i ng-class="node.status" class="fa fa-circle fa-lg" title="{{node.status}}"></i>
+                </div>
+            </div>
+            <div class="line">
+                <div class="item">
+                    <span class="title">CPU:</span>
+                    <span title="最小占用">{{node.cpu.min * 100 |number:1}}%</span>
+                    <span title="平均占用">{{node.cpu.avg * 100 |number:1}}%</span>
+                    <span title="最大占用">{{node.cpu.max * 100 |number:1}}%</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

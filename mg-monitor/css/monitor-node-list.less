@@ -1,9 +1,10 @@
 .node-list {
     .menubar {
         padding:5px 10px 5px 10px;
-        border-bottom: 1px solid #e0e0e0;
+        border-bottom: 1px solid #a0a0a0;
         display: flex;
         flex-direction: row;
+        margin-bottom: 5px;
         select,input{
             height: 30px;
             border-radius: 5px 5px 5px 5px;
@@ -16,6 +17,44 @@
         }
     }
     .content {
-        
+        overflow-y: auto;
+        display:flex;
+        flex-direction: column;
+        .node {
+            margin:3px 3px 3px 3px;
+            border:2px solid;
+            border-radius: 5px 5px 5px 5px;
+            border-color: #a0a0a0;
+            display:flex;
+            flex-direction:column;
+            .line {
+                display: flex;
+                flex-direction: row;
+                padding:5px 5px 5px 5px;
+                .item {
+                    margin-left:10px;
+                    span {
+                        padding:3px 3px 3px 3px;
+                    }
+                    .title {
+                        background-color: #e0e0e0;
+                    }
+                    i {
+                        &.good {
+                            color:green;
+                        }
+                        &.warning {
+                            color:yellow;
+                        }
+                        &.error {
+                            color:red;
+                        }
+                    }
+                }
+                &:not(:last-child) {
+                    border-bottom: 1px solid #e0e0e0;
+                }
+            }
+        }
     }
 }
