@@ -30,9 +30,12 @@
             .line {
                 display: flex;
                 flex-direction: row;
+                justify-content: space-between;
                 padding:5px 5px 5px 5px;
                 .item {
+                    flex-grow: 1;
                     margin-left:10px;
+                    width:200px;
                     span {
                         padding:3px 3px 3px 3px;
                     }
@@ -48,6 +51,16 @@
                         }
                         &.error {
                             color:red;
+                        }
+                        &.fa-trash {
+                            color:green;
+                        }
+                    }
+                    &.action {
+                        flex-grow: 2;
+                        i {
+                            float:right;
+                            margin-right: 20px;
                         }
                     }
                 }

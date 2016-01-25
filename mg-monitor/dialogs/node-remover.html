@@ -1,0 +1,26 @@
+<div ng-controller="nodeRemoverController">
+    <div class="header">
+        <span>删除节点</span>
+        <i class="fa fa-close fa-lg" title="关闭" ng-click="hideDialog()"></i>
+    </div>
+    <div class="message">
+        <span ng-if="!cluster()" class="item">
+            确定要删除 {{node().host}} 吗？
+        </span>
+        <span ng-if="cluster()" class="item">
+            确定要从 {{cluster().name}} 中删除 {{node().host}} 吗？
+        </span>
+    </div>
+    <form class="content form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2">
+                <input type="button" class="btn btn-default" value="确定"
+                ng-click="deleteCluster()">
+            </div>
+            <div class="col-sm-offset-4 col-sm-2">
+                <input type="button" class="btn btn-default" value="取消"
+                ng-click="hideDialog()">
+            </div>
+        </div>
+    </form>
+</div>

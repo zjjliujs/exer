@@ -1,7 +1,7 @@
 app.controller("mainController",
 ["$scope", "monitorService", "$location", "monitorResource",
 function($scope, monitorService, $location, monitorResource){
-    var service = monitorService;
+    var service = $scope.service = monitorService;
 
     $scope.clusters = monitorResource.query();
 
@@ -9,58 +9,37 @@ function($scope, monitorService, $location, monitorResource){
         return $location.url();
     };
 
-    $scope.showDialog = function(){
-        return service.showDialog();
-    }
-
-    $scope.dialogUrl = function () {
-        return service.dialogUrl();
-    }
-
-    $scope.clusterName = function (n) {
-        if (arguments.length > 0) {
-            service.pageStat.clusterCreator.clusterName = n;
-        }
-        return service.pageStat.clusterCreator.clusterName;
-    }
-
-    $scope.clusterType = function (t) {
-        if (arguments.length > 0) {
-            service.pageStat.clusterCreator.clusterType = t;
-        }
-        //console.log (service.pageStat.clusterCreator.clusterType);
-        return service.pageStat.clusterCreator.clusterType;
-    }
-
     $scope.clusterTypes = service.getClusterTypes();
     //console.log ($scope.clusterTypes);
 
-    $scope.hideDialog = function () {
-        service.hideDialog();
-    }
-
-    $scope.saveCluster = function () {
-        $scope.hideDialog();
-    }
-
-    $scope.cluster = function (c) {
-        if (arguments.lenght > 0) {
-            service.pageStat.nodeCreator.cluster = c;
+    $scope.showClusterCreator = function(s){
+        if (arguments.length > 0) {
+            service.pageStat.clusterCreator.show = s;
         }
-        return service.pageStat.nodeCreator.cluster;
-    }
+        return service.pageStat.clusterCreator.show;
+    };
 
-    $scope.hostName = function (c) {
-        if (arguments.lenght > 0) {
-            service.pageStat.nodeCreator.hostName = c;
+    $scope.showClusterRemover = function (cluster) {
+        if (arguments.length > 0) {
+            service.pageStat.clusterRemover.show = true;
+            service.pageStat.clusterRemover.cluster = cluster;
         }
-        return service.pageStat.nodeCreator.hostName;
-    }
+        return service.pageStat.clusterRemover.show;
+    };
 
-    $scope.ip = function (c) {
-        if (arguments.lenght > 0) {
-            service.pageStat.nodeCreator.ip = c;
+    $scope.showNodeCreator = function (s) {
+        if (arguments.length > 0) {
+            service.pageStat.nodeCreator.show = true;
         }
-        return service.pageStat.nodeCreator.ip;
-    }
+        return service.pageStat.nodeCreator.show;
+    };
+
+    $scope.showNodeRemover = function (node) {
+        if (arguments.length > 0) {
+            service.pageStat.nodeRemover.show = true;
+            service.pageStat.nodeRemover.node = node;
+        }
+        return service.pageStat.nodeRemover.show;
+    };
+
 }]);

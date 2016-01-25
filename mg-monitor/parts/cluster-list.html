@@ -1,13 +1,14 @@
 <div class="cluster-list">
     <div class="menubar">
-        <i ng-click="showClusterCreator()" class="fa fa-plus-square fa-2x" title="增加集群"></i>
+        <i ng-click="showClusterCreator(true)" class="fa fa-plus-square fa-2x" title="增加集群"></i>
     </div>
     <div class="clusters">
-        <div ng-repeat="cluster in clusters" class="cluster">
+        <div ng-repeat="cluster in clusters" class="cluster"
+            ng-dblclick="gotoNodeList(cluster);">
             <div class="title" ng-class="cluster.status">
                 <span ng-bind="cluster.name"></span>
-                <i class="fa fa-plus-circle fa-lg" title="增加节点"
-                ng-click="showNodeCreator(cluster)"></i>
+                <i class="fa fa-trash fa-lg" title="删除集群"
+                ng-click="showClusterRemover(cluster)"></i>
             </div>
             <div class="body">
                 <div class="item">
@@ -38,6 +39,16 @@
                     <span title="最小占用">{{cluster.diskFree.min * 100.0|number:1}}%</span>
                     <span title="平均占用">{{cluster.diskFree.avg * 100.0|number:1}}%</span>
                     <span title="最大占用">{{cluster.diskFree.max * 100.0|number:1}}%</span>
+                </div>
+            </div>
+        </div>
+        <div class="cluster">
+            <div class="title add">
+                <span>增加集群</span>
+            </div>
+            <div class="body" ng-click="showClusterCreator(true)">
+                <div class="add">
+                    <i class="fa fa-plus fa-4x"></i>
                 </div>
             </div>
         </div>

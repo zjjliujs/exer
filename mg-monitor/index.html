@@ -48,8 +48,25 @@
             <!-- end: main body -->
         </div>
         <!-- start： dialog -->
-        <div ng-show="showDialog()" class="dialog">
-            <div ng-include="dialogUrl()"></div>
+        <div ng-if="showClusterCreator()" class="dialog">
+            <div ng-include="'dialogs/cluster-creator.html'"
+                ng-controller='clusterCreatorController'>
+            </div>
+        </div>
+        <div ng-if="showClusterRemover()" class="dialog">
+            <div ng-include="'dialogs/cluster-remover.html'"
+                ng-controller='clusterRemoverController'>
+            </div>
+        </div>
+        <div ng-if="showNodeCreator()" class="dialog">
+            <div ng-include="'dialogs/node-creator.html'"
+                ng-controller='nodeCreatorController'>
+            </div>
+        </div>
+        <div ng-if="showNodeRemover()" class="dialog">
+            <div ng-include="'dialogs/node-remover.html'"
+                ng-controller='nodeRemoverController'>
+            </div>
         </div>
         <!-- end: dialog -->
     </body>
@@ -75,5 +92,13 @@
     <script type="text/javascript" src="js/node-list-ctrl.js">
     </script>
     <script type="text/javascript" src="js/node-detail-ctrl.js">
+    </script>
+    <script type="text/javascript" src="js/dialog/cluster-remover-ctrl.js">
+    </script>
+    <script type="text/javascript" src="js/dialog/cluster-creator-ctrl.js">
+    </script>
+    <script type="text/javascript" src="js/dialog/node-creator-ctrl.js">
+    </script>
+    <script type="text/javascript" src="js/dialog/node-remover-ctrl.js">
     </script>
 </html>

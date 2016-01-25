@@ -6,19 +6,20 @@ function($scope, monitorService, monitorResource){
     $scope.cluster = function(c) {
         if (arguments.length > 0) {
             service.pageStat.nodeList.cluster = c;
+            service.pageStat.nodeCreator.cluster = c;
         }
         //console.log(service.pageStat.nodeList.cluster);
         return service.pageStat.nodeList.cluster;
     };
 
     $scope.clusterChanged = function() {
-        console.log (service.pageStat.nodeList.cluster);
+        //console.log (service.pageStat.nodeList.cluster);
         var name = "all";
         if (service.pageStat.nodeList.cluster){
             name = service.pageStat.nodeList.cluster.nodeData;
         }
         $scope.nodes=monitorResource.query({name:name});
-        console.log($scope.nodes);
+        //console.log($scope.nodes);
     };
 
     $scope.clusterChanged();

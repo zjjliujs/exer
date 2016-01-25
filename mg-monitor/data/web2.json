@@ -1,0 +1,44 @@
+[
+    {
+        "host":"ndb3",
+        "ip":"192.168.40.33",
+        "status":"good",
+        "uptime":1000.2,
+        "cpu": {
+            "min":0.1,
+            "avg":0.29,
+            "max":0.6
+        },
+        "diskFree": {
+            "min":0.12,
+            "avg":0.23,
+            "max":0.52
+        },
+        "memory": {
+            "min":0.11,
+            "max":0.53,
+            "avg":0.47
+        }
+    },
+    {
+        "host":"ndb4",
+        "ip":"192.168.40.34",
+        "status":"good",
+        "uptime":1000.2,
+        "cpu": {
+            "min":0.1,
+            "avg":0.29,
+            "max":0.6
+        },
+        "diskFree": {
+            "min":0.12,
+            "avg":0.23,
+            "max":0.52
+        },
+        "memory": {
+            "min":0.11,
+            "max":0.53,
+            "avg":0.47
+        }
+    }
+]

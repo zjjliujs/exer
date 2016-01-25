@@ -1,17 +1,12 @@
 app.controller('clusterListCtrl',
-["$scope","monitorService",
-function($scope, monitorService){
+["$scope","monitorService","$location",
+function($scope, monitorService, $location){
     var service = monitorService;
-    
-    $scope.showClusterCreator = function () {
-        service.dialogUrl('dialogs/cluster-creator.html');
-        service.showDialog(true);
-        //console.log (service.pageStat);
-    }
 
-    $scope.showNodeCreator = function (cluster) {
-        service.dialogUrl('dialogs/node-creator.html');
-        service.pageStat.nodeCreator.cluster = cluster;
-        service.showDialog(true);
-    }
+    $scope.gotoNodeList = function (cluster) {
+        //console.log (cluster);
+        service.pageStat.nodeList.cluster = cluster;
+        $location.url("/node-list");
+        console.log($location.url());
+    };
 }]);

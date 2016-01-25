@@ -23,6 +23,7 @@
                 border-radius: 8px 8px 0px 0px;
                 padding: 5px 10px 5px 10px;
                 border-bottom: 1px solid;
+                height:20%;
                 i {
                     float: right;
                     padding:2px 2px 2px 2px;
@@ -42,12 +43,15 @@
                 &.error{
                     background-color: red;
                 }
-
+                &.add {
+                    background-color: #a0a0a0;
+                }
             }
             .body {
                 padding: 5px 10px 0px 10px;
                 display:flex;
                 flex-direction: column;
+                height:80%;
                 .item {
                     display: flex;
                     flex-direction: row;
@@ -57,6 +61,15 @@
                         background-color: #e0e0e0;
                         padding:2px 2px 2px 2px;
 
+                    }
+                }
+                .add {
+                    display: flex;
+                    flex-direction: column;
+                    height:100%;
+                    i {
+                        margin: auto;
+                        color:#909090;
                     }
                 }
             }

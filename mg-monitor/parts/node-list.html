@@ -22,6 +22,10 @@
             <label for="filterId">过滤:</label>
             <input id="filterId" ng-model="filter" ng-model-options="{getterSetter:true}">
         </div>
+        <div class="item">
+            <i class="fa fa-plus-circle fa-2x" title="增加节点"
+                ng-click="showNodeCreator(true)"></i>
+        </div>
     </div>
     <div class="content">
         <div class="node" ng-repeat="node in nodes">
@@ -38,6 +42,9 @@
                     <span class="title">状态:</span>
                     <i ng-class="node.status" class="fa fa-circle fa-lg" title="{{node.status}}"></i>
                 </div>
+                <div class="item action">
+                    <i ng-click="showNodeRemover(node)" class="fa fa-trash fa-lg"></i>
+                </div>
             </div>
             <div class="line">
                 <div class="item">
@@ -45,6 +52,20 @@
                     <span title="最小占用">{{node.cpu.min * 100 |number:1}}%</span>
                     <span title="平均占用">{{node.cpu.avg * 100 |number:1}}%</span>
                     <span title="最大占用">{{node.cpu.max * 100 |number:1}}%</span>
+                </div>
+                <div class="item">
+                    <span class="title">内存:</span>
+                    <span title="最小占用">{{node.memory.min * 100 |number:1}}%</span>
+                    <span title="平均占用">{{node.memory.avg * 100 |number:1}}%</span>
+                    <span title="最大占用">{{node.memory.max * 100 |number:1}}%</span>
+                </div>
+                <div class="item">
+                    <span class="title">硬盘:</span>
+                    <span title="最小占用">{{node.diskFree.min * 100 |number:1}}%</span>
+                    <span title="平均占用">{{node.diskFree.avg * 100 |number:1}}%</span>
+                    <span title="最大占用">{{node.diskFree.max * 100 |number:1}}%</span>
+                </div>
+                <div class="item action">
                 </div>
             </div>
         </div>
