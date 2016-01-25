@@ -1,9 +1,8 @@
-app.controller('overviewCtrl',
+app.controller('clusterListCtrl',
 ["$scope","monitorService",
 function($scope, monitorService){
     var service = monitorService;
-
-
+    
     $scope.showClusterCreator = function () {
         service.dialogUrl('dialogs/cluster-creator.html');
         service.showDialog(true);

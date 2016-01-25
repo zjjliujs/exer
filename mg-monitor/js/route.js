@@ -1,10 +1,10 @@
 app.config(['$routeProvider', '$locationProvider',
 function($routeProvider, $locationProvider) {
     $routeProvider
-    .when('/overview', {
-        templateUrl: 'parts/overview.html',
-        controller: 'overviewCtrl',
-        controllerAs: 'overview'
+    .when('/cluster-list', {
+        templateUrl: 'parts/cluster-list.html',
+        controller: 'clusterListCtrl',
+        controllerAs: 'clusterList'
     })
     .when('/node-list', {
         templateUrl: 'parts/node-list.html',
@@ -17,7 +17,7 @@ function($routeProvider, $locationProvider) {
         controllerAs: 'nodeDetail'
     })
     .otherwise({
-        redirectTo: '/overview'
+        redirectTo: '/cluster-list'
     });
 
     $locationProvider.html5Mode(true);
