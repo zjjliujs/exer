@@ -20,5 +20,5 @@ function($routeProvider, $locationProvider) {
         redirectTo: '/cluster-list'
     });
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false);
 }]);

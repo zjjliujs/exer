@@ -3,18 +3,19 @@
     <head>
         <meta charset="utf-8">
         <title>天合监控系统</title>
-        <link rel="stylesheet" href="/modules/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="/modules/font-awesome/css/font-awesome.css">
-        <script type="text/javascript" src="/modules/jquery/jquery.js">
+        <link rel="stylesheet" href="./modules/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="./modules/font-awesome/css/font-awesome.css">
+        <script type="text/javascript" src="./modules/jquery/jquery.js">
         </script>
-        <script type="text/javascript" src="/modules/bootstrap/js/bootstrap.js">
+        <script type="text/javascript" src="./modules/bootstrap/js/bootstrap.js">
         </script>
         <link rel="stylesheet/less" type="text/css" href="css/monitor.less">
-        <script type="text/javascript" src="/modules/less/less.min.js">
+        <script type="text/javascript" src="./modules/less/less.min.js">
         </script>
-        <script type="text/javascript" src="/modules/d3/d3.v3.js">
+        <script type="text/javascript" src="./modules/d3/d3.v3.js">
         </script>
-        <base href="http://localhost:8080/exer/mg-monitor/index.html">
+        <!-- base href="http://localhost:8080/exer/mg-monitor/index.html" -->
+        <base />
     </head>
     <body ng-controller="mainController">
         <div class="monitor container-fluid">
@@ -33,13 +34,13 @@
                 <!-- start: sidebar -->
                 <div class="sidebar col-lg-1 col-md-2 col-sm-2">
                     <div class="menu-item" ng-class="{active:'/cluster-list'==url()}">
-                        <a href="cluster-list">集群全景</a>
+                        <a href="#cluster-list">集群全景</a>
                     </div>
                     <div class="menu-item" ng-class="{active:'/node-list'==url()}">
-                        <a href="node-list">节点列表</a>
+                        <a href="#node-list">节点列表</a>
                     </div>
                     <div class="menu-item" ng-class="{active:'/node-detail'==url()}">
-                        <a href="node-detail">节点详细</a>
+                        <a href="#node-detail">节点详细</a>
                     </div>
                 </div>
                 <!-- end: sidebar -->
@@ -72,11 +73,11 @@
         </div>
         <!-- end: dialog -->
     </body>
-    <script type="text/javascript" src="/modules/angular/angular.js">
+    <script type="text/javascript" src="./modules/angular/angular.js">
     </script>
-    <script type="text/javascript" src="/modules/angular/angular-route.js">
+    <script type="text/javascript" src="./modules/angular/angular-route.js">
     </script>
-    <script type="text/javascript" src="/modules/angular/angular-resource.js">
+    <script type="text/javascript" src="./modules/angular/angular-resource.js">
     </script>
     <script type="text/javascript">
         var app = angular.module("monitorApp",["ngRoute","ngResource"]);

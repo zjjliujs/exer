@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>jQuery UI Datepicker functionality</title>
+      <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      <!-- Javascript -->
+      <script>
+         $(function() {
+            $( "#datepicker-10" ).datepicker({
+               changeMonth:true,
+               changeYear:true,
+               numberOfMonths:[2,2]
+            });
+         });
+      </script>
+   </head>
+   <body>
+      <!-- HTML --> 
+      <p>Enter Date: <input type="text" id="datepicker-10"></p>
+   </body>
+</html>

@@ -33,7 +33,44 @@
                 </div>
             </div>
             <div id="cpuChartId" class="chart" mg-monitor-chart>
-
+            </div>
+        </div>
+        <div class="item">
+            <div class="left">
+                <div>Memory</div>
+                <div class="info">
+                    <span class="title">最小:</span>
+                    <span>{{node().cpu.min * 100 | number:1}}%</span>
+                </div>
+                <div class="info">
+                    <span class="title">平均:</span>
+                    <span>{{node().cpu.avg * 100 | number:1}}%</span>
+                </div>
+                <div class="info">
+                    <span class="title">最大:</span>
+                    <span>{{node().cpu.max * 100 | number:1}}%</span>
+                </div>
+            </div>
+            <div id="memoryChartId" class="chart" mg-monitor-chart>
+            </div>
+        </div>
+        <div class="item">
+            <div class="left">
+                <div>Disk</div>
+                <div class="info">
+                    <span class="title">最小:</span>
+                    <span>{{node().cpu.min * 100 | number:1}}%</span>
+                </div>
+                <div class="info">
+                    <span class="title">平均:</span>
+                    <span>{{node().cpu.avg * 100 | number:1}}%</span>
+                </div>
+                <div class="info">
+                    <span class="title">最大:</span>
+                    <span>{{node().cpu.max * 100 | number:1}}%</span>
+                </div>
+            </div>
+            <div id="diskChartId" class="chart" mg-monitor-chart>
             </div>
         </div>
     </div>
