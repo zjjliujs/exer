@@ -42,6 +42,9 @@
                     <div class="menu-item" ng-class="{active:'/node-detail'==url()}">
                         <a href="#node-detail">节点详细</a>
                     </div>
+                    <div class="menu-item" ng-class="{active:'/cluster-config'==url()}">
+                        <a href="#cluster-config">集群配置</a>
+                    </div>
                 </div>
                 <!-- end: sidebar -->
                 <div class="content col-lg-11 col-md-10 col-sm-10">
@@ -88,13 +91,15 @@
     </script>
     <script type="text/javascript" src="js/route.js">
     </script>
-    <script type="text/javascript" src="js/main-ctrl.js">
+    <script type="text/javascript" src="js/controllers/main-ctrl.js">
     </script>
-    <script type="text/javascript" src="js/cluster-list-ctrl.js">
+    <script type="text/javascript" src="js/controllers/cluster-list-ctrl.js">
     </script>
-    <script type="text/javascript" src="js/node-list-ctrl.js">
+    <script type="text/javascript" src="js/controllers/node-list-ctrl.js">
     </script>
-    <script type="text/javascript" src="js/node-detail-ctrl.js">
+    <script type="text/javascript" src="js/controllers/node-detail-ctrl.js">
+    </script>
+    <script type="text/javascript" src="js/controllers/cluster-config-ctrl.js">
     </script>
     <script type="text/javascript" src="js/dialog/cluster-remover-ctrl.js">
     </script>

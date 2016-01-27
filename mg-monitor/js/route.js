@@ -16,6 +16,11 @@ function($routeProvider, $locationProvider) {
         controller: 'nodeDetailCtrl',
         controllerAs: 'nodeDetail'
     })
+    .when('/cluster-config',{
+        templateUrl: 'parts/cluster-config.html',
+        controller: 'clusterConfigCtrl',
+        controllerAs: 'clusterConfig'
+    })
     .otherwise({
         redirectTo: '/cluster-list'
     });

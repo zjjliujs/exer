@@ -5,9 +5,9 @@ app.service("monitorService",
 
         self.getClusterTypes = function (){
             return [
-                {name:'web集群'},
-                {name:'Cassandra集群'},
-                {name:'ES集群'}
+                'web',
+                'Cassandra',
+                'ES'
             ];
         };
 

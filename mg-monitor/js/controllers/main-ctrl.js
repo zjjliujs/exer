@@ -15,8 +15,16 @@ function($scope, monitorService, $location, monitorResource){
     $scope.showClusterCreator = function(s){
         if (arguments.length > 0) {
             service.pageStat.clusterCreator.show = s;
+            service.pageStat.clusterCreator.clusterName = null;
+            service.pageStat.clusterCreator.clusterType = $scope.clusterTypes[0];
         }
         return service.pageStat.clusterCreator.show;
+    };
+
+    $scope.showClusterEditor = function(cluster) {
+        service.pageStat.clusterCreator.clusterName = cluster.name;
+        service.pageStat.clusterCreator.clusterType = cluster.type;
+        service.pageStat.clusterCreator.show = true;
     };
 
     $scope.showClusterRemover = function (cluster) {

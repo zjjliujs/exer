@@ -1,0 +1,60 @@
+.cluster-config {
+    display: flex;
+    flex-direction: row;
+    .content {
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        .col {
+            width: 300px;
+            margin-top:100px;
+            .title {
+                display: flex;
+                flex-direction: row;
+                background-color: #e0e0e0;
+                padding:10px 10px 10px 10px;
+                border:1px solid #d0d0d0;
+                border-radius: 10px 10px 0 0;
+                span{
+                    margin: auto;
+                }
+            }
+            .list {
+                height:500px;
+                border:1px solid #d0d0d0;
+                border-radius: 0 0 10px 10px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                .item {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    padding:10px 10px 10px 10px;
+                    border-bottom: 1px solid #f0f0f0;
+                    span {
+                        padding-top: 5px;
+                    }
+                    .actions {
+                        i {
+                            padding-right: 3px;
+                            color:green;
+                            &.fa-pencil-square-o {
+                                position: relative;
+                                top:1px;
+                            }
+                        }
+                    }
+                    &:hover {
+                        background-color: #f0f0f0;
+                    }
+                }
+            }
+            .actions {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                padding: 10px 10px 10px 10px;
+            }
+        }
+    }
+}

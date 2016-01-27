@@ -1,6 +1,7 @@
 [
     {
         "name":"web集群1",
+        "type":"web",
         "nodeData":"web1",
         "status":"good",
         "nodeNum":2,
@@ -23,6 +24,7 @@
     },
     {
         "name":"web集群2",
+        "type":"web",
         "nodeData":"web2",
         "status":"good",
         "nodeNum":2,
@@ -45,6 +47,7 @@
     },
     {
         "name":"Cassandra集群1",
+        "type":"Cassandra",
         "nodeData":"cassandra1",
         "status":"good",
         "nodeNum":2,
@@ -67,6 +70,7 @@
     },
     {
         "name":"Cassandra集群2",
+        "type":"Cassandra",
         "nodeData":"cassandra2",
         "status":"good",
         "nodeNum":2,
@@ -89,6 +93,7 @@
     },
     {
         "name":"Cassandra集群3",
+        "type":"Cassandra",
         "nodeData":"cassandra3",
         "status":"good",
         "nodeNum":2,
@@ -111,6 +116,7 @@
     },
     {
         "name":"ES集群1",
+        "type":"ES",
         "nodeData":"es1",
         "status":"good",
         "nodeNum":2,
@@ -133,6 +139,7 @@
     },
     {
         "name":"ES集群2",
+        "type":"ES",
         "nodeData":"es2",
         "status":"good",
         "nodeNum":2,
@@ -155,6 +162,7 @@
     },
     {
         "name":"ES集群3",
+        "type":"ES",
         "nodeData":"es3",
         "status":"good",
         "nodeNum":2,

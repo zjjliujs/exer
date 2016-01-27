@@ -1,0 +1,41 @@
+<div class="cluster-config">
+    <div class='content'>
+        <!-- start: cluster list -->
+        <div class="col clusters">
+            <div class="title">
+                <span>集&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;群</span>
+            </div>
+            <div class="list">
+                <div ng-repeat="cluster in clusters" class="item">
+                    <span>{{cluster.name}}</span>
+                    <div class="actions">
+                        <i class="fa fa-pencil-square-o fa-lg"
+                            ng-click="showClusterEditor(cluster)"></i>
+                        <i class="fa fa-trash fa-lg"
+                            ng-click="showClusterRemover(cluster)"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button ng-click="showClusterCreator(true)"
+                    type="button" class="btn btn-success">
+                    增加集群
+                </button>
+            </div>
+        </div>
+        <!-- end: cluster list -->
+        <div class="col middle">
+
+        </div>
+        <!-- start: node list -->
+        <div class="col nodes">
+            <div class="title">
+                <span>节&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点</span>
+            </div>
+            <div class="list">
+
+            </div>
+        </div>
+        <!-- end: node list -->
+    </div>
+</div>

@@ -7,16 +7,16 @@
         <label for="clusterNameId" class="col-sm-2 control-label">名称:</label>
         <div class="col-sm-10">
             <input id="clusterNameId" class="form-control"
-            ng-model="clusterName" ng-model-options="{getterSetter:true}">
+                ng-model="clusterName" ng-model-options="{getterSetter:true}">
         </div>
     </div>
     <div class="form-group">
         <label for="clusterTypeId" class="col-sm-2 control-label">类型:</label>
         <div class="col-sm-10">
             <select class="form-control" id="clusterTypeId"
-            ng-model="clusterType" ng-model-options="{getterSetter:true}"
-            ng-options="ct.name for ct in clusterTypes">
-            <option value="">--选择类型--</option>
+                ng-model="clusterType" ng-model-options="{getterSetter:true}"
+                ng-options="ct for ct in clusterTypes">
+            <!-- option value="">--选择类型--</option -->
         </select>
     </div>
 </div>
