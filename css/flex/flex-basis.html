@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>flex-basic test page</title>
+        <style media="screen">
+            .container {
+                width:100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                background-color: #e0e0e0;
+                height:100px;
+            }
+            .item1 {
+                background: #f0f0f0;
+                height: 50px;
+                border:1px solid;
+                flex-grow: 1;
+                flex-basis: 0;
+            }
+            .item2 {
+                background: #f0f0f0;
+                height: 50px;
+                border:1px solid;
+                flex-grow: 1;
+                flex-basis: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>with flex-basis:0</h1>
+        <div class="container">
+            <div class="item1">
+                hello,hello,hello,hello,hello,hello,
+            </div>
+            <div class="item1">
+                world,world,world,world,world,world,
+            </div>
+            <div class="item1" style="flex-grow:5">
+                hello, world!hello, world!hello, world!hello, world!hello, world!hello, world!
+            </div>
+        </div>
+
+        <h1>with flex-basis:auto</h1>
+        <div class="container">
+            <div class="item2">
+                hello,hello,hello,hello,hello,hello,
+            </div>
+            <div class="item2">
+                world,world,world,world,world,world,
+            </div>
+            <div class="item2" style="flex-grow:5">
+                hello, world!hello, world!hello, world!hello, world!hello, world!hello, world!
+            </div>
+        </div>
+    </body>
+</html>

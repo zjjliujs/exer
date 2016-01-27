@@ -8,8 +8,11 @@
 </head>
 <body ng-app="myApp">
     <div ng-controller="Controller">
-        <my-dialog>Check out the contents, {{name}}!</my-dialog>
+        {{message}}
+        <my-dialog ng-hide="dialogIsHidden" on-close="hideDialog(outMsg)">
+            Check out the contents, {{name}}!
+        </my-dialog>
     </div>
-    <script src="transclude_test1_dialog.js"></script>
+    <script src="transclude_close.js"></script>
 </body>
 </html>

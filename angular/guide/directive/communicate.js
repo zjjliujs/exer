@@ -4,7 +4,7 @@ angular.module('myApp', [])
         restrict: 'E',
         transclude: true,
         scope: {},
-        controller: function($scope) {
+        controller: ["$scope", function($scope) {
             var panes = $scope.panes = [];
 
             $scope.select = function(pane) {
@@ -20,8 +20,8 @@ angular.module('myApp', [])
                 }
                 panes.push(pane);
             };
-        },
-        templateUrl: 'scope_comm_tabs.html'
+        }],
+        templateUrl: 'communicate_tabs.html'
     };
 })
 .directive('myPane', function() {
@@ -35,6 +35,6 @@ angular.module('myApp', [])
         link: function(scope, element, attrs, tabsCtrl) {
             tabsCtrl.addPane(scope);
         },
-        templateUrl: 'scope_comm_pane.html'
+        templateUrl: 'communicate_pane.html'
     };
 });
