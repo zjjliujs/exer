@@ -24,8 +24,7 @@ app.service("monitorService",
             nodeCreator:{
                 show:false,
                 cluster:null,
-                hostName:null,
-                ip:null
+                node:null
             },
             nodeRemover: {
                 show:false,
@@ -41,6 +40,9 @@ app.service("monitorService",
             nodeDetail:{
                 cluster:null,
                 node:null
+            },
+            clusterConfig: {
+                currentCluster: null
             }
         };
     }])

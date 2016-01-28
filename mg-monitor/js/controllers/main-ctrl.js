@@ -35,16 +35,30 @@ function($scope, monitorService, $location, monitorResource){
         return service.pageStat.clusterRemover.show;
     };
 
-    $scope.showNodeCreator = function (s) {
+    $scope.showNodeCreator = function (cluster) {
         if (arguments.length > 0) {
+            service.pageStat.nodeCreator.title= "增加节点";
+            service.pageStat.nodeCreator.cluster = cluster;
+            service.pageStat.nodeCreator.node = {};
             service.pageStat.nodeCreator.show = true;
         }
         return service.pageStat.nodeCreator.show;
     };
 
-    $scope.showNodeRemover = function (node) {
+    $scope.showNodeEditor = function (cluster, node) {
+        if (arguments.length > 0) {
+            service.pageStat.nodeCreator.title= "编辑节点";
+            service.pageStat.nodeCreator.cluster = cluster;
+            service.pageStat.nodeCreator.node = node;
+            service.pageStat.nodeCreator.show = true;
+        }
+        return service.pageStat.nodeCreator.show;
+    };
+
+    $scope.showNodeRemover = function (cluster, node) {
         if (arguments.length > 0) {
             service.pageStat.nodeRemover.show = true;
+            service.pageStat.nodeRemover.cluster = cluster;
             service.pageStat.nodeRemover.node = node;
         }
         return service.pageStat.nodeRemover.show;

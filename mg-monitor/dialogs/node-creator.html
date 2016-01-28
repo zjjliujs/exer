@@ -1,5 +1,5 @@
 <div class="header">
-    <span>增加节点</span>
+    <span>{{dialogTitle()}}</span>
     <i class="fa fa-close fa-lg" title="关闭" ng-click="hideDialog()"></i>
 </div>
 <form class="content form-horizontal">
@@ -17,7 +17,7 @@
         <label for="hostNameId" class="col-sm-2 control-label">Host:</label>
         <div class="col-sm-10">
             <input id="hostNameId" class="form-control"
-            ng-model="hostName" ng-model-options="{getterSetter:true}">
+            ng-model="nodeHost" ng-model-options="{getterSetter:true}">
         </div>
     </div>
 
@@ -25,7 +25,7 @@
         <label for="ipId" class="col-sm-2 control-label">IP:</label>
         <div class="col-sm-10">
             <input id="ipId" class="form-control"
-            ng-model="ip" ng-model-options="{getterSetter:true}">
+            ng-model="nodeIp" ng-model-options="{getterSetter:true}">
         </div>
     </div>
 

@@ -9,7 +9,8 @@ function($scope, monitorService){
     };
 
     $scope.cluster = function () {
-        return service.pageStat.nodeList.cluster;
+        //console.log (service.pageStat.nodeRemover.cluster);
+        return service.pageStat.nodeRemover.cluster;
     };
 
     $scope.hideDialog = function () {

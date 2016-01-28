@@ -3,10 +3,13 @@
         <!-- start: cluster list -->
         <div class="col clusters">
             <div class="title">
-                <span>集&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;群</span>
+                <span>集群列表</span>
             </div>
             <div class="list">
-                <div ng-repeat="cluster in clusters" class="item">
+                <div ng-repeat="cluster in clusters"
+                    class="item"
+                    ng-click="currentCluster(cluster)"
+                    ng-class="{active:cluster === currentCluster()}">
                     <span>{{cluster.name}}</span>
                     <div class="actions">
                         <i class="fa fa-pencil-square-o fa-lg"
@@ -30,10 +33,26 @@
         <!-- start: node list -->
         <div class="col nodes">
             <div class="title">
-                <span>节&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点</span>
+                <span>节点列表</span>
             </div>
             <div class="list">
-
+                <div ng-repeat="node in nodes"
+                    class="item">
+                    <span>{{node.host}}</span>
+                    <span>{{node.ip}}</span>
+                    <div class="actions">
+                        <i class="fa fa-pencil-square-o fa-lg"
+                            ng-click="showNodeEditor(currentCluster(), node)"></i>
+                        <i class="fa fa-trash fa-lg"
+                            ng-click="showNodeRemover(currentCluster(), node)"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button ng-click="showNodeCreator(currentCluster())"
+                    type="button" class="btn btn-success">
+                    增加节点
+                </button>
             </div>
         </div>
         <!-- end: node list -->

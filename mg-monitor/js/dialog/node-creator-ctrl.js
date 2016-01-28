@@ -3,6 +3,13 @@ app.controller("nodeCreatorController",
 function($scope, monitorService){
     var service = monitorService;
 
+    $scope.dialogTitle = function (title) {
+        if (arguments.length > 0) {
+            service.pageStat.nodeCreator.title = title;
+        }
+        return service.pageStat.nodeCreator.title;
+    }
+
     $scope.cluster = function (c) {
         //console.log (c);
         if (arguments.lenght > 0) {
@@ -11,18 +18,18 @@ function($scope, monitorService){
         return service.pageStat.nodeCreator.cluster;
     };
 
-    $scope.hostName = function (c) {
+    $scope.nodeHost = function (c) {
         if (arguments.lenght > 0) {
-            service.pageStat.nodeCreator.hostName = c;
+            service.pageStat.nodeCreator.node.host = c;
         }
-        return service.pageStat.nodeCreator.hostName;
+        return service.pageStat.nodeCreator.node.host;
     };
 
-    $scope.ip = function (c) {
+    $scope.nodeIp = function (c) {
         if (arguments.lenght > 0) {
-            service.pageStat.nodeCreator.ip = c;
+            service.pageStat.nodeCreator.node.ip = c;
         }
-        return service.pageStat.nodeCreator.ip;
+        return service.pageStat.nodeCreator.node.ip;
     };
 
     $scope.hideDialog = function () {
