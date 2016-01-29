@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="testApp">
+    <head>
+        <meta charset="utf-8">
+        <title>angular animation test</title>
+        <script type="text/javascript" src="/modules/jquery/jquery.js">
+        </script>
+        <script type="text/javascript" src="/modules/angular/angular.js">
+        </script>
+        <script type="text/javascript" src="/modules/angular/angular-animate.js">
+        </script>
+        <style media="screen">
+        .repeated-item {
+            width:20%;
+            height:50px;
+            background-color: green;
+            border:1 solid;
+            margin: 5px 5px 5px 5px;
+        }
+        </style>
+    </head>
+    <body ng-controller="testController">
+        <div ng-repeat="item in items" class="repeated-item">
+            {{ item.id }}
+        </div>
+    </body>
+    <script type="text/javascript">
+    var app = angular.module('testApp',["ngAnimate"]);
+
+    app.controller("testController",
+    ["$scope", "$interval",
+    function($scope, $interval){
+        $scope.items = [
+            {id:1}, {id:2}, {id:3}, {id:4}, {id:5}
+        ];
+
+        $interval(function(){$scope.items.pop()}, 2000, 4);
+    }]);
+
+    app.animation('.repeated-item', function() {
+        return {
+            enter : function(element, done) {
+                element.css('opacity',0);
+                jQuery(element).animate({
+                    opacity: 1
+                }, done);
+
+                // optional onDone or onCancel callback
+                // function to handle any post-animation
+                // cleanup operations
+                return function(isCancelled) {
+                    if(isCancelled) {
+                        jQuery(element).stop();
+                    }
+                }
+            },
+            leave : function(element, done) {
+                element.css('opacity', 1);
+                jQuery(element).animate({
+                    opacity: 0
+                }, done);
+
+                // optional onDone or onCancel callback
+                // function to handle any post-animation
+                // cleanup operations
+                return function(isCancelled) {
+                    if(isCancelled) {
+                        jQuery(element).stop();
+                    }
+                }
+            },
+            move : function(element, done) {
+                element.css('opacity', 0);
+                jQuery(element).animate({
+                    opacity: 1
+                }, done);
+
+                // optional onDone or onCancel callback
+                // function to handle any post-animation
+                // cleanup operations
+                return function(isCancelled) {
+                    if(isCancelled) {
+                        jQuery(element).stop();
+                    }
+                }
+            },
+
+            // you can also capture these animation events
+            addClass : function(element, className, done) {},
+            removeClass : function(element, className, done) {}
+        }
+    });
+    </script>
+    </html>

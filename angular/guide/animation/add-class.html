@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="testApp">
+    <head>
+        <meta charset="utf-8">
+        <title>Angular animate test</title>
+        <script type="text/javascript" src="/modules/angular/angular.js">
+        </script>
+        <script type="text/javascript" src="/modules/angular/angular-animate.js">
+        </script>
+        <script type="text/javascript">
+            var app = angular.module("testApp", ["ngAnimate"]);
+
+            app.controller("testController", ["$scope", function($scope){
+            }]);
+        </script>
+        <style media="screen">
+        .css-class-add, .css-class-remove {
+            transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+        }
+
+        .css-class,
+        .css-class-add.css-class-add-active {
+            color: red;
+            font-size:3em;
+        }
+
+        .css-class-remove.css-class-remove-active {
+            font-size:1.0em;
+            color:black;
+        }
+        </style>
+    </head>
+    <body ng-controller="testController">
+        <p>
+            <input type="button" value="set" ng-click="myCssVar='css-class'">
+            <input type="button" value="clear" ng-click="myCssVar=''">
+            <br>
+            <span ng-class="myCssVar">CSS-Animated Text</span>
+        </p>
+    </body>
+    </html>
