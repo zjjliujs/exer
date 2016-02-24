@@ -1,0 +1,11 @@
+{
+  "name": "npm-test",
+  "version": "1.0.0",
+  "description": "Project to do npm test",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm-test"
+  },
+  "author": "Liu Jinsong",
+  "license": "ISC"
+}

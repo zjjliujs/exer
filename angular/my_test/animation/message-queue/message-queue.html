@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="messageQueueApp" ng-strict-di>
+<head>
+    <meta charset="utf-8">
+    <title>消息队列动画显示</title>
+    <link rel="stylesheet" href="message-queue.css" media="screen" charset="utf-8">
+</head>
+<body ng-controller="messageQueueCtrl">
+    <div class="action">
+        <button type="button" name="button" ng-click="sendMessage()">发消息</button>
+    </div>
+    <div class="message-box">
+        <div ng-repeat="msg in messages" class="message">
+            <span ng-bind="msg"></span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src='/modules/jquery/jquery.js'>
+</script>
+<script type="text/javascript" src='/modules/angular/angular.js'>
+</script>
+<script type="text/javascript" src='/modules/angular/angular-animate.js'>
+</script>
+<script type="text/javascript">
+    var app=angular.module("messageQueueApp", ["ngAnimate"]);
+</script>
+<script type="text/javascript" src="message-queue.js">
+</script>
+</html>
