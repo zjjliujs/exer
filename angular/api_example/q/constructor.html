@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="constructorApp" ng-strict-di>
+    <head>
+        <meta charset="utf-8">
+        <title>Q test -- constructor</title>
+        <script type="text/javascript" src='/modules/jquery/jquery.js'>
+        </script>
+        <script type="text/javascript" src="/modules/angular/angular.js">
+        </script>
+        <script type="text/javascript" src="constructor.js">
+        </script>
+    </head>
+    <body ng-controller="constructorCtrl">
+        <h1>一秒钟后下面会出现字</h1>
+        <div>
+            <span ng-if="greet" ng-bind="greet"></span>
+            <span ng-if="failReason" ng-bind="failReason"></span>
+        </div>
+    </body>
+</html>

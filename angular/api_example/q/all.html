@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="constructorApp" ng-strict-di>
+    <head>
+        <meta charset="utf-8">
+        <title>Q test -- constructor</title>
+        <script type="text/javascript" src='/modules/jquery/jquery.js'>
+        </script>
+        <script type="text/javascript" src="/modules/angular/angular.js">
+        </script>
+        <script type="text/javascript" src="all.js">
+        </script>
+    </head>
+    <body ng-controller="constructorCtrl">
+        <h1>几秒钟之后秒钟后下面会出现字</h1>
+        <div>
+            <div ng-repeat="greet in greets">
+                <span ng-bind="greet"></span>
+            </div>
+            <span ng-if="failReason" ng-bind="failReason"></span>
+        </div>
+    </body>
+</html>

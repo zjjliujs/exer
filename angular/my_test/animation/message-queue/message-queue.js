@@ -13,7 +13,7 @@ function($scope, $interval){
 
     var checkTimer;
     $scope.$watchCollection('messages', function(nv,ov,scope){
-        console.log ("in interval");
+        //console.log ("in interval");
         if (angular.isDefined(checkTimer)) {
             //已经有interval在运行
             return;
@@ -28,5 +28,13 @@ function($scope, $interval){
                 }
             }, 3000);
         }
-    })
+    });
+
+    $scope.$on("$destroy", function(){
+        console.log ("scope will be destroy");
+        if (angular.isDefined(checkTimer)){
+            $interval.cancel(checkTimer);
+            checkTimer = undefined;
+        }
+    });
 }])
