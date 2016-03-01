@@ -26,4 +26,6 @@ fs.readFile (pfName, {encoding:'utf-8'}, (err,data) => {
     var ot = JSON.parse(data).ObjectTypes[0];
     assert (ot);
 
+    
+
 });
