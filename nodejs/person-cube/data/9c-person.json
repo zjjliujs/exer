@@ -1,0 +1,226 @@
+{
+    "ObjectTypes": [
+        {
+            "name": "人物",
+            "baseType": "Entity",
+            "semaType": "人物",
+            "properties": [
+
+                { "name": "PID", "baseType": "Int", "semaType": "人物ID"},
+                { "name": "dataBatch", "baseType": "Text", "semaType": "数据批次"},
+                { "name": "dataTableName", "baseType": "Text", "semaType": "数据表名"},
+                { "name": "dataSource", "baseType": "Text", "semaType": "数据来源"},
+                { "name": "perNationTag", "baseType": "Text", "semaType": "国别标签"},
+                { "name": "perFieldTag", "baseType": "Text", "semaType": "领域标签"},
+                { "name": "perJobTag", "baseType": "Text", "semaType": "职业标签"},
+                { "name": "perEventTag", "baseType": "Text", "semaType": "相关事件标签"},
+                { "name": "perChName", "baseType": "Text", "semaType": "中文名", "hint": true},
+                { "name": "perAlias", "baseType": "Text", "semaType": "别名"},
+                { "name": "perFoName", "baseType": "Text", "semaType": "外文名", "hint": true},
+                { "name": "perNamePre", "baseType": "Text", "semaType": "头衔"},
+                { "name": "perGender", "baseType": "Text", "semaType": "性别"},
+                { "name": "perBirth_d", "baseType": "Date", "semaType": "出生日期_d"},
+                { "name": "perBirth_vc", "baseType": "Text", "semaType": "出生日期_vc"},
+                { "name": "perAge", "baseType": "Int", "semaType": "年龄"},
+                { "name": "perIsDead", "baseType": "Text", "semaType": "是否去世"},
+                { "name": "perDeadDate_d", "baseType": "Date", "semaType": "去世时间_d"},
+                { "name": "perDeadDate_vc", "baseType": "Text", "semaType": "去世时间_vc"},
+                { "name": "perDeadPlace", "baseType": "Text", "semaType": "去世地点"},
+                { "name": "perNation", "baseType": "Text", "semaType": "国籍"},
+                { "name": "perCountry", "baseType": "Text", "semaType": "国家"},
+                { "name": "perLanguage", "baseType": "Text", "semaType": "主要语言"},
+                { "name": "perID", "baseType": "Text", "semaType": "身份证号"},
+                { "name": "perRace", "baseType": "Text", "semaType": "种族"},
+                { "name": "perRank", "baseType": "Text", "semaType": "军衔"},
+                { "name": "perIsActive", "baseType": "Text", "semaType": "服役状态"},
+                { "name": "perBirthPlace", "baseType": "Text", "semaType": "出生地"},
+                { "name": "perHeight", "baseType": "Text", "semaType": "身高"},
+                { "name": "perWeight", "baseType": "Text", "semaType": "体重"},
+                { "name": "perBlood", "baseType": "Text", "semaType": "血型"},
+                { "name": "perMarriage", "baseType": "Text", "semaType": "婚姻状态"},
+                { "name": "perHasChild", "baseType": "Text", "semaType": "是否有子女"},
+                { "name": "perParty", "baseType": "Text", "semaType": "所属党派"},
+                { "name": "perReligion", "baseType": "Text", "semaType": "宗教信仰"},
+
+                { "name": "perHomeAddress", "baseType": "Text", "semaType": "居住地址"},
+                { "name": "perZipCode", "baseType": "Text", "semaType": "邮政编码"},
+                { "name": "perWorkAddress", "baseType": "Text", "semaType": "工作地址"},
+                { "name": "perHomeTel", "baseType": "Text", "semaType": "家庭电话"},
+                { "name": "perMobile", "baseType": "Text", "semaType": "移动电话"},
+                { "name": "perWorkTel", "baseType": "Text", "semaType": "工作电话"},
+                { "name": "perWorkFax", "baseType": "Text", "semaType": "工作传真"},
+                { "name": "perEmail", "baseType": "Text", "semaType": "电子邮箱"},
+                { "name": "perEmailPsw", "baseType": "Text", "semaType": "邮箱密码"},
+                { "name": "perBlog", "baseType": "Text", "semaType": "个人博客"},
+                { "name": "perOtherNetAcc", "baseType": "Text", "semaType": "其他网络帐号"},
+
+                { "name": "perAssetExpend", "baseType": "Text", "semaType": "财产支出情况"},
+                { "name": "perSourceIncome", "baseType": "Text", "semaType": "收入来源"},
+                { "name": "perAssetStat", "baseType": "Text", "semaType": "财产统计"},
+                { "name": "perServTeam", "baseType": "Text", "semaType": "服务团队"},
+                { "name": "perOrg", "baseType": "Text", "semaType": "所在机构"},
+                { "name": "perDept", "baseType": "Text", "semaType": "所在部门"},
+                { "name": "perGrow", "baseType": "Text", "semaType": "成长经历"},
+                { "name": "perCareerHistory", "baseType": "Text", "semaType": "职业经历"},
+                { "name": "perCharacter", "baseType": "Text", "semaType": "人物性格"},
+                { "name": "perInterest", "baseType": "Text", "semaType": "人物兴趣"},
+                { "name": "perInvolveGroup", "baseType": "Text", "semaType": "参加团体"},
+                { "name": "perPhysicalStatus", "baseType": "Text", "semaType": "身体状况"},
+                { "name": "perMedicalHistory", "baseType": "Text", "semaType": "既往病史"},
+                { "name": "perSkill", "baseType": "Text", "semaType": "专业技能"},
+                { "name": "perRuse", "baseType": "Text", "semaType": "谋略线索"},
+                { "name": "perAttitude", "baseType": "Text", "semaType": "对华态度"},
+                { "name": "perPolAtt", "baseType": "Text", "semaType": "政治观点"},
+                { "name": "perPartner", "baseType": "Text", "semaType": "合作伙伴"},
+                { "name": "perPatent", "baseType": "Text", "semaType": "专利"},
+                { "name": "perReward", "baseType": "Text", "semaType": "所获奖励"},
+                { "name": "perComment", "baseType": "Text", "semaType": "工作建议"},
+                { "name": "PerNote", "baseType": "Text", "semaType": "人物备注"},
+                { "name": "InData", "baseType": "Date", "semaType": "CURRENT_TIMESTAMP"}
+
+              
+            ],
+			"propertyGroups": [
+               
+
+			   {
+                    "name": "车辆信息",
+                    "properties": [
+                        { "name": "perCarPlate", "baseType": "Text", "semaType": "车牌号"},
+                        { "name": "perCarModel", "baseType": "Text", "semaType": "车型号"},
+                        { "name": "perCarOwner", "baseType": "Text", "semaType": "车辆归属人"},
+                        { "name": "perCarReg_d", "baseType": "Date", "semaType": "车辆登记日期_d"},
+                        { "name": "perCarReg_vc", "baseType": "Text", "semaType": "车辆登记日期_vc"},
+                        { "name": "perCarEngNum", "baseType": "Text", "semaType": "发动机号"}
+                    ]
+                 },
+
+
+                {
+                    "name": "出入境证件信息",
+                    "properties": [
+                        { "name": "perImmiNum", "baseType": "Text", "semaType": "出入境证件号"},
+                        { "name": "perImmiType", "baseType": "Text", "semaType": "出入境证件类型"},
+                        { "name": "perImmiReason", "baseType": "Text", "semaType": "申请理由"},
+                        { "name": "perImmiAgent", "baseType": "Text", "semaType": "证件代理人"},
+                        { "name": "perImmiAgentTel", "baseType": "Text", "semaType": "证件代理人电话"},
+                        { "name": "perImmiIssueDate_d", "baseType": "Date", "semaType": "证件申请日期_d"},
+                        { "name": "perImmiIssueDate_vc", "baseType": "Text", "semaType": "证件申请日期_vc"},
+                        { "name": "perImmiUpdateDate_d", "baseType": "Date", "semaType": "证件更新日期_d"},
+                        { "name": "perImmiUpdateDate_vc", "baseType": "Text", "semaType": "证件更新日期_vc"},
+                        { "name": "perImmiIssuePlace", "baseType": "Text", "semaType": "证件签发地"}
+                    ]
+                 },
+ 
+ 
+                {
+                    "name": "教育信息",
+                    "properties": [
+                        { "name": "perEduOrg", "baseType": "Text", "semaType": "教育机构"},
+                        { "name": "perEduMajor", "baseType": "Text", "semaType": "专业"},
+                        { "name": "perEduDept", "baseType": "Text", "semaType": "专业所属系别"},
+                        { "name": "perDegree", "baseType": "Text", "semaType": "所获学位"},
+                        { "name": "perDegreeTime_d", "baseType": "Date", "semaType": "学位获取时间_d"},
+                        { "name": "perDegreeTime_vc", "baseType": "Text", "semaType": "学位获取时间_vc"},
+                        { "name": "perHonor", "baseType": "Text", "semaType": "在校所获奖励"},
+                        { "name": "perEduStartTime_d", "baseType": "Date", "semaType": "开始时间_d"},
+                        { "name": "perEduStartTime_vc", "baseType": "Text", "semaType": "开始时间_vc"},
+                        { "name": "perEduEndTime_d", "baseType": "Date", "semaType": "结束时间_d"},
+                        { "name": "perEduEndTime_vc", "baseType": "Text", "semaType": "结束时间_vc"},
+                        { "name": "perEduNote", "baseType": "Text", "semaType": "教育备注"}
+                    ]
+                 },
+
+ 
+                {
+                    "name": "工作信息",
+                    "properties": [
+                        { "name": "perWorkOrg", "baseType": "Text", "semaType": "工作机构"},
+                        { "name": "perWorkAddr", "baseType": "Text", "semaType": "工作地址"},
+                        { "name": "perWorkOrgCode", "baseType": "Text", "semaType": "组织机构代码"},
+                        { "name": "perWorkStatus", "baseType": "Text", "semaType": "是否在职"},
+                        { "name": "perWorkStartTime_d", "baseType": "Date", "semaType": "开始时间_d"},
+                        { "name": "perWorkStartTime_vc", "baseType": "Text", "semaType": "开始时间_vc"},
+                        { "name": "perWorkEndTime_d", "baseType": "Date", "semaType": "结束时间_d"},
+                        { "name": "perWorkEndTime_vc", "baseType": "Text", "semaType": "结束时间_vc"},
+                        { "name": "perWorkDept", "baseType": "Text", "semaType": "所属部门"},
+                        { "name": "perWorkTitle", "baseType": "Text", "semaType": "工作职务"},
+                        { "name": "perWorkDuty", "baseType": "Text", "semaType": "工作内容"},
+                        { "name": "perWorkSalary", "baseType": "Text", "semaType": "薪酬"},
+                        { "name": "perWorkNote", "baseType": "Text", "semaType": "工作备注"}
+                    ]
+                 },				 
+ 
+
+                {
+                    "name": "网络信息",
+                    "properties": [
+                        { "name": "perNetAccount", "baseType": "Text", "semaType": "网络账户名"},
+                        { "name": "perNetAlias", "baseType": "Text", "semaType": "网络账户昵称"},
+                        { "name": "perNetPW", "baseType": "Text", "semaType": "网络账户密码"},
+                        { "name": "perNetWebsite", "baseType": "Text", "semaType": "网站名称"},
+                        { "name": "perNetIP", "baseType": "Text", "semaType": "用户IP"}
+                    ]
+                 },					 
+ 
+ 
+                {
+                    "name": "家庭成员信息",
+                    "properties": [
+                        { "name": "perFamilyChName", "baseType": "Text", "semaType": "成员中文名"},
+                        { "name": "perFamilyFoName", "baseType": "Text", "semaType": "成员外文名"},
+                        { "name": "perFamilyRelation", "baseType": "Text", "semaType": "关系"},
+                        { "name": "perFamilyGender", "baseType": "Text", "semaType": "成员性别"},
+                        { "name": "perFamilyBirth_d", "baseType": "Date", "semaType": "成员出生日期_d"},
+                        { "name": "perFamilyBirth_vc", "baseType": "Text", "semaType": "成员出生日期_vc"},
+                        { "name": "perFamilyNation", "baseType": "Text", "semaType": "成员国籍"},
+                        { "name": "perFamilyRace", "baseType": "Text", "semaType": "成员种族"},
+                        { "name": "perFamilyTel", "baseType": "Text", "semaType": "成员电话"},
+                        { "name": "perFamilyID", "baseType": "Text", "semaType": "成员身份证号"},
+                        { "name": "perFamilyAddr", "baseType": "Text", "semaType": "成员住址"},
+                        { "name": "perFamilyNote", "baseType": "Text", "semaType": "成员备注"}
+                    ]
+                 },	
+ 
+
+                {
+                    "name": "社交关系人信息",
+                    "properties": [
+                        { "name": "perSocialChName", "baseType": "Text", "semaType": "关系人中文名"},
+                        { "name": "perSocialFoName", "baseType": "Text", "semaType": "关系人外文名"},
+                        { "name": "perSocialRelation", "baseType": "Text", "semaType": "社交关系"},
+                        { "name": "perSocialGender", "baseType": "Text", "semaType": "关系人性别"},
+                        { "name": "perSocialBirth_d", "baseType": "Date", "semaType": "关系人出生日期_d"},
+                        { "name": "perSocialBirth_vc", "baseType": "Text", "semaType": "关系人出生日期_vc"},
+                        { "name": "perSocialNation", "baseType": "Text", "semaType": "关系人国籍"},
+                        { "name": "perSocialRace", "baseType": "Text", "semaType": "关系人种族"},
+                        { "name": "perSocialTel", "baseType": "Text", "semaType": "关系人电话"},
+                        { "name": "perSocialID", "baseType": "Text", "semaType": "关系人身份证号"},
+                        { "name": "perSocialAddr", "baseType": "Text", "semaType": "关系人住址"},
+                        { "name": "perSocialWork", "baseType": "Text", "semaType": "关系人工作单位"},
+                        { "name": "perSocialTitle", "baseType": "Text", "semaType": "关系人职务"},
+                        { "name": "perSocialEmail", "baseType": "Text", "semaType": "关系人邮箱"},
+                        { "name": "perSocialNote", "baseType": "Text", "semaType": "关系人备注"}
+                    ]
+                 },		
+
+                {
+                    "name": "银行卡信息",
+                    "properties": [
+                        { "name": "perBankName", "baseType": "Text", "semaType": "发卡银行"},
+                        { "name": "perBankCardNum", "baseType": "Text", "semaType": "银行卡号"},
+                        { "name": "perBankCardType", "baseType": "Text", "semaType": "银行卡类型"},
+                        { "name": "perBankSecurityCode", "baseType": "Text", "semaType": "信用卡安全码"},
+                        { "name": "perBankIssueDate_d", "baseType": "Date", "semaType": "信用卡开始时间_d"},
+                        { "name": "perBankIssueDate_vc", "baseType": "Text", "semaType": "信用卡开始时间_vc"},
+                        { "name": "perBankExpDate_d", "baseType": "Date", "semaType": "信用卡截至时间_d"},
+                        { "name": "perBankExpDate_vc", "baseType": "Text", "semaType": "信用卡截至时间_vc"},
+                        { "name": "perBankPW", "baseType": "Text", "semaType": "银行卡密码"}
+                    ]
+                 }			 
+
+ 
+	    ]
+        }
+    ]
+}
