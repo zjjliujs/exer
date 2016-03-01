@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="uiRouterTestApp" ng-strict-di>
+<head>
+    <meta charset="utf-8">
+    <title>Angular ui-router example</title>
+</head>
+<body ng-controller="uiRouterTestCtrl">
+    <div ui-view></div>
+    <!-- We'll also add some navigation: -->
+    <a ui-sref="state1">State 1</a>
+    <a ui-sref="state2">State 2</a>
+</body>
+<script type="text/javascript" src="/modules/jquery/jquery.js">
+</script>
+<script type="text/javascript" src="/modules/angular/angular.js">
+</script>
+<script type="text/javascript" src="/modules/ui-router/angular-ui-router.js">
+</script>
+<script type="text/javascript">
+    myApp = angular.module("uiRouterTestApp", ["ui.router"]);
+</script>
+<script type="text/javascript" src="index.js">
+</script>
+</html>

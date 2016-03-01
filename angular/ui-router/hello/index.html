@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="uiRouterHelloApp" ng-strict-di>
+<head>
+    <meta charset="utf-8">
+    <title>Angular ui-router example</title>
+</head>
+<body>
+    <h1>UI router test</h1>
+    <section ui-view></section>
+</body>
+<script type="text/javascript" src="/modules/jquery/jquery.js">
+</script>
+<script type="text/javascript" src="/modules/angular/angular.js">
+</script>
+<script type="text/javascript" src="/modules/ui-router/angular-ui-router.js">
+</script>
+<script type="text/javascript">
+    myApp = angular.module("uiRouterHelloApp", ["ui.router"]);
+</script>
+<script type="text/javascript" src="index.js">
+</script>
+</html>
