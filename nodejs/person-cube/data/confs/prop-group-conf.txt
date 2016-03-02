@@ -1,0 +1,98 @@
+家庭电话信息
+[ { name: 'perHomeTel', title: '家庭电话' },
+  { name: 'perHomeOperator', title: '家庭电话运营商' } ]
+移动电话信息
+[ { name: 'perMobile', title: '移动电话' },
+  { name: 'perMobileOperator', title: '移动电话运营商' } ]
+工作电话信息
+[ { name: 'perWorkTel', title: '工作电话' },
+  { name: 'perWorkOperator', title: '工作电话运营商' } ]
+电子邮箱信息
+[ { name: 'perEmail', title: '电子邮箱' },
+  { name: 'perEmailPsw', title: '邮箱密码' } ]
+车辆信息
+[ { name: 'perCarPlate', title: '车牌号' },
+  { name: 'perCarModel', title: '车型号' },
+  { name: 'perCarPrice', title: '车辆价格' },
+  { name: 'perCarBuyDate', title: '购买时间' },
+  { name: 'perCarOwner', title: '车辆归属人' },
+  { name: 'perCarReg_d', title: '车辆登记日期_d' },
+  { name: 'perCarEngNum', title: '发动机号' } ]
+出入境证件信息
+[ { name: 'perImmiNum', title: '出入境证件号' },
+  { name: 'perImmiType', title: '出入境证件类型' },
+  { name: 'perImmiReason', title: '申请理由' },
+  { name: 'perImmiAgent', title: '证件代理人' },
+  { name: 'perImmiAgentTel', title: '证件代理人电话' },
+  { name: 'perImmiIssueDate_d', title: '证件申请日期_d' },
+  { name: 'perImmiUpdateDate_d', title: '证件更新日期_d' },
+  { name: 'perImmiIssuePlace', title: '证件签发地' } ]
+教育信息
+[ { name: 'perEduOrg', title: '教育机构' },
+  { name: 'perEduMajor', title: '专业' },
+  { name: 'perEduDept', title: '专业所属系别' },
+  { name: 'perDegree', title: '所获学位' },
+  { name: 'perDegreeTime_d', title: '学位获取时间_d' },
+  { name: 'perHonor', title: '在校所获奖励' },
+  { name: 'perEduStartTime_d', title: '开始时间_d' },
+  { name: 'perEduEndTime_d', title: '结束时间_d' },
+  { name: 'perEduNote', title: '教育备注' } ]
+工作信息
+[ { name: 'perWorkOrg', title: '工作机构' },
+  { name: 'perWorkAddr', title: '工作地址' },
+  { name: 'perWorkOrgCode', title: '组织机构代码' },
+  { name: 'perWorkStatus', title: '是否在职' },
+  { name: 'perWorkStartTime_d', title: '开始时间_d' },
+  { name: 'perWorkEndTime_d', title: '结束时间_d' },
+  { name: 'perWorkDept', title: '所属部门' },
+  { name: 'perWorkTitle', title: '工作职务' },
+  { name: 'perWorkDuty', title: '工作内容' },
+  { name: 'perWorkSalary', title: '薪酬' },
+  { name: 'perWorkNote', title: '工作备注' } ]
+网络信息
+[ { name: 'perNetAccount', title: '网络账户名' },
+  { name: 'perNetAlias', title: '网络账户昵称' },
+  { name: 'perNetPW', title: '网络账户密码' },
+  { name: 'perNetWebsite', title: '网站名称' },
+  { name: 'perNetIP', title: '用户IP' } ]
+家庭成员信息
+[ { name: 'perFamilyChName', title: '成员中文名' },
+  { name: 'perFamilyFoName', title: '成员外文名' },
+  { name: 'perFamilyRelation', title: '关系' },
+  { name: 'perFamilyGender', title: '成员性别' },
+  { name: 'perFamilyBirth_d', title: '成员出生日期_d' },
+  { name: 'perFamilyAge', title: '成员年龄' },
+  { name: 'perFamilyNation', title: '成员国籍' },
+  { name: 'perFamilyRace', title: '成员种族' },
+  { name: 'perFamilyTel', title: '成员电话' },
+  { name: 'perFamilyID', title: '成员身份证号' },
+  { name: 'perFamilyAddr', title: '成员住址' },
+  { name: 'perFamilyNote', title: '成员备注' } ]
+社交关系人信息
+[ { name: 'perSocialChName', title: '关系人中文名' },
+  { name: 'perSocialFoName', title: '关系人外文名' },
+  { name: 'perSocialRelation', title: '社交关系' },
+  { name: 'perSocialGender', title: '关系人性别' },
+  { name: 'perSocialBirth_d', title: '关系人出生日期_d' },
+  { name: 'perSocialNation', title: '关系人国籍' },
+  { name: 'perSocialRace', title: '关系人种族' },
+  { name: 'perSocialTel', title: '关系人电话' },
+  { name: 'perSocialFax', title: '关系人传真' },
+  { name: 'perSocialID', title: '关系人身份证号' },
+  { name: 'perSocialAddr', title: '关系人住址' },
+  { name: 'perSocialWork', title: '关系人工作单位' },
+  { name: 'perSocialTitle', title: '关系人职务' },
+  { name: 'perSocialEmail', title: '关系人邮箱' },
+  { name: 'perSocialNote', title: '关系人备注' } ]
+证券信息
+[ { name: 'perStockAcc', title: '证券账号' },
+  { name: 'perStockCom', title: '开户公司' },
+  { name: 'perStockAccType', title: '证券账户类型' } ]
+银行卡信息
+[ { name: 'perBankName', title: '发卡银行' },
+  { name: 'perBankCardNum', title: '银行卡号' },
+  { name: 'perBankCardType', title: '银行卡类型' },
+  { name: 'perBankSecurityCode', title: '信用卡安全码' },
+  { name: 'perBankIssueDate_d', title: '信用卡开始时间_d' },
+  { name: 'perBankExpDate_d', title: '信用卡截至时间_d' },
+  { name: 'perBankPW', title: '银行卡密码' } ]

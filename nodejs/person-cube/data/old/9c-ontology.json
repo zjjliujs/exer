@@ -1,0 +1,261 @@
+{
+    "ObjectTypes": [
+        {
+            "name": "人物",
+            "baseType": "Entity",
+            "semaType": "人物",
+            "properties": [
+				{ "name": "personId", "baseType": "Int", "semaType": "人物id" },
+				{ "name": "chName", "baseType": "Text", "semaType": "中文名", "hint": true },
+				{ "name": "foName", "baseType": "Text", "semaType": "外文名", "hint": true },
+				{ "name": "perSex", "baseType": "Text", "semaType": "性别" },
+				{ "name": "perBirth", "baseType": "Date", "semaType": "出生日期" },
+				{ "name": "perCountry", "baseType": "Text", "semaType": "国别" },
+				{ "name": "Race", "baseType": "Text", "semaType": "种族" },
+				{ "name": "perBirthplace", "baseType": "Text", "semaType": "出生地" },
+				{ "name": "perHeight", "baseType": "Int", "semaType": "身高" },
+				{ "name": "perWeight", "baseType": "Int", "semaType": "体重" },
+				{ "name": "perBlood", "baseType": "Text", "semaType": "血型" },
+				{ "name": "perPassport", "baseType": "Text", "semaType": "护照号" },
+				{ "name": "perDrivenum", "baseType": "Text", "semaType": "驾照号" },
+				{ "name": "perIdnum", "baseType": "Text", "semaType": "身份证号" },
+				{ "name": "perSsnum", "baseType": "Text", "semaType": "社保账号" },
+				{ "name": "perPhone", "baseType": "Text", "semaType": "电话" },
+				{ "name": "perMobile", "baseType": "Text", "semaType": "移动电话" },
+				{ "name": "perTel", "baseType": "Text", "semaType": "家庭电话" },
+				{ "name": "Email", "baseType": "Text", "semaType": "邮箱" },
+				{ "name": "perServiceteam", "baseType": "Text", "semaType": "服务团队" },
+				
+				{ "name": "perOrg", "baseType": "Text", "semaType": "所在机构" },
+				{ "name": "perDept", "baseType": "Text", "semaType": "所在部门" },
+				{ "name": "orgDept", "baseType": "Text", "semaType": "机构+部门" },
+				
+				
+				{ "name": "perGrow", "baseType": "Text", "semaType": "成长经历" },
+				{ "name": "perClan", "baseType": "Text", "semaType": "所属党派" },
+				{ "name": "politicalView", "baseType": "Text", "semaType": "政治观点" },
+				{ "name": "chinaView", "baseType": "Text", "semaType": "对华态度" },
+				{ "name": "chinaElement", "baseType": "Text", "semaType": "涉华因素" },
+				{ "name": "Religion", "baseType": "Text", "semaType": "宗教信仰" },
+				{ "name": "Character", "baseType": "Text", "semaType": "人物性格" },
+				{ "name": "Attitude", "baseType": "Text", "semaType": "人物态度" },
+				{ "name": "Weakness", "baseType": "Text", "semaType": "人性弱点" },
+				{ "name": "Interest", "baseType": "Text", "semaType": "人物兴趣" },
+				{ "name": "takePart", "baseType": "Text", "semaType": "参加团体" },
+				{ "name": "physicalStatus", "baseType": "Text", "semaType": "身体状况" },
+				{ "name": "medicalHistory", "baseType": "Text", "semaType": "既往病史" },
+				{ "name": "networkActive", "baseType": "Text", "semaType": "网络活动" },
+				{ "name": "travel", "baseType": "Text", "semaType": "交通出行" },
+				{ "name": "DiningRoom", "baseType": "Text", "semaType": "餐饮住宿" },
+				{ "name": "otherActive", "baseType": "Text", "semaType": "其他活动" },
+				{ "name": "sourceIncome", "baseType": "Text", "semaType": "收入来源" },
+				{ "name": "propertyStatistics", "baseType": "Text", "semaType": "财产统计" },
+				{ "name": "Patent", "baseType": "Text", "semaType": "专利" },
+				{ "name": "perReward", "baseType": "Text", "semaType": "所获奖励" },
+				{ "name": "Expenditure", "baseType": "Text", "semaType": "支出状况" },
+				{ "name": "Accredit", "baseType": "Text", "semaType": "信用评级" },
+				{ "name": "Strategy", "baseType": "Text", "semaType": "谋略线索" },
+				{ "name": "workSugg", "baseType": "Text", "semaType": "工作建议" },
+				
+				
+				{ "name": "fathName", "baseType": "Text", "semaType": "父名" },
+				{ "name": "mathName", "baseType": "Text", "semaType": "母名" },
+				{ "name": "mateName", "baseType": "Text", "semaType": "配偶名" },
+				{ "name": "sonName", "baseType": "Text", "semaType": "子女名" }
+                
+            ],
+			"propertyGroups": [
+				{
+					"name": "家庭信息",
+					"properties": [
+						{ "name": "familyChName", "baseType": "Text", "semaType": "家庭成员中文名"},
+						{ "name": "familyFoName", "baseType": "Text", "semaType": "家庭成员外文名"},
+						{ "name": "familyRelation", "baseType": "Text", "semaType": "家庭关系"},
+						{ "name": "familySex", "baseType": "Text", "semaType": "家庭成员性别"},
+						{ "name": "familyBirth", "baseType": "Date", "semaType": "家庭成员出生日期"},
+						{ "name": "familyMarry", "baseType": "Date", "semaType": "家庭成员结婚日期"},
+						{ "name": "familyDivorce", "baseType": "Date", "semaType": "家庭成员离婚日期"},
+						{ "name": "familyNation", "baseType": "Text", "semaType": "家庭成员国籍"},
+						{ "name": "familyRace", "baseType": "Text", "semaType": "家庭成员种族"},
+						{ "name": "familyID", "baseType": "Text", "semaType": "家庭成员身份证"},
+						{ "name": "familySS", "baseType": "Text", "semaType": "家庭成员社保账号"},
+						{ "name": "familyEmail", "baseType": "Text", "semaType": "家庭成员邮箱"},
+						{ "name": "familySocialAcc", "baseType": "Text", "semaType": "家庭成员社交账号"},
+						{ "name": "familyPhone", "baseType": "Text", "semaType": "家庭成员电话"},
+						{ "name": "familyNote", "baseType": "Text", "semaType": "家庭成员备注"}
+					]
+				},
+				
+				{
+					"name": "教育信息",
+					"properties": [
+						{ "name": "eduName", "baseType": "Text", "semaType": "教育机构"},
+						{ "name": "eduStartime", "baseType": "Date", "semaType": "教育开始时间"},
+						{ "name": "eduEndtime", "baseType": "Date", "semaType": "教育结束时间"},
+						{ "name": "eduMajor", "baseType": "Text", "semaType": "教育专业"},
+						{ "name": "eduNote", "baseType": "Text", "semaType": "教育备注"}
+					]
+				},
+				
+				{
+					"name": "履历信息",
+					"properties": [
+						{ "name": "careerName", "baseType": "Text", "semaType": "工作机构"},
+						{ "name": "careerStartime", "baseType": "Date", "semaType": "工作开始时间"},
+						{ "name": "careerEndtime", "baseType": "Date", "semaType": "工作结束时间"},
+						{ "name": "careerPosition", "baseType": "Text", "semaType": "工作职务"},
+						{ "name": "careerContent", "baseType": "Text", "semaType": "工作内容"},
+						{ "name": "careerSalary", "baseType": "Text", "semaType": "工作薪酬"},
+						{ "name": "careerNote", "baseType": "Text", "semaType": "工作备注"}
+					]
+				},
+				
+				{
+					"name": "社交信息",
+					"properties": [
+						{ "name": "socialChName", "baseType": "Text", "semaType": "社交人中文名"},
+						{ "name": "socialFoName", "baseType": "Text", "semaType": "社交人外文名"},
+						{ "name": "socialRelation", "baseType": "Text", "semaType": "社交关系"},
+						{ "name": "socialSex", "baseType": "Text", "semaType": "社交人性别"},
+						{ "name": "socialNation", "baseType": "Text", "semaType": "社交人国籍"},
+						{ "name": "socialRace", "baseType": "Text", "semaType": "社交人种族"},
+						{ "name": "socialPhone", "baseType": "Text", "semaType": "社交人电话"},
+						{ "name": "socialEmail", "baseType": "Text", "semaType": "社交人邮箱"},
+						{ "name": "socialWork", "baseType": "Text", "semaType": "社交人工作单位"},
+						{ "name": "socialPosition", "baseType": "Text", "semaType": "社交人职务"},
+						{ "name": "socialAccount", "baseType": "Text", "semaType": "社交人账号"},
+						{ "name": "socialNote", "baseType": "Text", "semaType": "社交人备注"}
+					]
+				},
+				
+				{
+					"name": "社交网络",
+					"properties": [
+						{ "name": "snetName", "baseType": "Text", "semaType": "社交网络网站"},
+						{ "name": "snetAccount", "baseType": "Text", "semaType": "社交网络账号"},
+						{ "name": "snetPW", "baseType": "Text", "semaType": "社交网络密码"},
+						{ "name": "snetEmail", "baseType": "Text", "semaType": "社交网络邮箱"},
+						{ "name": "snetNote", "baseType": "Text", "semaType": "社交网络备注"}
+					]
+				},
+				
+				{
+					"name": "职务信息",
+					"properties": [
+						{ "name": "positionName", "baseType": "Text", "semaType": "职务名称"},
+						{ "name": "positionOrg", "baseType": "Text", "semaType": "职务机构"},
+						{ "name": "positionDep", "baseType": "Text", "semaType": "职务部门"},
+						{ "name": "positionDes", "baseType": "Text", "semaType": "职务描述"},
+						{ "name": "positionNote", "baseType": "Text", "semaType": "职务备注"}
+					]
+				}
+				
+			]
+        },
+
+        {
+            "name": "机构",
+            "baseType": "Entity",
+            "semaType": "机构",
+            "properties": [
+			
+				{ "name": "orgId", "baseType": "Int", "semaType": "机构id"},
+				{ "name": "orgName", "baseType": "Text", "semaType": "机构名称", "hint": true },
+				{ "name": "orgAbb", "baseType": "Text", "semaType": "机构缩写"},
+				{ "name": "orgAddr", "baseType": "Text", "semaType": "总部所在地"},
+				{ "name": "estaTime", "baseType": "Date", "semaType": "成立时间"},
+				{ "name": "orgFunction", "baseType": "Text", "semaType": "机构职能"},
+				{ "name": "orgtype", "baseType": "Text", "semaType": "机构类型"},
+				{ "name": "orgField", "baseType": "Text", "semaType": "专业领域"},
+				{ "name": "orgUri", "baseType": "Text", "semaType": "机构网址"},
+				{ "name": "staffnNum", "baseType": "Int", "semaType": "员工数量"},
+				{ "name": "orgUpper", "baseType": "Text", "semaType": "上级机构"},
+				{ "name": "orgRelated", "baseType": "Text", "semaType": "相关机构"},
+				{ "name": "devHistory", "baseType": "Text", "semaType": "发展历史"},
+				{ "name": "orgOwner", "baseType": "Text", "semaType": "主要负责人"},
+				{ "name": "orgStock", "baseType": "Text", "semaType": "股票代码"},
+				{ "name": "orgProduct", "baseType": "Text", "semaType": "主要产品"},
+				{ "name": "orgProject", "baseType": "Text", "semaType": "主要项目"},
+				{ "name": "orgValue", "baseType": "BigInt", "semaType": "市值"},
+				{ "name": "orgInfo", "baseType": "Text", "semaType": "其他信息"}					
+						               
+            ]
+        },
+		{
+            "name": "部门",
+            "baseType": "Entity",
+            "semaType": "部门",
+            "properties": [
+				{ "name": "deptID", "baseType": "Int", "semaType": "部门id"},
+				{ "name": "deptName", "baseType": "Text", "semaType": "部门名称"},
+				{ "name": "deptAbb", "baseType": "Text", "semaType": "部门缩写"},
+				{ "name": "deptFunction", "baseType": "Text", "semaType": "部门职能"},
+				{ "name": "upperOrg", "baseType": "Text", "semaType": "所属机构"},				
+				{ "name": "orgDept", "baseType": "Text", "semaType": "机构+部门" },
+				{ "name": "upperDept", "baseType": "Text", "semaType": "上级部门"},			
+				{ "name": "deptOwner", "baseType": "Text", "semaType": "部门负责人"},
+				{ "name": "deptStaff", "baseType": "Text", "semaType": "员工"}										
+            ]
+        }		
+    ],
+    "LinkTypes": [
+        {
+            "name": "上级机构",
+            "srcObjectType": "机构",
+            "srcPropertyType": ["orgUpper"],
+            "dstObjectType": "机构",
+            "dstPropertyType": ["orgName"]
+        },
+		
+		{
+            "name": "上级部门",
+            "srcObjectType": "部门",
+            "srcPropertyType": ["upperDept"],
+            "dstObjectType": "部门",
+            "dstPropertyType": ["deptName"]
+        },
+		
+		{
+            "name": "所属机构",
+            "srcObjectType": "部门",
+            "srcPropertyType": ["upperOrg"],
+            "dstObjectType": "机构",
+            "dstPropertyType": ["orgName"]
+        },
+		
+		
+        {
+            "name": "机构负责人",
+            "srcObjectType": "人物",
+            "srcPropertyType": ["chName"],
+            "dstObjectType": "机构",
+            "dstPropertyType": ["orgOwner"]
+        },
+		
+		{
+            "name": "人员所属机构",
+            "srcObjectType": "人物",
+            "srcPropertyType": ["perOrg"],
+            "dstObjectType": "机构",
+            "dstPropertyType": ["orgName"]
+        },
+		
+		{
+            "name": "人员所属部门",
+            "srcObjectType": "人物",
+            "srcPropertyType": ["chName"],
+            "dstObjectType": "部门",
+            "dstPropertyType": ["deptStaff"]
+        },
+		
+		{
+            "name": "部门人员",
+            "srcObjectType": "人物",
+            "srcPropertyType": ["orgDept"],
+            "dstObjectType": "部门",
+            "dstPropertyType": ["orgDept"]
+        }
+		
+		
+    ]
+}
