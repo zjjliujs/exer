@@ -1,0 +1,844 @@
+{
+    "PropertySemaTypes": [
+        {
+            "name": "人物ID",
+            "description": "",
+            "baseType": "Int"
+        },
+        {
+            "name": "数据批次",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "数据表名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "数据来源",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "国别标签",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "领域标签",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "职业标签",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "相关事件标签",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "中文名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "别名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "外文名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "本国名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "头衔",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "性别",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "出生日期_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "出生日期_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "年龄",
+            "description": "",
+            "baseType": "Int"
+        },
+        {
+            "name": "是否去世",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "去世时间_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "去世时间_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "去世地点",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "国籍",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "国家",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "主要语言",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "身份证号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "种族",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "军衔",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "服役状态",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "出生地",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "身高",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "体重",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "血型",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "婚姻状态",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "是否有子女",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "所属党派",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "宗教信仰",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "职业",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "居住地址",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "邮政编码",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "工作地址",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "工作传真",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "传呼机",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "QQ号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "Msn号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "个人博客",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "其他网络帐号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "财产支出情况",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "收入来源",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "财产统计",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "服务团队",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "所在机构",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "所在部门",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成长经历",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "职业经历",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "人物性格",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "人物兴趣",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "参加团体",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "身体状况",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "既往病史",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "专业技能",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "谋略线索",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "对华态度",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "政治观点",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "合作伙伴",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "专利",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "所获奖励",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "去过的地方",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "讣告",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "工作建议",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "人物备注",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "CURRENT_TIMESTAMP",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "家庭电话",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "家庭电话运营商",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "移动电话",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "移动电话运营商",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "工作电话",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "工作电话运营商",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "电子邮箱",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "邮箱密码",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "车牌号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "车型号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "车辆价格",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "购买时间",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "车辆归属人",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "车辆登记日期_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "车辆登记日期_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "发动机号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "出入境证件号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "出入境证件类型",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "申请理由",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "证件代理人",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "证件代理人电话",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "证件申请日期_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "证件申请日期_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "证件更新日期_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "证件更新日期_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "证件签发地",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "教育机构",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "专业",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "专业所属系别",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "所获学位",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "学位获取时间_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "学位获取时间_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "在校所获奖励",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "开始时间_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "开始时间_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "结束时间_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "结束时间_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "教育备注",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "工作机构",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "工作地址",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "组织机构代码",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "是否在职",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "开始时间_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "开始时间_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "结束时间_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "结束时间_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "所属部门",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "工作职务",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "工作内容",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "薪酬",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "工作备注",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "网络账户名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "网络账户昵称",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "网络账户密码",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "网站名称",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "用户IP",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员中文名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员外文名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员性别",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员出生日期_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "成员出生日期_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员年龄",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员国籍",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员种族",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员电话",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员身份证号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员住址",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "成员备注",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人中文名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人外文名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "社交关系",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人性别",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人出生日期_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "关系人出生日期_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人国籍",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人种族",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人电话",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人传真",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人身份证号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人住址",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人工作单位",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人职务",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人邮箱",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "关系人备注",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "证券账号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "开户公司",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "证券账户类型",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "发卡银行",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "银行卡号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "银行卡类型",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "信用卡安全码",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "信用卡开始时间_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "信用卡开始时间_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "信用卡截至时间_d",
+            "description": "",
+            "baseType": "Date"
+        },
+        {
+            "name": "信用卡截至时间_vc",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "银行卡密码",
+            "description": "",
+            "baseType": "Text"
+        }
+    ]
+}
