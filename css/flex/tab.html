@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tab by flex</title>
+    </head>
+    <link rel="stylesheet" href="/modules/font-awesome/css/font-awesome.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" src="/modules/jquery/jquery.js">
+    </script>
+    <style media="screen">
+        .menu-bar {
+            height:30px;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 1px solid blue;
+        }
+        .tab-bar {
+            display:flex;
+            flex-direction: row;
+        }
+        .tab-bar .tab {
+            width:100px;
+            background-color: #e0e0e0;
+            margin-right: 2px;
+            display:flex;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .tab-bar .tab.active {
+            color:white;
+            background-color: blue;
+        }
+        .tab-bar .tab span{
+            margin:auto;
+        }
+        .tool-bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding-right: 30px;
+        }
+    </style>
+    <script type="text/javascript">
+        function activeMe (evt) {
+            console.log($(document).find(".tab"));
+            $(document).find(".tab").removeClass("active");
+            var e = $(evt.srcElement);
+            if (e.hasClass("tab")){
+                e.addClass('active');
+            }else{
+                //console.log (e.parent());
+                e.parent().addClass('active');
+            }
+        };
+    </script>
+    <body>
+        <div class="menu-bar">
+            <div class="tab-bar">
+                <div class="tab active" onclick="activeMe(event)">
+                    <span>tab1</span>
+                </div>
+                <div class="tab" onclick="activeMe(event)">
+                    <span>tab2</span>
+                </div>
+            </div>
+            <div class="tool-bar">
+                <i class="fa fa-upload fa-2x"></i>
+            </div>
+        </div>
+    </body>
+</html>
