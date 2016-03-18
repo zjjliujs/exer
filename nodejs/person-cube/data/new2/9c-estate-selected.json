@@ -1,0 +1,31 @@
+{
+    "ObjectTypes": [
+        {
+            "name": "精英人物房产信息",
+            "baseType": "Entity",
+            "semaType": "房产信息",
+            "properties": [
+
+
+                { "name": "dataBatch", "baseType": "Text", "semaType": "数据批次"},
+                { "name": "dataTableName", "baseType": "Text", "semaType": "数据表名"},
+                { "name": "dataSource", "baseType": "Text", "semaType": "数据来源"},
+                { "name": "actNationTag", "baseType": "Text", "semaType": "国别标签"},
+                { "name": "actName", "baseType": "Text", "semaType": "所有者姓名"},
+                { "name": "actGender", "baseType": "Text", "semaType": "性别"},
+                { "name": "actId", "baseType": "Text", "semaType": "身份证号"},
+                { "name": "actAddr", "baseType": "Text", "semaType": "地址"},
+                { "name": "actPrice", "baseType": "Float", "semaType": "价格"},
+                { "name": "actPriceUnit", "baseType": "Text", "semaType": "币种"},
+                { "name": "actBuyDate", "baseType": "Text", "semaType": "购买时间"},
+                { "name": "actContent", "baseType": "Text", "semaType": "房屋详情"},
+                { "name": "actNote", "baseType": "Text", "semaType": "备注"},
+                
+                { "name": "InData", "baseType": "Date", "semaType": "CURRENT_TIMESTAMP"}
+
+              
+            ]
+
+        }
+    ]
+}

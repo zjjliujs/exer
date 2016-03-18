@@ -1,0 +1,74 @@
+{
+    "PropertySemaTypes": [
+        {
+            "name": "数据批次",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "数据表名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "数据来源",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "国别标签",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "所有者姓名",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "性别",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "身份证号",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "地址",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "价格",
+            "description": "",
+            "baseType": "Float"
+        },
+        {
+            "name": "币种",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "购买时间",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "房屋详情",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "备注",
+            "description": "",
+            "baseType": "Text"
+        },
+        {
+            "name": "CURRENT_TIMESTAMP",
+            "description": "",
+            "baseType": "Date"
+        }
+    ]
+}
