@@ -2,4 +2,13 @@ CMakeFiles/
 CMakeCache.txt
 Makefile
 cmake_install.cmake
+CTestTestfile.cmake
+install_manifest.txt
+CPackConfig.cmake
+CPackSourceConfig.cmake
+cmake/**/config.h
+_CPack_Packages/
 *.o
+*.a
+*.Z
+*.gz
