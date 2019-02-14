@@ -12,3 +12,5 @@ _CPack_Packages/
 *.a
 *.Z
 *.gz
+*.class
+*.exe
