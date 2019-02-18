@@ -20,4 +20,8 @@ readerStream.on('error', function(err){
    console.log(err.stack);
 });
 
+readerStream.on('finish', function(){
+   console.log("finished");
+});
+
 console.log("Program Ended");

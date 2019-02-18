@@ -1,5 +1,5 @@
 var fs = require("fs");
-var buf = new Buffer(1024);
+var buf = Buffer.alloc(1024);
 
 console.log("Going to open an existing file");
 fs.open('data/input.txt', 'r+', function(err, fd) {
