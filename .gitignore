@@ -14,4 +14,7 @@ _CPack_Packages/
 *.gz
 *.class
 *.exe
+*.so
+*.jar
 **/.gradle/
+**/build/
