@@ -60,14 +60,14 @@ class SortTask extends RecursiveAction {
     static final int THRESHOLD = 1000;
 
     @Override
-        protected void compute() {
-            if (hi - lo < THRESHOLD)
-                sortSequentially(lo, hi);
-            else {
-                int mid = (lo + hi) >>> 1;
-                invokeAll(new SortTask(array, lo, mid),
-                        new SortTask(array, mid, hi));
-                merge(lo, mid, hi);
-            }
+    protected void compute() {
+        if (hi - lo < THRESHOLD)
+            sortSequentially(lo, hi);
+        else {
+            int mid = (lo + hi) >>> 1;
+            invokeAll(new SortTask(array, lo, mid),
+                    new SortTask(array, mid, hi));
+            merge(lo, mid, hi);
         }
+    }
 }
