@@ -142,10 +142,22 @@ task myClean(type: Delete) {
 }
 
 task myInfo {
-    println "hello.name = ${hello.name}"
-    println "hello = ${hello}"
-    println "========================="
-    println tasks.hello.name
-    //println tasks.named('hello').get().name
+    doLast {
+        println "hello.name = ${hello.name}"
+        println "hello = ${hello}"
+        println "========================="
+        println tasks.hello.name
+        //println tasks.named('hello').get().name
+    }
 }
 
+/*
+include ":project_a", ":project_b"
+
+task depAB {
+    dependsOn ':project_b:TaskY'
+    doLast {
+        println this.name
+    }
+}
+*/
