@@ -1,0 +1,17 @@
+apply plugin: 'java'  
+
+
+repositories {  
+    mavenCentral()  
+}  
+
+
+dependencies {  
+    compile 'struts:struts:1.2.9'  
+}  
+
+
+task download(type: Copy) {  
+    from configurations.runtime  
+	into 'lib' //下载后存放jar包的位置  
+}  
