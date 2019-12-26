@@ -1,0 +1,15 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'commons-codec', name: 'commons-codec', version: '1.13'
+    }
+}
+
+task encode {
+    doLast {
+        def byte[] encodedString =new org.apache.commons.codec.binary.Base64().encodeBase64("hello world\n".getBytes())
+        println new String(encodedString)
+    }
+}
