@@ -1,17 +1,18 @@
 apply plugin: 'java'  
 
-
 repositories {  
+    maven {
+	url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+
     mavenCentral()  
 }  
-
 
 dependencies {  
     compile 'struts:struts:1.2.9'  
 }  
 
-
 task download(type: Copy) {  
     from configurations.runtime  
-	into 'lib' //下载后存放jar包的位置  
+    into 'lib' //下载后存放jar包的位置  
 }  
