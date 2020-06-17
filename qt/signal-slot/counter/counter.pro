@@ -15,4 +15,5 @@ INCLUDEPATH += .
 
 # Input
 HEADERS += counter.h
-SOURCES += counter.cpp
+SOURCES += counter.cpp \
+    main.cpp

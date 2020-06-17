@@ -1,6 +1,13 @@
 #include <QObject>
 
-void Counter::Counter(){
+#include "counter.h"
+
+Counter::Counter() {
+    m_value = 0;
+}
+
+int Counter::value() const {
+    return m_value;
 }
 
 
@@ -10,3 +17,4 @@ void Counter::setValue(int value) {
         emit valueChanged(value);
     }
 }
+

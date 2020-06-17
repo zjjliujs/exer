@@ -1,20 +1,20 @@
 #include <QObject>
 
-class Counter : public QObject
-{
+class Counter : public QObject {
     Q_OBJECT
 
-public:
-    Counter() { m_value = 0; }
+  public:
+    Counter();
 
-    int value() const { return m_value; }
+  public:
+    int value() const;
 
-public slots:
+  public slots:
     void setValue(int value);
 
-signals:
+  signals:
     void valueChanged(int newValue);
 
-private:
+  private:
     int m_value;
 };
