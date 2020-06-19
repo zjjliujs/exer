@@ -2,12 +2,13 @@
 #   -*- coding: utf-8 -*- 
 
 import struct
-import small_map
+#import small_map as mapData
+import huge_map as mapData
 
 outFile = "map_data.bin"
 
 with open(outFile, 'wb')as fp:
-    for x in small_map.data: 
+    for x in mapData.data: 
         a = struct.pack('b', x)
         fp.write(a)
  
