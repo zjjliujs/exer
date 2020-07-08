@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Order Simulator</string>
+    <string name="title_activity_order_simulator">OrderSimulatorActivity</string>
+    <string name="tab_server_list">Server</string>
+    <string name="tab_shelf_list">Shelf</string>
+    <string name="config">Configuration</string>
+    <string name="alert_dialog_start_simulator">Start Simulator</string>
+    <string name="alert_dialog_cancel">exit</string>
+    <string name="server_config">Server Config</string>
+    <string name="dispatch_rate">Dispatch rate(times per seconds)</string>
+    <string name="error_order_file_read">Error! IOException when read order file! msg %1$s</string>
+</resources>

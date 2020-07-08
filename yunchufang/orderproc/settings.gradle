@@ -1,0 +1,4 @@
+include ':orderserver'
+include ':ordersys'
+include ':app'
+rootProject.name = "My Application"

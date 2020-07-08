@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="dispatch_rates">
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+        <item>10</item>
+        <item>16</item>
+        <item>26</item>
+        <item>32</item>
+    </integer-array>
+</resources>
