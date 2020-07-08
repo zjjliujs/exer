@@ -2,6 +2,7 @@ package com.cloudcousion.orderserver.mockup;
 
 import com.cloudcousion.orderserver.OrderConsumerI;
 import com.cloudcousion.orderserver.OrderServerI;
+import com.cloudcousion.orderserver.OrderServerListenerI;
 import com.cloudcousion.orderserver.config.OrderServerConfig;
 import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.orderserver.utils.AndroidLogger;
@@ -22,6 +23,7 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
     private boolean exit;
     private Queue<Order> orders;
     private List<OrderConsumerI> orderConsumers;
+    private List<OrderServerListenerI> stateListeners;
     private int dispatchRate;   //orders per second
     private Thread thread;
 
@@ -35,6 +37,7 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
     private MockUpOrderServer() {
         orders = new LinkedList<>();
         orderConsumers = new ArrayList<>();
+        stateListeners = new ArrayList<>();
         this.dispatchRate = OrderServerConfig.getDispatchRate();
         this.thread = null;
         this.exit = false;
@@ -74,6 +77,7 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
                     } else {
                         logger.logDebug("run: to dispatch order! order id:" + order.getId());
                         consumer.dispatchOrder(order);
+                        notifyServerStateChanged();
                     }
                 }
 
@@ -88,6 +92,17 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
                 }
             }
         }
+    }
+
+    private void notifyServerStateChanged() {
+        for (OrderServerListenerI listener : stateListeners) {
+            listener.serverStateChanged();
+        }
+    }
+
+    @Override
+    public List<Order> ordersInQueue() {
+        return new ArrayList<>(orders);
     }
 
     @Override
@@ -115,6 +130,7 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
     public synchronized boolean putOrder(Order order) {
         orders.add(order);
         notifyAll();
+        notifyServerStateChanged();
         return true;
     }
 
@@ -122,6 +138,7 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
     public synchronized boolean putOrders(List<Order> newOrders) {
         this.orders.addAll(newOrders);
         notifyAll();
+        notifyServerStateChanged();
         return true;
     }
 
@@ -134,5 +151,15 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
     @Override
     public synchronized void unregisterOrderConsumer(OrderConsumerI orderConsumer) {
         orderConsumers.remove(orderConsumer);
+    }
+
+    @Override
+    public synchronized void registerStateListener(OrderServerListenerI listener) {
+        stateListeners.add(listener);
+    }
+
+    @Override
+    public synchronized void unregisterStateListener(OrderServerListenerI listener) {
+        stateListeners.remove(listener);
     }
 }

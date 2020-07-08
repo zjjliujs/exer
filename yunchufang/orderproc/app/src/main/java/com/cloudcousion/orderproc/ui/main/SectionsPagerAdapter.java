@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.cloudcousion.orderproc.R;
+import com.cloudcousion.orderserver.OrderServerI;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -20,10 +21,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_server_list, R.string.tab_shelf_list};
     private final Context mContext;
+    private final OrderServerI orderServer;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, OrderServerI orderServer) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mContext = context;
+        this.orderServer = orderServer;
     }
 
     @Override
@@ -32,8 +35,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
         switch (position) {
-            case 0:
-                return new ServerOrderListFragment();
+            case 0: {
+                ServerOrderListFragment fragment = new ServerOrderListFragment(orderServer);
+                return fragment;
+            }
             default:
                 return PlaceholderFragment.newInstance(position + 1);
         }

@@ -2,11 +2,13 @@ package com.cloudcousion.orderserver;
 
 import com.cloudcousion.orderserver.model.Order;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface OrderServerI {
     /**
      * Set order dispatch rate
+     *
      * @param dispatchRate
      */
     void setDispatchRate(int dispatchRate);
@@ -54,4 +56,23 @@ public interface OrderServerI {
      * @param orderListenerI
      */
     void unregisterOrderConsumer(OrderConsumerI orderListenerI);
+
+    /**
+     * Register order server state changed message listener
+     * @param listener
+     */
+    void registerStateListener(OrderServerListenerI listener);
+
+    /**
+     * Unregister order server state changed message listener
+     * @param listener
+     */
+    void unregisterStateListener(OrderServerListenerI listener);
+
+    /**
+     * Order list on server queue
+     *
+     * @return
+     */
+    List<Order> ordersInQueue();
 }

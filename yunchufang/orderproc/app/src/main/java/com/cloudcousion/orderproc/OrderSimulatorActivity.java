@@ -37,8 +37,10 @@ public class OrderSimulatorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_simulator);
+        orderServer = MockUpOrderServer.getInstance();
+
         //Create pager adapter
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), orderServer);
         //Set up View Pager
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -64,7 +66,6 @@ public class OrderSimulatorActivity extends AppCompatActivity {
                             List<Order> orders = readOrdersFromRes(R.raw.orders);
                             logDebug("showConfigDialog, order size:" + orders.size());
 
-                            orderServer = MockUpOrderServer.getInstance();
                             orderServer.setDispatchRate(rate);
                             orderServer.putOrders(orders);
                             orderServer.startDispatch();
