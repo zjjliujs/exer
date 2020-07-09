@@ -8,6 +8,7 @@ import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.kitchen.Kitchen;
 import com.cloudcousion.ordersys.shelf.ShelfManager;
 import com.cloudcousion.ordersys.shelf.ShelfType;
+import com.cloudcousion.ordersys.utils.SimpleOrderValueCalculator;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -26,7 +27,7 @@ public class ShelfManagerTest {
         KitchenConfig kc = new KitchenConfig();
         kc.overflowShelfCapacity = 1;
         kc.tempShelfCapacity = 1;
-        shelfMgr = new ShelfManager(kc);
+        shelfMgr = new ShelfManager(kc, SimpleOrderValueCalculator.getInstance());
 
         List<Order> orders = JSON.parseArray("[\n" +
                 "  {\n" +
