@@ -127,5 +127,10 @@ public class KitchenTest {
         public List<CookedOrder> getWasteOrders() {
             return null;
         }
+
+        @Override
+        public void close() {
+            //Do nothing!
+        }
     }
 }
