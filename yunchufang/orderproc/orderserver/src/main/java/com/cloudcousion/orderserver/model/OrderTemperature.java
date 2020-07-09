@@ -1,7 +1,7 @@
 package com.cloudcousion.orderserver.model;
 
 public enum OrderTemperature {
-    Hot, Cold, Frozen;
+    Hot, Cold, Frozen, None;
 
     @Override
     public String toString() {
@@ -11,9 +11,9 @@ public enum OrderTemperature {
             case Cold:
                 return "Cold";
             case Frozen:
-                return "Fronzen";
+                return "Frozen";
             default:
-                return "Error";
+                return "None";
         }
     }
 }

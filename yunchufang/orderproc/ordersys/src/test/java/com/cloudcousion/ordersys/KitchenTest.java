@@ -1,9 +1,14 @@
-package com.cloudcousion.orderserver;
+package com.cloudcousion.ordersys;
 
 import com.alibaba.fastjson.JSON;
 import com.cloudcousion.orderserver.config.OrderServerConfig;
 import com.cloudcousion.orderserver.mockup.MockUpOrderServer;
 import com.cloudcousion.orderserver.model.Order;
+import com.cloudcousion.orderserver.model.OrderTemperature;
+import com.cloudcousion.ordersys.kitchen.CookedOrder;
+import com.cloudcousion.ordersys.kitchen.Kitchen;
+import com.cloudcousion.ordersys.shelf.ShelfI;
+import com.cloudcousion.ordersys.utils.SimpleOrderValueCalculator;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,32 +20,20 @@ import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
-public class MockUpOrderServerTest {
+public class KitchenTest {
     private MockUpOrderServer orderServer;
-    private TestOrderConsumer testConsumer;
+    private Kitchen kitchen;
+    private TestShelf shelf;
 
     @Before
     public void init() {
         OrderServerConfig.setDispatchRate(2);
         orderServer = MockUpOrderServer.getInstance();
-        testConsumer = new TestOrderConsumer();
-        orderServer.registerOrderConsumer(testConsumer);
-    }
+        shelf = new TestShelf();
+        kitchen = new Kitchen(SimpleOrderValueCalculator.getInstance(), orderServer, shelf);
+        kitchen.start();
+        orderServer.registerOrderConsumer(kitchen);
 
-    @After
-    public void cleanUp() {
-        orderServer.stopService();
-    }
-
-    @Test
-    public void emptyOrderTst() throws InterruptedException {
-        orderServer.startDispatch();
-        Thread.sleep(3000);
-        assertEquals(testConsumer.orders.size(), 0);
-    }
-
-    @Test
-    public void orderDispatchTst() throws InterruptedException {
         List<Order> orders = JSON.parseArray("[\n" +
                 "  {\n" +
                 "    \"id\": \"a8cfcb76-7f24-4420-a5ba-d46dd77bdffd\",\n" +
@@ -73,32 +66,66 @@ public class MockUpOrderServerTest {
                 "]\n", Order.class);
         orderServer.putOrders(orders);
         orderServer.startDispatch();
-        assertEquals(0, testConsumer.orders.size());
-        int delay = 1000 / OrderServerConfig.getDispatchRate();
-        Thread.sleep(delay);
-        assertEquals(1, testConsumer.orders.size());
-        Thread.sleep(delay);
-        assertEquals(2, testConsumer.orders.size());
-        Thread.sleep(delay);
-        assertEquals(3, testConsumer.orders.size());
-        Thread.sleep(delay);
-        assertEquals(4, testConsumer.orders.size());
-        //All order consumed
-        Thread.sleep(delay);
-        assertEquals(4, testConsumer.orders.size());
     }
 
-    static class TestOrderConsumer implements OrderConsumerI {
-        List<Order> orders;
+    @After
+    public void cleanUp() {
+        orderServer.stopService();
+    }
 
-        public TestOrderConsumer() {
-            this.orders = new ArrayList<>();
+    @Test
+    public void kitchenShelfTst() throws InterruptedException {
+        assertEquals(0, shelf.orders.size());
+        int delay = 1000 / OrderServerConfig.getDispatchRate();
+        Thread.sleep(delay);
+        assertEquals(1, shelf.orders.size());
+        Thread.sleep(delay);
+        assertEquals(2, shelf.orders.size());
+        Thread.sleep(delay);
+        assertEquals(3, shelf.orders.size());
+        Thread.sleep(delay);
+        assertEquals(4, shelf.orders.size());
+        //All order consumed
+        Thread.sleep(delay);
+        assertEquals(4, shelf.orders.size());
+    }
+
+    @Test
+    public void kitchenCloseTst() throws InterruptedException {
+        kitchen.close();
+        assertEquals(0, shelf.orders.size());
+        int delay = 1000 / OrderServerConfig.getDispatchRate();
+        Thread.sleep(delay);
+        assertEquals(0, shelf.orders.size());
+        Thread.sleep(delay);
+        assertEquals(0, shelf.orders.size());
+        Thread.sleep(delay);
+        assertEquals(0, shelf.orders.size());
+
+        assertEquals(4, orderServer.ordersInQueue().size());
+    }
+
+    private class TestShelf implements ShelfI {
+        List<CookedOrder> orders = new ArrayList<>();
+
+        @Override
+        public synchronized void shelfOrder(CookedOrder order) {
+            orders.add(order);
         }
 
         @Override
-        public boolean dispatchOrder(Order order) {
-            orders.add(order);
-            return true;
+        public synchronized CookedOrder takeOrder(UUID orderId, OrderTemperature temperature) {
+            return null;
+        }
+
+        @Override
+        public int shelfDeviceOrderSize(OrderTemperature temperature) {
+            return 0;
+        }
+
+        @Override
+        public List<CookedOrder> getWasteOrders() {
+            return null;
         }
     }
 }
