@@ -35,4 +35,9 @@ public interface ShelfI {
      * @return
      */
     List<CookedOrder> getWasteOrders();
+
+    /**
+     * Stop thread
+     */
+    void close();
 }

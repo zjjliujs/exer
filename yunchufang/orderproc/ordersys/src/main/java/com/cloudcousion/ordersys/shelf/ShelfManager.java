@@ -3,24 +3,68 @@ package com.cloudcousion.ordersys.shelf;
 import com.cloudcousion.orderserver.model.OrderTemperature;
 import com.cloudcousion.ordersys.config.KitchenConfig;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
+import com.cloudcousion.ordersys.utils.OrderValueCalculatorI;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 public class ShelfManager extends Thread implements ShelfI {
+    private final OrderValueCalculatorI evaluator;
+    private boolean exit;
     private TempShelfDevice hotShelfDev;
     private TempShelfDevice coldShelfDev;
     private TempShelfDevice frozenShelfDev;
     private OverflowShelfDevice overflowShelfDev;
     private List<CookedOrder> wastedOrders;
 
-    public ShelfManager(KitchenConfig config) {
+    public ShelfManager(KitchenConfig config, OrderValueCalculatorI evaluator) {
         wastedOrders = new ArrayList<>();
         hotShelfDev = new TempShelfDevice(OrderTemperature.Hot, config.tempShelfCapacity);
         coldShelfDev = new TempShelfDevice(OrderTemperature.Cold, config.tempShelfCapacity);
         frozenShelfDev = new TempShelfDevice(OrderTemperature.Frozen, config.tempShelfCapacity);
         overflowShelfDev = new OverflowShelfDevice(config.overflowShelfCapacity);
+        this.evaluator = evaluator;
+        this.exit = false;
+    }
+
+    @Override
+    public void run() {
+        while (!exit) {
+            synchronized (this) {
+                EvaluateOrders(hotShelfDev);
+                EvaluateOrders(coldShelfDev);
+                EvaluateOrders(frozenShelfDev);
+                EvaluateOrders(overflowShelfDev);
+
+                //Evaluate one time in one seconds
+                try {
+                    wait(1000);
+                } catch (InterruptedException e) {
+                    return;
+                }
+            }
+        }
+    }
+
+    private void EvaluateOrders(ShelfDevice shelfDevice) {
+        Iterator<CookedOrder> it = shelfDevice.orders.iterator();
+        while (it.hasNext()) {
+            CookedOrder order = it.next();
+            float v = evaluator.calculateOrderValue(order);
+            order.setValue(v);
+            if (v <= 0) {
+                setAsWasted(order);
+                it.remove();
+            }
+        }
+    }
+
+    @Override
+    public synchronized void close() {
+        exit = true;
+        notifyAll();
     }
 
     @Override
@@ -114,7 +158,7 @@ public class ShelfManager extends Thread implements ShelfI {
     }
 
     @Override
-    public List<CookedOrder> getWasteOrders() {
-        return wastedOrders;
+    public synchronized List<CookedOrder> getWasteOrders() {
+        return new ArrayList<>(wastedOrders);
     }
 }
