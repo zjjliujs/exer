@@ -9,5 +9,9 @@
     <string name="server_config">Server Config</string>
     <string name="dispatch_rate">Dispatch rate(times per seconds)</string>
     <string name="error_order_file_read">Error! IOException when read order file! msg %1$s</string>
-    <string name="fmt_server_order_queue">Order count in server queue %1$d</string>
+    <string name="fmt_server_order_queue">Total %1$d</string>
+    <string name="header_name">Name</string>
+    <string name="header_temperature">Temperature</string>
+    <string name="header_shelf_lift">Shelf lift</string>
+    <string name="header_decay_rate">Decay rate</string>
 </resources>

@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="list_divider">#111111</color>
+    <color name="table_item_bg">#ffffff</color>
+    <color name="table_header_bg">#aaaaaa</color>
 </resources>

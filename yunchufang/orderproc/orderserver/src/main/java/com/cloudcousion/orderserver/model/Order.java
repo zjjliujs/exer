@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Order {
     private UUID id;
     private String name;
-    private OrderTemp temp;
+    private OrderTemperature temp;
     private int shelfLife;
     private float decayRate;
 
@@ -39,11 +39,11 @@ public class Order {
         this.name = name;
     }
 
-    public OrderTemp getTemp() {
+    public OrderTemperature getTemp() {
         return temp;
     }
 
-    public void setTemp(OrderTemp temp) {
+    public void setTemp(OrderTemperature temp) {
         this.temp = temp;
     }
 

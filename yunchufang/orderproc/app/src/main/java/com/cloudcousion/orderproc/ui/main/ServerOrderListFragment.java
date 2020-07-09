@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudcousion.orderproc.R;
 import com.cloudcousion.orderserver.OrderServerI;
@@ -29,6 +32,8 @@ public class ServerOrderListFragment extends Fragment implements OrderServerList
         }
     };
     private TextView orderCountTV;
+    private RecyclerView orderListRV;
+    private OrderListRVAdapter adapter;
 
     public ServerOrderListFragment(OrderServerI orderServer) {
         super();
@@ -48,7 +53,18 @@ public class ServerOrderListFragment extends Fragment implements OrderServerList
         View root = inflater.inflate(R.layout.fragment_order_simulator, container, false);
         orderCountTV = root.findViewById(R.id.tv_order_count);
         updateOrderCount();
+        orderListRV = root.findViewById(R.id.rv_order_list);
+        initOrderListRV();
         return root;
+    }
+
+    private void initOrderListRV() {
+        adapter = new OrderListRVAdapter(getContext(), orderServer);
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
+        orderListRV.setLayoutManager(layoutManager);
+        orderListRV.setAdapter(adapter);
+        orderListRV.setItemAnimator(new DefaultItemAnimator());
     }
 
     private void updateOrderCount() {
@@ -66,6 +82,8 @@ public class ServerOrderListFragment extends Fragment implements OrderServerList
             @Override
             public void run() {
                 updateOrderCount();
+                adapter.notifyServerStateChanged();
+                adapter.notifyDataSetChanged();
             }
         });
     }
