@@ -3,7 +3,7 @@ package com.cloudcousion.ordersys.shelf;
 import com.cloudcousion.orderserver.model.OrderTemperature;
 import com.cloudcousion.orderserver.utils.ConsoleLogger;
 import com.cloudcousion.orderserver.utils.OrderLoggerI;
-import com.cloudcousion.ordersys.config.SystemConfig;
+import com.cloudcousion.ordersys.config.SimulatorConfig;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.utils.OrderValueCalculatorI;
 
@@ -25,7 +25,7 @@ public class ShelfManager extends Thread implements ShelfManagerI {
     private List<CookedOrder> wastedOrders;
     private List<ShelfStateListenerI> stateListeners;
 
-    public ShelfManager(SystemConfig config, OrderValueCalculatorI evaluator) {
+    public ShelfManager(SimulatorConfig config, OrderValueCalculatorI evaluator) {
         wastedOrders = new ArrayList<>();
         hotShelfDev = new TempShelfDevice(OrderTemperature.Hot, config.tempShelfCapacity);
         coldShelfDev = new TempShelfDevice(OrderTemperature.Cold, config.tempShelfCapacity);
@@ -40,14 +40,13 @@ public class ShelfManager extends Thread implements ShelfManagerI {
     public void run() {
         while (!exit) {
             synchronized (this) {
-                boolean removed = EvaluateOrders(hotShelfDev);
-                removed = EvaluateOrders(coldShelfDev) | removed;
-                removed = EvaluateOrders(frozenShelfDev) | removed;
-                removed = EvaluateOrders(overflowShelfDev) | removed;
+                EvaluateOrders(hotShelfDev);
+                EvaluateOrders(coldShelfDev);
+                EvaluateOrders(frozenShelfDev);
+                EvaluateOrders(overflowShelfDev);
 
-                if (removed) {
-                    notifyStateListeners();
-                }
+                //Value change event and remove event need all be notified!
+                notifyStateListeners();
 
                 //Evaluate one time in one seconds
                 try {
@@ -63,8 +62,7 @@ public class ShelfManager extends Thread implements ShelfManagerI {
      * @param shelfDevice
      * @return true if order moved to waste
      */
-    private boolean EvaluateOrders(ShelfDevice shelfDevice) {
-        boolean removed = false;
+    private void EvaluateOrders(ShelfDevice shelfDevice) {
         Iterator<CookedOrder> it = shelfDevice.orders.iterator();
         while (it.hasNext()) {
             CookedOrder order = it.next();
@@ -73,11 +71,9 @@ public class ShelfManager extends Thread implements ShelfManagerI {
             if (v <= 0) {
                 setAsWasted(order);
                 it.remove();
-                removed = true;
             }
             logger.logDebug("EvaluateOrders value:" + v + ", order id:" + order.getId());
         }
-        return removed;
     }
 
     @Override
@@ -133,6 +129,27 @@ public class ShelfManager extends Thread implements ShelfManagerI {
             notifyStateListeners();
         }
         return order;
+    }
+
+    @Override
+    public synchronized List<CookedOrder> deviceOrderList(OrderTemperature temperature) {
+        switch (temperature) {
+            case Cold: {
+                return new ArrayList<>(coldShelfDev.orders);
+            }
+            case Hot: {
+                return new ArrayList<>(hotShelfDev.orders);
+            }
+            case Frozen: {
+                return new ArrayList<>(frozenShelfDev.orders);
+            }
+            case None: {
+                return new ArrayList<>(overflowShelfDev.orders);
+            }
+            default:
+                //Impossible!
+                throw new RuntimeException("deviceOrderList, wrong params!");
+        }
     }
 
     @Override

@@ -1,10 +1,11 @@
 package com.cloudcousion.ordersys.courier;
 
 import com.cloudcousion.orderserver.OrderListenerI;
+import com.cloudcousion.orderserver.OrderServerI;
 import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.orderserver.utils.ConsoleLogger;
 import com.cloudcousion.orderserver.utils.OrderLoggerI;
-import com.cloudcousion.ordersys.config.SystemConfig;
+import com.cloudcousion.ordersys.config.SimulatorConfig;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.shelf.ShelfManagerI;
 
@@ -16,7 +17,7 @@ import java.util.Random;
 
 public class CourierManager extends Thread implements OrderListenerI {
     private final OrderLoggerI logger = ConsoleLogger.getInstance();
-    private final SystemConfig systemConfig;
+    private final SimulatorConfig simulatorConfig;
     private boolean exit;
 
     private ShelfManagerI shelfManager;
@@ -24,9 +25,12 @@ public class CourierManager extends Thread implements OrderListenerI {
     private List<CookedOrder> fullFillOrders;
     private List<CourierMgrStateListenerI> stateListener;
 
-    public CourierManager(ShelfManagerI shelfManager, SystemConfig systemConfig) {
+    public CourierManager(SimulatorConfig simulatorConfig
+            , ShelfManagerI shelfManager
+            , OrderServerI orderServer) {
         this.shelfManager = shelfManager;
-        this.systemConfig = systemConfig;
+        this.simulatorConfig = simulatorConfig;
+        orderServer.registerOrderDeliveryListener(this);
         fullFillOrders = new ArrayList<>();
         orderInfos = new PriorityQueue<>();
         stateListener = new ArrayList<>();
@@ -97,7 +101,7 @@ public class CourierManager extends Thread implements OrderListenerI {
         long now = calendar.getTimeInMillis();
         Random random = new Random();
         float r = random.nextFloat();
-        long f = (long) (systemConfig.courierDelayMin + (systemConfig.courierDelayMax - systemConfig.courierDelayMin) * r);
+        long f = (long) (simulatorConfig.courierDelayMin + (simulatorConfig.courierDelayMax - simulatorConfig.courierDelayMin) * r);
         //Set the pick up time!
         long v = now + f;
         //logger.logDebug("orderSendToKitchen, r:" + r + ", f:" + f + ", now:" + now + ", v:" + v);

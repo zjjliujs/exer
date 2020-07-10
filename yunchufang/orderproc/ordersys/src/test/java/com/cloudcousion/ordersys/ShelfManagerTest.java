@@ -3,7 +3,7 @@ package com.cloudcousion.ordersys;
 import com.alibaba.fastjson.JSON;
 import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.orderserver.model.OrderTemperature;
-import com.cloudcousion.ordersys.config.SystemConfig;
+import com.cloudcousion.ordersys.config.SimulatorConfig;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.shelf.ShelfManager;
 import com.cloudcousion.ordersys.shelf.ShelfStateListenerI;
@@ -24,7 +24,7 @@ public class ShelfManagerTest {
 
     @Before
     public void init() {
-        SystemConfig kc = new SystemConfig();
+        SimulatorConfig kc = new SimulatorConfig();
         kc.overflowShelfCapacity = 1;
         kc.tempShelfCapacity = 1;
         shelfMgr = new ShelfManager(kc, SimpleOrderValueCalculator.getInstance());

@@ -21,7 +21,7 @@ import com.cloudcousion.orderserver.OrderServerStateListenerI;
 
 import java.util.Locale;
 
-public class ServerOrderListFragmentState extends Fragment implements OrderServerStateListenerI {
+public class ServerOrderListFragment extends Fragment implements OrderServerStateListenerI {
 
     private OrderServerI orderServer;
 
@@ -35,7 +35,7 @@ public class ServerOrderListFragmentState extends Fragment implements OrderServe
     private RecyclerView orderListRV;
     private OrderListRVAdapter adapter;
 
-    public ServerOrderListFragmentState(OrderServerI orderServer) {
+    public ServerOrderListFragment(OrderServerI orderServer) {
         super();
         this.orderServer = orderServer;
         this.orderServer.registerStateListener(this);
@@ -47,10 +47,11 @@ public class ServerOrderListFragmentState extends Fragment implements OrderServe
     }
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_order_simulator, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater
+            , ViewGroup container
+            , Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.fragment_server_order, container, false);
         orderCountTV = root.findViewById(R.id.tv_order_count);
         updateOrderCount();
         orderListRV = root.findViewById(R.id.rv_order_list);
@@ -68,7 +69,7 @@ public class ServerOrderListFragmentState extends Fragment implements OrderServe
     }
 
     private void updateOrderCount() {
-        String fmt = getResources().getString(R.string.fmt_server_order_queue);
+        String fmt = getResources().getString(R.string.fmt_total_order_count);
         String msg = String.format(Locale.US, fmt, orderServer.ordersInQueue().size());
         orderCountTV.setText(msg);
     }

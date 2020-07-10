@@ -10,11 +10,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
-import com.cloudcousion.orderproc.config.SysConfigs;
 import com.cloudcousion.orderproc.utils.PreferenceUtils;
 import com.cloudcousion.orderserver.OrderServerI;
-import com.cloudcousion.orderserver.mockup.MockUpOrderServer;
 import com.cloudcousion.orderserver.model.Order;
+import com.cloudcousion.ordersys.OrderSimulator;
+import com.cloudcousion.ordersys.config.SimulatorConfig;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
@@ -29,28 +29,32 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OrderSimulatorActivity extends AppCompatActivity {
-    private OrderServerI orderServer = null;
     private Spinner spinner;
-    private Integer defaultDispatchRatePos;
+    private SimulatorConfig simulatorConfig;
+    private OrderSimulator orderSimulator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        simulatorConfig = new SimulatorConfig();
+        Integer defaultRate = PreferenceUtils.getDispatchRatePreference(this, simulatorConfig.defaultDispatchRate);
+        simulatorConfig.defaultDispatchRate = defaultRate;
+        showConfigDialog();
+
         setContentView(R.layout.activity_order_simulator);
-        orderServer = MockUpOrderServer.getInstance();
+        orderSimulator = new OrderSimulator(simulatorConfig);
 
         //Create pager adapter
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), orderServer);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this
+                , getSupportFragmentManager()
+                , orderSimulator);
         //Set up View Pager
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         //Set up tabs
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
-        Integer defaultRate = PreferenceUtils.getDispatchRatePreference(this);
-        defaultDispatchRatePos = Arrays.binarySearch(SysConfigs.dispatchRates, defaultRate);
-        showConfigDialog();
     }
 
     private void showConfigDialog() {
@@ -59,16 +63,15 @@ public class OrderSimulatorActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.alert_dialog_start_simulator, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         try {
-                            defaultDispatchRatePos = spinner.getSelectedItemPosition();
-                            int rate = SysConfigs.dispatchRates[defaultDispatchRatePos];
+                            int defaultDispatchRatePos = spinner.getSelectedItemPosition();
+                            int rate = simulatorConfig.dispatchRates[defaultDispatchRatePos];
                             PreferenceUtils.saveDispatchRatePreference(OrderSimulatorActivity.this, rate);
+                            simulatorConfig.defaultDispatchRate = rate;
 
                             List<Order> orders = readOrdersFromRes(R.raw.orders);
                             logDebug("showConfigDialog, order size:" + orders.size());
 
-                            orderServer.setDispatchRate(rate);
-                            orderServer.putOrders(orders);
-                            orderServer.startDispatch();
+                            orderSimulator.start(orders);
                         } catch (IOException e) {
                             String fmt = getString(R.string.error_order_file_read);
                             String msg = String.format(fmt, e.getMessage());
@@ -85,9 +88,10 @@ public class OrderSimulatorActivity extends AppCompatActivity {
         dialog.show();
 
         spinner = dialog.findViewById(R.id.spinner_dispatch_rate);
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, SysConfigs.dispatchRates);
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, simulatorConfig.dispatchRates);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        int defaultDispatchRatePos = Arrays.binarySearch(simulatorConfig.dispatchRates, simulatorConfig.defaultDispatchRate);
         spinner.setSelection(defaultDispatchRatePos);
     }
 

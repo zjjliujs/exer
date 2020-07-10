@@ -65,4 +65,12 @@ public interface ShelfManagerI {
      * Stop thread
      */
     void close();
+
+    /**
+     * Get order list form device
+     *
+     * @param temperature None means overflow shelf
+     * @return order list clone
+     */
+    List<CookedOrder> deviceOrderList(OrderTemperature temperature);
 }

@@ -33,7 +33,6 @@ public class KitchenTest {
         shelf = new TestShelf();
         kitchen = new Kitchen(SimpleOrderValueCalculator.getInstance(), orderServer, shelf);
         kitchen.start();
-        orderServer.registerOrderConsumer(kitchen);
 
         List<Order> orders = JSON.parseArray("[\n" +
                 "  {\n" +
@@ -147,6 +146,11 @@ public class KitchenTest {
         @Override
         public void unregisterStateListener(ShelfStateListenerI stateListener) {
 
+        }
+
+        @Override
+        public List<CookedOrder> deviceOrderList(OrderTemperature temperature) {
+            return null;
         }
     }
 }

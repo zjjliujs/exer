@@ -1,11 +1,15 @@
 package com.cloudcousion.ordersys;
 
 import com.alibaba.fastjson.JSON;
+import com.cloudcousion.orderserver.OrderConsumerI;
+import com.cloudcousion.orderserver.OrderListenerI;
+import com.cloudcousion.orderserver.OrderServerI;
+import com.cloudcousion.orderserver.OrderServerStateListenerI;
 import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.orderserver.model.OrderTemperature;
 import com.cloudcousion.orderserver.utils.ConsoleLogger;
 import com.cloudcousion.orderserver.utils.OrderLoggerI;
-import com.cloudcousion.ordersys.config.SystemConfig;
+import com.cloudcousion.ordersys.config.SimulatorConfig;
 import com.cloudcousion.ordersys.courier.CourierManager;
 import com.cloudcousion.ordersys.courier.CourierMgrStateListenerI;
 import com.cloudcousion.ordersys.courier.OrderInfo;
@@ -63,10 +67,11 @@ public class CourierManagerTest {
     @Test
     public void stateNotifyTest() throws InterruptedException {
         TestShelfManager shelfManager = new TestShelfManager();
-        SystemConfig config = new SystemConfig();
+        SimulatorConfig config = new SimulatorConfig();
         config.courierDelayMin = 2000;
         config.courierDelayMax = 6000;
-        CourierManager cm = new CourierManager(shelfManager, config);
+        TestOrderServer orderServer = new TestOrderServer();
+        CourierManager cm = new CourierManager(config, shelfManager, orderServer);
         TestStateListener stateListener = new TestStateListener();
         cm.registerStateListener(stateListener);
 
@@ -85,10 +90,11 @@ public class CourierManagerTest {
     @Test
     public void orderThreadTest() throws InterruptedException {
         TestShelfManager shelfManager = new TestShelfManager();
-        SystemConfig config = new SystemConfig();
+        SimulatorConfig config = new SimulatorConfig();
         config.courierDelayMin = 2000;
         config.courierDelayMax = 6000;
-        CourierManager cm = new CourierManager(shelfManager, config);
+        TestOrderServer orderServer = new TestOrderServer();
+        CourierManager cm = new CourierManager(config, shelfManager, orderServer);
 
         for (Order order : orders) {
             shelfManager.shelfOrder(new CookedOrder(order));
@@ -111,7 +117,10 @@ public class CourierManagerTest {
 
     @Test
     public void orderSendToKitchen() {
-        CourierManager cm = new CourierManager(new TestShelfManager(), new SystemConfig());
+        SimulatorConfig config = new SimulatorConfig();
+        TestShelfManager shelfManager = new TestShelfManager();
+        TestOrderServer orderServer = new TestOrderServer();
+        CourierManager cm = new CourierManager(config, shelfManager, orderServer);
 
         for (Order order : orders) {
             cm.orderSendToKitchen(order);
@@ -187,6 +196,11 @@ public class CourierManagerTest {
         public void unregisterStateListener(ShelfStateListenerI stateListener) {
 
         }
+
+        @Override
+        public List<CookedOrder> deviceOrderList(OrderTemperature temperature) {
+            return null;
+        }
     }
 
     private class TestStateListener implements CourierMgrStateListenerI {
@@ -195,6 +209,68 @@ public class CourierManagerTest {
         @Override
         public void stateChanged() {
             count++;
+        }
+    }
+
+    private class TestOrderServer implements OrderServerI {
+        @Override
+        public void setDispatchRate(int dispatchRate) {
+
+        }
+
+        @Override
+        public boolean startDispatch() {
+            return false;
+        }
+
+        @Override
+        public void stopService() {
+
+        }
+
+        @Override
+        public boolean putOrder(Order order) {
+            return false;
+        }
+
+        @Override
+        public boolean putOrders(List<Order> orders) {
+            return false;
+        }
+
+        @Override
+        public void registerOrderConsumer(OrderConsumerI orderListener) {
+
+        }
+
+        @Override
+        public void unregisterOrderConsumer(OrderConsumerI orderListenerI) {
+
+        }
+
+        @Override
+        public void registerStateListener(OrderServerStateListenerI listener) {
+
+        }
+
+        @Override
+        public void unregisterStateListener(OrderServerStateListenerI listener) {
+
+        }
+
+        @Override
+        public void registerOrderDeliveryListener(OrderListenerI listener) {
+
+        }
+
+        @Override
+        public void unregisterOrderDeliveryListener(OrderListenerI listener) {
+
+        }
+
+        @Override
+        public List<Order> ordersInQueue() {
+            return null;
         }
     }
 }

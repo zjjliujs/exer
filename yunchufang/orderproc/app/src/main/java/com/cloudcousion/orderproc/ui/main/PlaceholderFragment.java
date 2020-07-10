@@ -46,7 +46,7 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_order_simulator, container, false);
+        View root = inflater.inflate(R.layout.fragment_server_order, container, false);
         final TextView textView = root.findViewById(R.id.tv_order_count);
         pageViewModel.getText().observe(this, new Observer<String>() {
             @Override

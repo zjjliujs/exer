@@ -3,15 +3,13 @@ package com.cloudcousion.orderproc.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.cloudcousion.orderproc.config.SysConfigs;
-
 public class PreferenceUtils {
 
     private static final String PREF_ID = "com.cloudcousion.orderproc";
     private static final String KEY_DISPATCH_RATE = "dispatch_rate";
 
-    public static int getDispatchRatePreference(Context context) {
-        return getIntPreference(context, KEY_DISPATCH_RATE, SysConfigs.defaultDispatchRate);
+    public static int getDispatchRatePreference(Context context, int defaultValue) {
+        return getIntPreference(context, KEY_DISPATCH_RATE, defaultValue);
     }
 
     public static void saveDispatchRatePreference(Context context, int rate) {

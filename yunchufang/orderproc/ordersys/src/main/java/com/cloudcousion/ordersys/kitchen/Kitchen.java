@@ -22,6 +22,7 @@ public class Kitchen extends Thread implements OrderConsumerI {
 
     public Kitchen(OrderValueCalculatorI valueCalculator, OrderServerI orderServer, ShelfManagerI shelf) {
         cookedOrders = new LinkedList<>();
+        orderServer.registerOrderConsumer(this);
         this.valueCalculator = valueCalculator;
         this.orderServer = orderServer;
         this.shelf = shelf;
