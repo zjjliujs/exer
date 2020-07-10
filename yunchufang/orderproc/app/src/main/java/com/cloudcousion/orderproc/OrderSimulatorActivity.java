@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -44,7 +45,6 @@ public class OrderSimulatorActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_order_simulator);
         orderSimulator = new OrderSimulator(simulatorConfig);
-
         //Create pager adapter
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this
                 , getSupportFragmentManager()
@@ -55,6 +55,14 @@ public class OrderSimulatorActivity extends AppCompatActivity {
         //Set up tabs
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        View menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showConfigDialog();
+            }
+        });
     }
 
     private void showConfigDialog() {

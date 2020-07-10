@@ -6,4 +6,5 @@
     <color name="list_divider">#111111</color>
     <color name="table_item_bg">#ffffff</color>
     <color name="table_header_bg">#aaaaaa</color>
+    <color name="more_icon_stroke">#ffffff</color>
 </resources>
