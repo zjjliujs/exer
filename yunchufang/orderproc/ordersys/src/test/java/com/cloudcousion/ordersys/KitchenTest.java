@@ -8,6 +8,7 @@ import com.cloudcousion.orderserver.model.OrderTemperature;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.kitchen.Kitchen;
 import com.cloudcousion.ordersys.shelf.ShelfManagerI;
+import com.cloudcousion.ordersys.shelf.ShelfStateListenerI;
 import com.cloudcousion.ordersys.utils.SimpleOrderValueCalculator;
 
 import org.junit.After;
@@ -136,6 +137,16 @@ public class KitchenTest {
         @Override
         public CookedOrder peekOrder(UUID orderId, OrderTemperature temperature) {
             return null;
+        }
+
+        @Override
+        public void registerStateListener(ShelfStateListenerI stateListener) {
+
+        }
+
+        @Override
+        public void unregisterStateListener(ShelfStateListenerI stateListener) {
+
         }
     }
 }

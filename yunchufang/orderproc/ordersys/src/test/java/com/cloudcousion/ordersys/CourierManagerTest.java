@@ -11,6 +11,7 @@ import com.cloudcousion.ordersys.courier.CourierMgrStateListenerI;
 import com.cloudcousion.ordersys.courier.OrderInfo;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.shelf.ShelfManagerI;
+import com.cloudcousion.ordersys.shelf.ShelfStateListenerI;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -174,6 +175,16 @@ public class CourierManagerTest {
 
         @Override
         public void close() {
+
+        }
+
+        @Override
+        public void registerStateListener(ShelfStateListenerI stateListener) {
+
+        }
+
+        @Override
+        public void unregisterStateListener(ShelfStateListenerI stateListener) {
 
         }
     }

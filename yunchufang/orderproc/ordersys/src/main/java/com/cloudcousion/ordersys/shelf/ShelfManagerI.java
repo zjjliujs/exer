@@ -17,9 +17,9 @@ public interface ShelfManagerI {
     /**
      * For courier to take out of the order on the shelf
      *
-     * @Param orderId  order id to be taken out
      * @param temperature
      * @return Order on shelf or null if not found
+     * @Param orderId  order id to be taken out
      */
     CookedOrder takeOrder(UUID orderId, OrderTemperature temperature);
 
@@ -46,6 +46,20 @@ public interface ShelfManagerI {
      * @return
      */
     List<CookedOrder> getWasteOrders();
+
+    /**
+     * Add Shelf state change listener
+     *
+     * @param stateListener
+     */
+    void registerStateListener(ShelfStateListenerI stateListener);
+
+    /**
+     * Unregister shelf state change listener
+     *
+     * @param stateListener
+     */
+    void unregisterStateListener(ShelfStateListenerI stateListener);
 
     /**
      * Stop thread

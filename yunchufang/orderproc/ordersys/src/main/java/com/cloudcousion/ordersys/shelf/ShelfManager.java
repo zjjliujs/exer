@@ -23,6 +23,7 @@ public class ShelfManager extends Thread implements ShelfManagerI {
     private TempShelfDevice frozenShelfDev;
     private OverflowShelfDevice overflowShelfDev;
     private List<CookedOrder> wastedOrders;
+    private List<ShelfStateListenerI> stateListeners;
 
     public ShelfManager(SystemConfig config, OrderValueCalculatorI evaluator) {
         wastedOrders = new ArrayList<>();
@@ -31,17 +32,22 @@ public class ShelfManager extends Thread implements ShelfManagerI {
         frozenShelfDev = new TempShelfDevice(OrderTemperature.Frozen, config.tempShelfCapacity);
         overflowShelfDev = new OverflowShelfDevice(config.overflowShelfCapacity);
         this.evaluator = evaluator;
-        this.exit = false;
+        stateListeners = new ArrayList<>();
+        exit = false;
     }
 
     @Override
     public void run() {
         while (!exit) {
             synchronized (this) {
-                EvaluateOrders(hotShelfDev);
-                EvaluateOrders(coldShelfDev);
-                EvaluateOrders(frozenShelfDev);
-                EvaluateOrders(overflowShelfDev);
+                boolean removed = EvaluateOrders(hotShelfDev);
+                removed = EvaluateOrders(coldShelfDev) | removed;
+                removed = EvaluateOrders(frozenShelfDev) | removed;
+                removed = EvaluateOrders(overflowShelfDev) | removed;
+
+                if (removed) {
+                    notifyStateListeners();
+                }
 
                 //Evaluate one time in one seconds
                 try {
@@ -53,7 +59,12 @@ public class ShelfManager extends Thread implements ShelfManagerI {
         }
     }
 
-    private void EvaluateOrders(ShelfDevice shelfDevice) {
+    /**
+     * @param shelfDevice
+     * @return true if order moved to waste
+     */
+    private boolean EvaluateOrders(ShelfDevice shelfDevice) {
+        boolean removed = false;
         Iterator<CookedOrder> it = shelfDevice.orders.iterator();
         while (it.hasNext()) {
             CookedOrder order = it.next();
@@ -62,9 +73,11 @@ public class ShelfManager extends Thread implements ShelfManagerI {
             if (v <= 0) {
                 setAsWasted(order);
                 it.remove();
+                removed = true;
             }
             logger.logDebug("EvaluateOrders value:" + v + ", order id:" + order.getId());
         }
+        return removed;
     }
 
     @Override
@@ -116,12 +129,22 @@ public class ShelfManager extends Thread implements ShelfManagerI {
         if (order == null) {
             order = overflowShelfDev.takeOrder(orderId);
         }
+        if (order != null) {
+            notifyStateListeners();
+        }
         return order;
     }
 
     @Override
     public synchronized void shelfOrder(CookedOrder order) {
         doShelfOrder(order, false);
+        notifyStateListeners();
+    }
+
+    private void notifyStateListeners() {
+        for (ShelfStateListenerI listener : stateListeners) {
+            listener.stateChanged();
+        }
     }
 
     private void doShelfOrder(CookedOrder order, boolean fromOverflow) {
@@ -189,5 +212,15 @@ public class ShelfManager extends Thread implements ShelfManagerI {
     @Override
     public synchronized List<CookedOrder> getWasteOrders() {
         return new ArrayList<>(wastedOrders);
+    }
+
+    @Override
+    public synchronized void registerStateListener(ShelfStateListenerI stateListener) {
+        stateListeners.add(stateListener);
+    }
+
+    @Override
+    public synchronized void unregisterStateListener(ShelfStateListenerI stateListener) {
+        stateListeners.remove(stateListener);
     }
 }

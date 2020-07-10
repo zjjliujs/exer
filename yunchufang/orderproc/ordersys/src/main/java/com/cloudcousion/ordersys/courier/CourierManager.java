@@ -119,6 +119,10 @@ public class CourierManager extends Thread implements OrderListenerI {
         stateListener.add(listener);
     }
 
+    public void unregisterStateListener(CourierMgrStateListenerI listener) {
+        stateListener.remove(listener);
+    }
+
     public synchronized void close() {
         exit = true;
         notifyAll();

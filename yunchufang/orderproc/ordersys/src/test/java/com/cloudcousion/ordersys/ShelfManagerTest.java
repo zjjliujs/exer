@@ -6,6 +6,7 @@ import com.cloudcousion.orderserver.model.OrderTemperature;
 import com.cloudcousion.ordersys.config.SystemConfig;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.shelf.ShelfManager;
+import com.cloudcousion.ordersys.shelf.ShelfStateListenerI;
 import com.cloudcousion.ordersys.shelf.ShelfType;
 import com.cloudcousion.ordersys.utils.SimpleOrderValueCalculator;
 
@@ -65,11 +66,50 @@ public class ShelfManagerTest {
     }
 
     @Test
-    public void testShelfThread() throws InterruptedException {
+    public void testStateListenerShelfOrder() {
         shelfMgr.start();
+        TestStateListener listener = new TestStateListener();
+        shelfMgr.registerStateListener(listener);
+
+        Assert.assertTrue(0 == listener.count);
+        CookedOrder order = cookedOrders.get(0);
+        shelfMgr.shelfOrder(order);
+        Assert.assertTrue(1 == listener.count);
+    }
+
+    @Test
+    public void testStateListenerTakeOrder() {
+        CookedOrder order = cookedOrders.get(0);
+        shelfMgr.shelfOrder(order);
+        shelfMgr.start();
+        TestStateListener listener = new TestStateListener();
+        shelfMgr.registerStateListener(listener);
+
+        Assert.assertTrue(0 == listener.count);
+        shelfMgr.takeOrder(order.getId(), order.getTemp());
+        Assert.assertTrue(1 == listener.count);
+    }
+
+    @Test
+    public void testStateListener() throws InterruptedException {
+        shelfMgr.shelfOrder(cookedOrders.get(0));
+        shelfMgr.start();
+        TestStateListener listener = new TestStateListener();
+        shelfMgr.registerStateListener(listener);
+
+        Thread.sleep(1100);
+        Assert.assertTrue(0 == listener.count);
+
+        Thread.sleep(13000);
+        Assert.assertTrue(1 == listener.count);
+    }
+
+    @Test
+    public void testShelfThread() throws InterruptedException {
         for (CookedOrder cookedOrder : cookedOrders) {
             shelfMgr.shelfOrder(cookedOrder);
         }
+        shelfMgr.start();
         Thread.sleep(1100);
         CookedOrder order = shelfMgr.peekOrder(UUID.fromString("a8cfcb76-7f24-4420-a5ba-d46dd77bdffd")
                 , OrderTemperature.Frozen);
@@ -120,4 +160,12 @@ public class ShelfManagerTest {
         Assert.assertEquals(ShelfType.OVERFLOW, order.getShelfType());
     }
 
+    private class TestStateListener implements ShelfStateListenerI {
+        int count = 0;
+
+        @Override
+        public void stateChanged() {
+            count++;
+        }
+    }
 }
