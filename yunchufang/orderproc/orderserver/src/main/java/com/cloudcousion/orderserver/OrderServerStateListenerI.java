@@ -1,6 +1,6 @@
 package com.cloudcousion.orderserver;
 
-public interface OrderServerListenerI {
+public interface OrderServerStateListenerI {
     /**
      * Dispatch server state change message
      */

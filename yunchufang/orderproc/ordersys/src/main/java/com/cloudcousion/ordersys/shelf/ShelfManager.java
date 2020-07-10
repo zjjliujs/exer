@@ -1,16 +1,21 @@
 package com.cloudcousion.ordersys.shelf;
 
 import com.cloudcousion.orderserver.model.OrderTemperature;
-import com.cloudcousion.ordersys.config.KitchenConfig;
+import com.cloudcousion.orderserver.utils.ConsoleLogger;
+import com.cloudcousion.orderserver.utils.OrderLoggerI;
+import com.cloudcousion.ordersys.config.SystemConfig;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.utils.OrderValueCalculatorI;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Queue;
 import java.util.UUID;
 
-public class ShelfManager extends Thread implements ShelfI {
+public class ShelfManager extends Thread implements ShelfManagerI {
+    private OrderLoggerI logger = ConsoleLogger.getInstance();
+
     private final OrderValueCalculatorI evaluator;
     private boolean exit;
     private TempShelfDevice hotShelfDev;
@@ -19,7 +24,7 @@ public class ShelfManager extends Thread implements ShelfI {
     private OverflowShelfDevice overflowShelfDev;
     private List<CookedOrder> wastedOrders;
 
-    public ShelfManager(KitchenConfig config, OrderValueCalculatorI evaluator) {
+    public ShelfManager(SystemConfig config, OrderValueCalculatorI evaluator) {
         wastedOrders = new ArrayList<>();
         hotShelfDev = new TempShelfDevice(OrderTemperature.Hot, config.tempShelfCapacity);
         coldShelfDev = new TempShelfDevice(OrderTemperature.Cold, config.tempShelfCapacity);
@@ -58,6 +63,7 @@ public class ShelfManager extends Thread implements ShelfI {
                 setAsWasted(order);
                 it.remove();
             }
+            logger.logDebug("EvaluateOrders value:" + v + ", order id:" + order.getId());
         }
     }
 
@@ -65,6 +71,29 @@ public class ShelfManager extends Thread implements ShelfI {
     public synchronized void close() {
         exit = true;
         notifyAll();
+    }
+
+    @Override
+    public synchronized CookedOrder peekOrder(UUID orderId, OrderTemperature temperature) {
+        Queue<CookedOrder> orders;
+        switch (temperature) {
+            case Hot:
+                orders = hotShelfDev.orders;
+                break;
+            case Cold:
+                orders = coldShelfDev.orders;
+                break;
+            case Frozen:
+                orders = frozenShelfDev.orders;
+                break;
+            default:
+                orders = overflowShelfDev.orders;
+        }
+        for (CookedOrder order : orders) {
+            if (order.getId().equals(orderId))
+                return order;
+        }
+        return null;
     }
 
     @Override
@@ -137,7 +166,7 @@ public class ShelfManager extends Thread implements ShelfI {
     }
 
     @Override
-    public int shelfDeviceOrderSize(OrderTemperature temperature) {
+    public int deviceOrderSize(OrderTemperature temperature) {
         switch (temperature) {
             case Cold:
                 return coldShelfDev.orders.size();

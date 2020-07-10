@@ -2,7 +2,6 @@ package com.cloudcousion.orderserver;
 
 import com.cloudcousion.orderserver.model.Order;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface OrderServerI {
@@ -61,13 +60,26 @@ public interface OrderServerI {
      * Register order server state changed message listener
      * @param listener
      */
-    void registerStateListener(OrderServerListenerI listener);
+    void registerStateListener(OrderServerStateListenerI listener);
 
     /**
      * Unregister order server state changed message listener
      * @param listener
      */
-    void unregisterStateListener(OrderServerListenerI listener);
+    void unregisterStateListener(OrderServerStateListenerI listener);
+
+    /**
+     * To notify courier the order is delivered to kitchen
+     *
+     * @param listener
+     */
+    void registerOrderDeliveryListener(OrderListenerI listener);
+
+    /**
+     * Unregister listener
+     * @param listener
+     */
+    void unregisterOrderDeliveryListener(OrderListenerI listener);
 
     /**
      * Order list on server queue

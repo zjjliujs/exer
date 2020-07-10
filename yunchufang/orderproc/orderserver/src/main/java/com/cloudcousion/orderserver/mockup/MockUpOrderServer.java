@@ -1,11 +1,11 @@
 package com.cloudcousion.orderserver.mockup;
 
 import com.cloudcousion.orderserver.OrderConsumerI;
+import com.cloudcousion.orderserver.OrderListenerI;
 import com.cloudcousion.orderserver.OrderServerI;
-import com.cloudcousion.orderserver.OrderServerListenerI;
+import com.cloudcousion.orderserver.OrderServerStateListenerI;
 import com.cloudcousion.orderserver.config.OrderServerConfig;
 import com.cloudcousion.orderserver.model.Order;
-import com.cloudcousion.orderserver.utils.AndroidLogger;
 import com.cloudcousion.orderserver.utils.ConsoleLogger;
 import com.cloudcousion.orderserver.utils.OrderLoggerI;
 
@@ -23,9 +23,10 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
     private boolean exit;
     private Queue<Order> orders;
     private List<OrderConsumerI> orderConsumers;
-    private List<OrderServerListenerI> stateListeners;
+    private List<OrderServerStateListenerI> stateListeners;
     private int dispatchRate;   //orders per second
     private Thread thread;
+    private List<OrderListenerI> orderListeners;
 
     public synchronized static MockUpOrderServer getInstance() {
         if (instance == null) {
@@ -38,6 +39,7 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
         orders = new LinkedList<>();
         orderConsumers = new ArrayList<>();
         stateListeners = new ArrayList<>();
+        orderListeners = new ArrayList<>();
         this.dispatchRate = OrderServerConfig.getDispatchRate();
         this.thread = null;
         this.exit = false;
@@ -77,6 +79,7 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
                     } else {
                         logger.logDebug("run: to dispatch order! order id:" + order.getId());
                         consumer.dispatchOrder(order);
+                        notifyOrderListener(order);
                         notifyServerStateChanged();
                     }
                 }
@@ -94,8 +97,14 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
         }
     }
 
+    private void notifyOrderListener(Order order) {
+        for (OrderListenerI listener : orderListeners) {
+            listener.orderSendToKitchen(order);
+        }
+    }
+
     private void notifyServerStateChanged() {
-        for (OrderServerListenerI listener : stateListeners) {
+        for (OrderServerStateListenerI listener : stateListeners) {
             listener.serverStateChanged();
         }
     }
@@ -154,12 +163,22 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
     }
 
     @Override
-    public synchronized void registerStateListener(OrderServerListenerI listener) {
+    public synchronized void registerStateListener(OrderServerStateListenerI listener) {
         stateListeners.add(listener);
     }
 
     @Override
-    public synchronized void unregisterStateListener(OrderServerListenerI listener) {
+    public synchronized void unregisterStateListener(OrderServerStateListenerI listener) {
         stateListeners.remove(listener);
+    }
+
+    @Override
+    public void registerOrderDeliveryListener(OrderListenerI listener) {
+        orderListeners.add(listener);
+    }
+
+    @Override
+    public void unregisterOrderDeliveryListener(OrderListenerI listener) {
+
     }
 }

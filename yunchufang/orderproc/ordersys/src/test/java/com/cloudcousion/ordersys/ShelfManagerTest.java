@@ -3,9 +3,8 @@ package com.cloudcousion.ordersys;
 import com.alibaba.fastjson.JSON;
 import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.orderserver.model.OrderTemperature;
-import com.cloudcousion.ordersys.config.KitchenConfig;
+import com.cloudcousion.ordersys.config.SystemConfig;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
-import com.cloudcousion.ordersys.kitchen.Kitchen;
 import com.cloudcousion.ordersys.shelf.ShelfManager;
 import com.cloudcousion.ordersys.shelf.ShelfType;
 import com.cloudcousion.ordersys.utils.SimpleOrderValueCalculator;
@@ -24,7 +23,7 @@ public class ShelfManagerTest {
 
     @Before
     public void init() {
-        KitchenConfig kc = new KitchenConfig();
+        SystemConfig kc = new SystemConfig();
         kc.overflowShelfCapacity = 1;
         kc.tempShelfCapacity = 1;
         shelfMgr = new ShelfManager(kc, SimpleOrderValueCalculator.getInstance());
@@ -66,14 +65,36 @@ public class ShelfManagerTest {
     }
 
     @Test
+    public void testShelfThread() throws InterruptedException {
+        shelfMgr.start();
+        for (CookedOrder cookedOrder : cookedOrders) {
+            shelfMgr.shelfOrder(cookedOrder);
+        }
+        Thread.sleep(1100);
+        CookedOrder order = shelfMgr.peekOrder(UUID.fromString("a8cfcb76-7f24-4420-a5ba-d46dd77bdffd")
+                , OrderTemperature.Frozen);
+        Assert.assertNotNull(order);
+        Assert.assertTrue(Math.abs(order.getValue() - 0.9185) < 0.00001);
+
+        Thread.sleep(1000);
+        Assert.assertTrue(Math.abs(order.getValue() - 0.837) < 0.00001);
+
+        Thread.sleep(13000);
+        Assert.assertTrue(order.getValue() <= 0);
+        order = shelfMgr.peekOrder(UUID.fromString("a8cfcb76-7f24-4420-a5ba-d46dd77bdffd")
+                , OrderTemperature.Frozen);
+        Assert.assertNull(order);
+    }
+
+    @Test
     public void testShelfOrder() {
         for (CookedOrder cookedOrder : cookedOrders) {
             shelfMgr.shelfOrder(cookedOrder);
         }
-        Assert.assertEquals(1, shelfMgr.shelfDeviceOrderSize(OrderTemperature.Cold));
-        Assert.assertEquals(1, shelfMgr.shelfDeviceOrderSize(OrderTemperature.Frozen));
-        Assert.assertEquals(1, shelfMgr.shelfDeviceOrderSize(OrderTemperature.None));
-        Assert.assertEquals(0, shelfMgr.shelfDeviceOrderSize(OrderTemperature.Hot));
+        Assert.assertEquals(1, shelfMgr.deviceOrderSize(OrderTemperature.Cold));
+        Assert.assertEquals(1, shelfMgr.deviceOrderSize(OrderTemperature.Frozen));
+        Assert.assertEquals(1, shelfMgr.deviceOrderSize(OrderTemperature.None));
+        Assert.assertEquals(0, shelfMgr.deviceOrderSize(OrderTemperature.Hot));
         Assert.assertEquals(1, shelfMgr.getWasteOrders().size());
 
         UUID id = UUID.fromString("a8cfcb76-7f24-4420-a5ba-d46dd77bdffd");

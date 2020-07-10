@@ -17,11 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudcousion.orderproc.R;
 import com.cloudcousion.orderserver.OrderServerI;
-import com.cloudcousion.orderserver.OrderServerListenerI;
+import com.cloudcousion.orderserver.OrderServerStateListenerI;
 
 import java.util.Locale;
 
-public class ServerOrderListFragment extends Fragment implements OrderServerListenerI {
+public class ServerOrderListFragmentState extends Fragment implements OrderServerStateListenerI {
 
     private OrderServerI orderServer;
 
@@ -35,7 +35,7 @@ public class ServerOrderListFragment extends Fragment implements OrderServerList
     private RecyclerView orderListRV;
     private OrderListRVAdapter adapter;
 
-    public ServerOrderListFragment(OrderServerI orderServer) {
+    public ServerOrderListFragmentState(OrderServerI orderServer) {
         super();
         this.orderServer = orderServer;
         this.orderServer.registerStateListener(this);

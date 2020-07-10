@@ -5,7 +5,7 @@ import com.cloudcousion.orderserver.OrderServerI;
 import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.orderserver.utils.ConsoleLogger;
 import com.cloudcousion.orderserver.utils.OrderLoggerI;
-import com.cloudcousion.ordersys.shelf.ShelfI;
+import com.cloudcousion.ordersys.shelf.ShelfManagerI;
 import com.cloudcousion.ordersys.utils.OrderValueCalculatorI;
 
 import java.util.LinkedList;
@@ -16,11 +16,11 @@ public class Kitchen extends Thread implements OrderConsumerI {
 
     private final OrderValueCalculatorI valueCalculator;
     private OrderServerI orderServer;
-    private ShelfI shelf;
+    private ShelfManagerI shelf;
     private Queue<CookedOrder> cookedOrders;
     private boolean exit;
 
-    public Kitchen(OrderValueCalculatorI valueCalculator, OrderServerI orderServer, ShelfI shelf) {
+    public Kitchen(OrderValueCalculatorI valueCalculator, OrderServerI orderServer, ShelfManagerI shelf) {
         cookedOrders = new LinkedList<>();
         this.valueCalculator = valueCalculator;
         this.orderServer = orderServer;

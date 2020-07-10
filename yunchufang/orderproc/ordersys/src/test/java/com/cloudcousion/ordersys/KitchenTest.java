@@ -7,7 +7,7 @@ import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.orderserver.model.OrderTemperature;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.kitchen.Kitchen;
-import com.cloudcousion.ordersys.shelf.ShelfI;
+import com.cloudcousion.ordersys.shelf.ShelfManagerI;
 import com.cloudcousion.ordersys.utils.SimpleOrderValueCalculator;
 
 import org.junit.After;
@@ -105,7 +105,7 @@ public class KitchenTest {
         assertEquals(4, orderServer.ordersInQueue().size());
     }
 
-    private class TestShelf implements ShelfI {
+    private class TestShelf implements ShelfManagerI {
         List<CookedOrder> orders = new ArrayList<>();
 
         @Override
@@ -119,7 +119,7 @@ public class KitchenTest {
         }
 
         @Override
-        public int shelfDeviceOrderSize(OrderTemperature temperature) {
+        public int deviceOrderSize(OrderTemperature temperature) {
             return 0;
         }
 
@@ -131,6 +131,11 @@ public class KitchenTest {
         @Override
         public void close() {
             //Do nothing!
+        }
+
+        @Override
+        public CookedOrder peekOrder(UUID orderId, OrderTemperature temperature) {
+            return null;
         }
     }
 }
