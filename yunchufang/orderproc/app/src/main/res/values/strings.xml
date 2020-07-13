@@ -14,4 +14,10 @@
     <string name="header_temperature">Temperature</string>
     <string name="header_shelf_lift">Shelf lift</string>
     <string name="header_decay_rate">Decay rate</string>
+    <string name="tab_shelf_hot_list">Hot</string>
+    <string name="tab_shelf_cold_list">Cold</string>
+    <string name="tab_shelf_frozen_list">Frozen</string>
+    <string name="tab_shelf_overflow_list">Overflow</string>
+    <string name="fmt_order_count">Order count %1$d</string>
+    <string name="header_value">value</string>
 </resources>

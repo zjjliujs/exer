@@ -73,4 +73,11 @@ public interface ShelfManagerI {
      * @return order list clone
      */
     List<CookedOrder> deviceOrderList(OrderTemperature temperature);
+
+    /**
+     * Order size in hot, cold, frozen, overflow totally
+     *
+     * @return
+     */
+    int totalOrderSize();
 }

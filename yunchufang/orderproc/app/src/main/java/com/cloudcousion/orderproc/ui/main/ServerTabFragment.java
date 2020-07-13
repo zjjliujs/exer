@@ -21,7 +21,7 @@ import com.cloudcousion.orderserver.OrderServerStateListenerI;
 
 import java.util.Locale;
 
-public class ServerOrderListFragment extends Fragment implements OrderServerStateListenerI {
+public class ServerTabFragment extends Fragment implements OrderServerStateListenerI {
 
     private OrderServerI orderServer;
 
@@ -33,9 +33,9 @@ public class ServerOrderListFragment extends Fragment implements OrderServerStat
     };
     private TextView orderCountTV;
     private RecyclerView orderListRV;
-    private OrderListRVAdapter adapter;
+    private ServerOrderListRVAdapter adapter;
 
-    public ServerOrderListFragment(OrderServerI orderServer) {
+    public ServerTabFragment(OrderServerI orderServer) {
         super();
         this.orderServer = orderServer;
         this.orderServer.registerStateListener(this);
@@ -51,7 +51,7 @@ public class ServerOrderListFragment extends Fragment implements OrderServerStat
             , ViewGroup container
             , Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_server_order, container, false);
+        View root = inflater.inflate(R.layout.fragment_server_tab, container, false);
         orderCountTV = root.findViewById(R.id.tv_order_count);
         updateOrderCount();
         orderListRV = root.findViewById(R.id.rv_order_list);
@@ -60,7 +60,7 @@ public class ServerOrderListFragment extends Fragment implements OrderServerStat
     }
 
     private void initOrderListRV() {
-        adapter = new OrderListRVAdapter(getContext(), orderServer);
+        adapter = new ServerOrderListRVAdapter(getContext(), orderServer);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
         orderListRV.setLayoutManager(layoutManager);

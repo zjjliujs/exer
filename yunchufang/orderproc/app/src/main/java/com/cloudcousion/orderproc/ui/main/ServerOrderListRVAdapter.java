@@ -14,12 +14,12 @@ import com.cloudcousion.orderserver.model.Order;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderListRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ServerOrderListRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context context;
     private final OrderServerI server;
     private List<Order> orderList;
 
-    public OrderListRVAdapter(Context context, OrderServerI server) {
+    public ServerOrderListRVAdapter(Context context, OrderServerI server) {
         this.context = context;
         this.server = server;
         /**

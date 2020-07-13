@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <!-- total order size -->
+    <TextView
+        android:id="@+id/tv_order_count"
+        style="@style/list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- hot tab button -->
+    <TextView
+        android:id="@+id/tv_hot_btn"
+        style="@style/tab_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tab_shelf_hot_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_order_count" />
+
+    <!-- cold tab button -->
+    <TextView
+        android:id="@+id/tv_cold_btn"
+        style="@style/tab_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/shelf_tab_item_gap"
+        android:text="@string/tab_shelf_cold_list"
+        app:layout_constraintStart_toEndOf="@id/tv_hot_btn"
+        app:layout_constraintTop_toBottomOf="@id/tv_hot_btn"
+        app:layout_constraintTop_toTopOf="@id/tv_hot_btn" />
+
+    <!-- frozen tab button -->
+    <TextView
+        android:id="@+id/tv_frozen_btn"
+        style="@style/tab_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/shelf_tab_item_gap"
+        android:text="@string/tab_shelf_frozen_list"
+        app:layout_constraintStart_toEndOf="@id/tv_cold_btn"
+        app:layout_constraintTop_toBottomOf="@id/tv_cold_btn"
+        app:layout_constraintTop_toTopOf="@id/tv_cold_btn" />
+
+    <!-- overflow tab button -->
+    <TextView
+        android:id="@+id/tv_overflow_btn"
+        style="@style/tab_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/shelf_tab_item_gap"
+        android:text="@string/tab_shelf_overflow_list"
+        app:layout_constraintStart_toEndOf="@id/tv_frozen_btn"
+        app:layout_constraintTop_toBottomOf="@id/tv_frozen_btn"
+        app:layout_constraintTop_toTopOf="@id/tv_frozen_btn" />
+
+    <!-- order size -->
+    <TextView
+        android:id="@+id/tv_dev_order_size"
+        style="@style/list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_hot_btn" />
+
+    <!-- order list header -->
+    <include
+        android:id="@+id/order_header"
+        layout="@layout/order_header_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_dev_order_size" />
+
+    <!-- order list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_shelf_order_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/order_header" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

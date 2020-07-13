@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.cloudcousion.orderproc.utils.PreferenceUtils;
-import com.cloudcousion.orderserver.OrderServerI;
 import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.ordersys.OrderSimulator;
 import com.cloudcousion.ordersys.config.SimulatorConfig;
@@ -21,7 +20,7 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cloudcousion.orderproc.ui.main.SectionsPagerAdapter;
+import com.cloudcousion.orderproc.ui.main.TabPageAdapter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,7 +45,7 @@ public class OrderSimulatorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_simulator);
         orderSimulator = new OrderSimulator(simulatorConfig);
         //Create pager adapter
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this
+        TabPageAdapter sectionsPagerAdapter = new TabPageAdapter(this
                 , getSupportFragmentManager()
                 , orderSimulator);
         //Set up View Pager

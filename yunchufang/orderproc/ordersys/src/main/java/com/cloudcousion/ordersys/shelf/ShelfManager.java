@@ -222,6 +222,14 @@ public class ShelfManager extends Thread implements ShelfManagerI {
         }
     }
 
+    @Override
+    public synchronized int totalOrderSize() {
+        return hotShelfDev.orders.size()
+                + coldShelfDev.orders.size()
+                + frozenShelfDev.orders.size()
+                + overflowShelfDev.orders.size();
+    }
+
     private void setAsWasted(CookedOrder order) {
         wastedOrders.add(order);
     }

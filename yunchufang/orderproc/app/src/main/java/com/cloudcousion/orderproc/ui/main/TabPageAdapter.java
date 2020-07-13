@@ -10,23 +10,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.cloudcousion.orderproc.R;
-import com.cloudcousion.orderserver.OrderServerI;
 import com.cloudcousion.ordersys.OrderSimulator;
-import com.cloudcousion.ordersys.shelf.ShelfManagerI;
-import com.cloudcousion.ordersys.shelf.ShelfStateListenerI;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class TabPageAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_server_list, R.string.tab_shelf_list};
     private final Context mContext;
     private final OrderSimulator simulator;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm
+    public TabPageAdapter(Context context, FragmentManager fm
             , OrderSimulator simulator) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mContext = context;
@@ -35,20 +32,19 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        logDebug("getItem entry! position:" + position);
+        logDebug("TabPageAdapter: getItem entry! position:" + position);
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        switch (position) {
-            case 0: {
-                ServerOrderListFragment fragment = new ServerOrderListFragment(simulator.orderServer);
-                return fragment;
+        switch (TAB_TITLES[position]) {
+            case R.string.tab_server_list: {
+                return new ServerTabFragment(simulator.orderServer);
             }
-            case 1: {
-                ShelfOrderListFragment fragment = new ShelfOrderListFragment(simulator.shelfManager);
-                return fragment;
+            case R.string.tab_shelf_list: {
+                return new ShelfTabFragment(simulator.shelfManager);
             }
             default:
-                return PlaceholderFragment.newInstance(position + 1);
+                //Impossible!
+                throw new RuntimeException("getItem, error position:" + position);
         }
     }
 
@@ -61,7 +57,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 2 total pages.
-        return 2;
+        return TAB_TITLES.length;
     }
 
     private void logDebug(String msg) {

@@ -35,5 +35,15 @@ public class OrderSimulator {
         orderServer.setDispatchRate(config.defaultDispatchRate);
         orderServer.putOrders(orders);
         orderServer.startDispatch();
+        shelfManager.start();
+        kitchen.start();
+        courierManager.start();
+    }
+
+    public void stop() {
+        orderServer.stopService();
+        kitchen.close();
+        shelfManager.close();
+        courierManager.close();
     }
 }
