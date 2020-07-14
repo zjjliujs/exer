@@ -7,7 +7,7 @@ import com.cloudcousion.ordersys.shelf.ShelfType;
 import java.util.Calendar;
 import java.util.UUID;
 
-public class CookedOrder extends Order {
+public class CookedOrder extends Order implements Comparable<CookedOrder> {
     private Order order;
     private long cookTime;
     private ShelfType shelfType;
@@ -18,6 +18,17 @@ public class CookedOrder extends Order {
         //Ignore cooking time
         Calendar calendar = Calendar.getInstance();
         cookTime = calendar.getTimeInMillis();
+        this.value = 1.0f;
+    }
+
+    @Override
+    public int compareTo(CookedOrder o) {
+        if (value < o.value)
+            return -1;
+        else if (value == o.value)
+            return 0;
+        else
+            return 1;
     }
 
     public ShelfType getShelfType() {

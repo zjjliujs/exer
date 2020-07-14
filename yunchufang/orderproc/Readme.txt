@@ -14,6 +14,7 @@ How to run:
     After project loaded successfully, Open terminal. 
     In the terminal, run : gradlew installDebug
     App name is OrderSimulator, run it on your android device.
+    You can configure the simulator on the APP. Or just edit the SimulatorConfig class and re install the APP.
 
 Modules:
     I divide the simulator as 3 modules
@@ -38,4 +39,9 @@ There are 5 Junit test class:
         OrderSimulatorTest,
         ShelfManagerTest
 
-You can configure the simulator on the APP.
+Design idea:
+    There 4 threads in the simulator
+    1.Order server thread
+    2.kitchen thread
+    3.shelf manager thread
+    4.courier manager thread

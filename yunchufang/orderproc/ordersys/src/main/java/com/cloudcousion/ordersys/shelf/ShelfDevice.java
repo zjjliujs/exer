@@ -6,6 +6,7 @@ import com.cloudcousion.ordersys.kitchen.CookedOrder;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ public abstract class ShelfDevice {
     protected Queue<CookedOrder> orders;
 
     public ShelfDevice(int capacity) {
-        this.orders = new LinkedList<>();
+        this.orders = new PriorityQueue<>();
         this.capacity = capacity;
     }
 

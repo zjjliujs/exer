@@ -201,8 +201,8 @@ public class ShelfManager extends Thread implements ShelfManagerI {
                 ok = overflowShelfDev.putOrder(order);
                 if (!ok) {
                     //overflow device is full aussi!
-                    CookedOrder ord = overflowShelfDev.takeOne();
-                    doShelfOrder(ord, true);
+                    CookedOrder o = overflowShelfDev.takeOne();
+                    doShelfOrder(o, true);
                     //Should have place now!
                     ok = overflowShelfDev.putOrder(order);
                     if (!ok) {

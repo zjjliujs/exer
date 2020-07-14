@@ -27,7 +27,6 @@ public class OverflowShelfDevice extends ShelfDevice {
     public CookedOrder takeOne() {
         if (orders.size() == 0)
             return null;
-        //TODO algorithm to take proper order to put to temp device
         return orders.poll();
     }
 }
