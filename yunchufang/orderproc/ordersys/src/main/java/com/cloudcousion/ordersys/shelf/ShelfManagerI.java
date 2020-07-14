@@ -1,6 +1,7 @@
 package com.cloudcousion.ordersys.shelf;
 
 import com.cloudcousion.orderserver.model.OrderTemperature;
+import com.cloudcousion.ordersys.config.SimulatorConfig;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 
 import java.util.List;
@@ -80,4 +81,11 @@ public interface ShelfManagerI {
      * @return
      */
     int totalOrderSize();
+
+    /**
+     * Set hot shelf dev capacity, cold shelf dev capacity , etc
+     *
+     * @param config
+     */
+    void setConfig(SimulatorConfig config);
 }

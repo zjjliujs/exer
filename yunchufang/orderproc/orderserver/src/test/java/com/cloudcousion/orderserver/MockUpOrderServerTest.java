@@ -1,7 +1,6 @@
 package com.cloudcousion.orderserver;
 
 import com.alibaba.fastjson.JSON;
-import com.cloudcousion.orderserver.config.OrderServerConfig;
 import com.cloudcousion.orderserver.mockup.MockUpOrderServer;
 import com.cloudcousion.orderserver.model.Order;
 
@@ -11,18 +10,18 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
 public class MockUpOrderServerTest {
+    private static final int DISPATCH_RATE = 2;
     private MockUpOrderServer orderServer;
     private TestOrderConsumer testConsumer;
 
     @Before
     public void init() {
-        OrderServerConfig.setDispatchRate(2);
         orderServer = MockUpOrderServer.getInstance();
+        orderServer.setDispatchRate(DISPATCH_RATE);
         testConsumer = new TestOrderConsumer();
         orderServer.registerOrderConsumer(testConsumer);
     }
@@ -74,7 +73,7 @@ public class MockUpOrderServerTest {
         orderServer.putOrders(orders);
         orderServer.startDispatch();
         assertEquals(0, testConsumer.orders.size());
-        int delay = 1000 / OrderServerConfig.getDispatchRate();
+        int delay = 1000 / DISPATCH_RATE;
         Thread.sleep(delay);
         assertEquals(1, testConsumer.orders.size());
         Thread.sleep(delay);

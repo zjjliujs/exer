@@ -4,7 +4,6 @@ import com.cloudcousion.orderserver.OrderConsumerI;
 import com.cloudcousion.orderserver.OrderListenerI;
 import com.cloudcousion.orderserver.OrderServerI;
 import com.cloudcousion.orderserver.OrderServerStateListenerI;
-import com.cloudcousion.orderserver.config.OrderServerConfig;
 import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.orderserver.utils.ConsoleLogger;
 import com.cloudcousion.orderserver.utils.OrderLoggerI;
@@ -40,7 +39,7 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
         orderConsumers = new ArrayList<>();
         stateListeners = new ArrayList<>();
         orderListeners = new ArrayList<>();
-        this.dispatchRate = OrderServerConfig.getDispatchRate();
+        this.dispatchRate = 2;
         this.thread = null;
         this.exit = false;
     }
@@ -107,6 +106,11 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
         for (OrderServerStateListenerI listener : stateListeners) {
             listener.serverStateChanged();
         }
+    }
+
+    @Override
+    public synchronized int orderQueueSize() {
+        return orders.size();
     }
 
     @Override

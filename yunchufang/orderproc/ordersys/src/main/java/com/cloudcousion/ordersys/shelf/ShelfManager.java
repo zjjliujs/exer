@@ -27,13 +27,22 @@ public class ShelfManager extends Thread implements ShelfManagerI {
 
     public ShelfManager(SimulatorConfig config, OrderValueCalculatorI evaluator) {
         wastedOrders = new ArrayList<>();
+        initShelfDevices(config);
+        this.evaluator = evaluator;
+        stateListeners = new ArrayList<>();
+        exit = false;
+    }
+
+    private void initShelfDevices(SimulatorConfig config) {
         hotShelfDev = new TempShelfDevice(OrderTemperature.Hot, config.hotShelfCapacity);
         coldShelfDev = new TempShelfDevice(OrderTemperature.Cold, config.coldShelfCapacity);
         frozenShelfDev = new TempShelfDevice(OrderTemperature.Frozen, config.frozenShelfCapacity);
         overflowShelfDev = new OverflowShelfDevice(config.overflowShelfCapacity);
-        this.evaluator = evaluator;
-        stateListeners = new ArrayList<>();
-        exit = false;
+    }
+
+    @Override
+    public synchronized void setConfig(SimulatorConfig config) {
+        initShelfDevices(config);
     }
 
     @Override

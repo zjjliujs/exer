@@ -87,4 +87,11 @@ public interface OrderServerI {
      * @return
      */
     List<Order> ordersInQueue();
+
+    /**
+     * Order queue size
+     *
+     * @return
+     */
+    int orderQueueSize();
 }

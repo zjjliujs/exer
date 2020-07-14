@@ -68,8 +68,8 @@ public class CourierManagerTest {
     public void stateNotifyTest() throws InterruptedException {
         TestShelfManager shelfManager = new TestShelfManager();
         SimulatorConfig config = new SimulatorConfig();
-        config.courierDelayMin = 2000;
-        config.courierDelayMax = 6000;
+        config.courierDelayMin = 2;
+        config.courierDelayMax = 6;
         TestOrderServer orderServer = new TestOrderServer();
         CourierManager cm = new CourierManager(config, shelfManager, orderServer);
         TestStateListener stateListener = new TestStateListener();
@@ -91,8 +91,8 @@ public class CourierManagerTest {
     public void orderThreadTest() throws InterruptedException {
         TestShelfManager shelfManager = new TestShelfManager();
         SimulatorConfig config = new SimulatorConfig();
-        config.courierDelayMin = 2000;
-        config.courierDelayMax = 6000;
+        config.courierDelayMin = 2;
+        config.courierDelayMax = 6;
         TestOrderServer orderServer = new TestOrderServer();
         CourierManager cm = new CourierManager(config, shelfManager, orderServer);
 
@@ -201,6 +201,16 @@ public class CourierManagerTest {
         public List<CookedOrder> deviceOrderList(OrderTemperature temperature) {
             return null;
         }
+
+        @Override
+        public int totalOrderSize() {
+            return 0;
+        }
+
+        @Override
+        public void setConfig(SimulatorConfig config) {
+
+        }
     }
 
     private class TestStateListener implements CourierMgrStateListenerI {
@@ -271,6 +281,11 @@ public class CourierManagerTest {
         @Override
         public List<Order> ordersInQueue() {
             return null;
+        }
+
+        @Override
+        public int orderQueueSize() {
+            return 0;
         }
     }
 }

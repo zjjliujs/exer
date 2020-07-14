@@ -17,7 +17,8 @@ import java.util.Random;
 
 public class CourierManager extends Thread implements OrderListenerI {
     private final OrderLoggerI logger = ConsoleLogger.getInstance();
-    private final SimulatorConfig simulatorConfig;
+    private int minDelay;
+    private int maxDelay;
     private boolean exit;
 
     private ShelfManagerI shelfManager;
@@ -29,7 +30,8 @@ public class CourierManager extends Thread implements OrderListenerI {
             , ShelfManagerI shelfManager
             , OrderServerI orderServer) {
         this.shelfManager = shelfManager;
-        this.simulatorConfig = simulatorConfig;
+        this.minDelay = simulatorConfig.courierDelayMin;
+        this.maxDelay = simulatorConfig.courierDelayMax;
         orderServer.registerOrderDeliveryListener(this);
         fullFillOrders = new ArrayList<>();
         orderInfos = new PriorityQueue<>();
@@ -101,8 +103,8 @@ public class CourierManager extends Thread implements OrderListenerI {
         long now = calendar.getTimeInMillis();
         Random random = new Random();
         float r = random.nextFloat();
-        int min = simulatorConfig.courierDelayMin * 1000;
-        int max = simulatorConfig.courierDelayMax * 1000;
+        int min = minDelay * 1000;
+        int max = maxDelay * 1000;
         long f = (long) (min + (max - min) * r);
         //Set the pick up time!
         long v = now + f;
@@ -132,5 +134,10 @@ public class CourierManager extends Thread implements OrderListenerI {
     public synchronized void close() {
         exit = true;
         notifyAll();
+    }
+
+    public synchronized void setConfig(SimulatorConfig config) {
+        minDelay = config.courierDelayMin;
+        maxDelay = config.courierDelayMax;
     }
 }

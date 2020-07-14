@@ -27,6 +27,8 @@ public class ShelfManagerTest {
         SimulatorConfig kc = new SimulatorConfig();
         kc.overflowShelfCapacity = 1;
         kc.hotShelfCapacity = 1;
+        kc.coldShelfCapacity = 1;
+        kc.frozenShelfCapacity = 1;
         shelfMgr = new ShelfManager(kc, SimpleOrderValueCalculator.getInstance());
 
         List<Order> orders = JSON.parseArray("[\n" +
@@ -92,16 +94,33 @@ public class ShelfManagerTest {
 
     @Test
     public void testStateListener() throws InterruptedException {
-        shelfMgr.shelfOrder(cookedOrders.get(0));
+        CookedOrder order = cookedOrders.get(0);
+        shelfMgr.shelfOrder(order);
         shelfMgr.start();
         TestStateListener listener = new TestStateListener();
         shelfMgr.registerStateListener(listener);
 
         Thread.sleep(1100);
-        Assert.assertTrue(0 == listener.count);
+        float v1 = order.getValue();
+        /* value change event */
+        Assert.assertTrue(1 <= listener.count);
+        Thread.sleep(1000);
+        float v2 = order.getValue();
+        Assert.assertTrue(v2 < v1);
+        Assert.assertTrue(2 <= listener.count);
+    }
 
-        Thread.sleep(13000);
-        Assert.assertTrue(1 == listener.count);
+    @Test
+    public void testOrderDecay() throws InterruptedException {
+        CookedOrder order = cookedOrders.get(0);
+        shelfMgr.shelfOrder(order);
+        shelfMgr.start();
+
+        /* order decay event */
+        Thread.sleep(14000);
+        Assert.assertTrue(order.getValue() <= 0);
+        Assert.assertTrue(0 == shelfMgr.totalOrderSize());
+        Assert.assertTrue(1 == shelfMgr.getWasteOrders().size());
     }
 
     @Test

@@ -1,10 +1,10 @@
 package com.cloudcousion.ordersys;
 
 import com.alibaba.fastjson.JSON;
-import com.cloudcousion.orderserver.config.OrderServerConfig;
 import com.cloudcousion.orderserver.mockup.MockUpOrderServer;
 import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.orderserver.model.OrderTemperature;
+import com.cloudcousion.ordersys.config.SimulatorConfig;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.kitchen.Kitchen;
 import com.cloudcousion.ordersys.shelf.ShelfManagerI;
@@ -22,14 +22,15 @@ import java.util.UUID;
 import static org.junit.Assert.assertEquals;
 
 public class KitchenTest {
+    public static final int DISPATCH_RATE = 2;
     private MockUpOrderServer orderServer;
     private Kitchen kitchen;
     private TestShelf shelf;
 
     @Before
     public void init() {
-        OrderServerConfig.setDispatchRate(2);
         orderServer = MockUpOrderServer.getInstance();
+        orderServer.setDispatchRate(DISPATCH_RATE);
         shelf = new TestShelf();
         kitchen = new Kitchen(SimpleOrderValueCalculator.getInstance(), orderServer, shelf);
         kitchen.start();
@@ -76,7 +77,7 @@ public class KitchenTest {
     @Test
     public void kitchenShelfTst() throws InterruptedException {
         assertEquals(0, shelf.orders.size());
-        int delay = 1000 / OrderServerConfig.getDispatchRate();
+        int delay = 1000 / DISPATCH_RATE;
         Thread.sleep(delay);
         assertEquals(1, shelf.orders.size());
         Thread.sleep(delay);
@@ -94,7 +95,7 @@ public class KitchenTest {
     public void kitchenCloseTst() throws InterruptedException {
         kitchen.close();
         assertEquals(0, shelf.orders.size());
-        int delay = 1000 / OrderServerConfig.getDispatchRate();
+        int delay = 1000 / DISPATCH_RATE;
         Thread.sleep(delay);
         assertEquals(0, shelf.orders.size());
         Thread.sleep(delay);
@@ -151,6 +152,16 @@ public class KitchenTest {
         @Override
         public List<CookedOrder> deviceOrderList(OrderTemperature temperature) {
             return null;
+        }
+
+        @Override
+        public int totalOrderSize() {
+            return 0;
+        }
+
+        @Override
+        public void setConfig(SimulatorConfig config) {
+
         }
     }
 }

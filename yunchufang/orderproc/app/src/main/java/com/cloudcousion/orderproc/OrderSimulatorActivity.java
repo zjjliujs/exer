@@ -86,6 +86,12 @@ public class OrderSimulatorActivity extends AppCompatActivity {
                 .setView(R.layout.dialog_config)
                 .setPositiveButton(R.string.alert_dialog_start_simulator, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        if (orderSimulator.isRunning()) {
+                            Toast.makeText(getApplicationContext()
+                                    , R.string.simulator_is_running
+                                    , Toast.LENGTH_LONG).show();
+                            return;
+                        }
                         try {
                             int rate = Integer.parseInt(etDispatchRate.getText().toString());
                             PreferenceUtils.saveDispatchRatePreference(getApplicationContext(), rate);
@@ -117,6 +123,8 @@ public class OrderSimulatorActivity extends AppCompatActivity {
                             PreferenceUtils.saveCourierMaxValue(getApplicationContext(), value);
                             simulatorConfig.courierDelayMax = value;
 
+                            orderSimulator.setConfig(simulatorConfig);
+
                             List<Order> orders = readOrdersFromRes(R.raw.orders);
                             logDebug("showConfigDialog, order size:" + orders.size());
 
@@ -130,7 +138,7 @@ public class OrderSimulatorActivity extends AppCompatActivity {
                 })
                 .setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        finish();
+
                     }
                 })
                 .create();
