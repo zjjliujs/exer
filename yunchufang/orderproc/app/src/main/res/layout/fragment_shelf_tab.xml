@@ -74,7 +74,7 @@
     <!-- order list header -->
     <include
         android:id="@+id/order_header"
-        layout="@layout/order_header_value"
+        layout="@layout/valued_order_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

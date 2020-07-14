@@ -11,22 +11,18 @@ import com.cloudcousion.orderproc.R;
 import com.cloudcousion.orderserver.OrderServerI;
 import com.cloudcousion.orderserver.model.Order;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ServerOrderListRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class OrderRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context context;
-    private final OrderServerI server;
-    private List<Order> orderList;
+    private List<Order> orders;
 
-    public ServerOrderListRVAdapter(Context context, OrderServerI server) {
+    public OrderRVAdapter(Context context, OrderServerI server) {
         this.context = context;
-        this.server = server;
-        /**
-         * If we use server list directly , there would have race condition between main thread and
-         * order server thread.
+        /*
+         * server return cloned order list
          */
-        this.orderList = new ArrayList<>(server.ordersInQueue());
+        this.orders = server.ordersInQueue();
     }
 
     @NonNull
@@ -37,7 +33,7 @@ public class ServerOrderListRVAdapter extends RecyclerView.Adapter<RecyclerView.
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Order order = orderList.get(position);
+        Order order = orders.get(position);
         OrderHolder h = (OrderHolder) holder;
         h.tvName.setText(order.getName());
         h.tvTemperature.setText(order.getTemp().toString());
@@ -47,11 +43,11 @@ public class ServerOrderListRVAdapter extends RecyclerView.Adapter<RecyclerView.
 
     @Override
     public int getItemCount() {
-        return orderList.size();
+        return orders.size();
     }
 
-    public void notifyServerStateChanged() {
-        this.orderList = new ArrayList<>(server.ordersInQueue());
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
         notifyDataSetChanged();
     }
 }

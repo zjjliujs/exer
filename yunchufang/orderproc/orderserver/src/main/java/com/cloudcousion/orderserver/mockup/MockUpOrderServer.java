@@ -110,7 +110,7 @@ public class MockUpOrderServer implements OrderServerI, Runnable {
     }
 
     @Override
-    public List<Order> ordersInQueue() {
+    public synchronized List<Order> ordersInQueue() {
         return new ArrayList<>(orders);
     }
 

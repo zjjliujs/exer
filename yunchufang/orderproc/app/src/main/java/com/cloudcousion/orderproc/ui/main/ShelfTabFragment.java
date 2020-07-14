@@ -51,7 +51,7 @@ public class ShelfTabFragment extends Fragment implements ShelfStateListenerI {
     private TextView devOrderSizeTV;
     private OrderTemperature currentOrderTemp;
     private RecyclerView orderListRV;
-    private ShelfOrderListRVAdapter orderRVAdapter;
+    private ValuedOrderRVAdapter orderRVAdapter;
 
     @Nullable
     @Override
@@ -126,7 +126,7 @@ public class ShelfTabFragment extends Fragment implements ShelfStateListenerI {
     }
 
     private void initOrderListRV() {
-        orderRVAdapter = new ShelfOrderListRVAdapter(getContext(), shelfManager, currentOrderTemp);
+        orderRVAdapter = new ValuedOrderRVAdapter(getContext(), shelfManager, currentOrderTemp);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
         orderListRV.setLayoutManager(layoutManager);

@@ -33,7 +33,7 @@ public class ServerTabFragment extends Fragment implements OrderServerStateListe
     };
     private TextView orderCountTV;
     private RecyclerView orderListRV;
-    private ServerOrderListRVAdapter adapter;
+    private OrderRVAdapter adapter;
 
     public ServerTabFragment(OrderServerI orderServer) {
         super();
@@ -60,7 +60,7 @@ public class ServerTabFragment extends Fragment implements OrderServerStateListe
     }
 
     private void initOrderListRV() {
-        adapter = new ServerOrderListRVAdapter(getContext(), orderServer);
+        adapter = new OrderRVAdapter(getContext(), orderServer);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
         orderListRV.setLayoutManager(layoutManager);
@@ -83,8 +83,7 @@ public class ServerTabFragment extends Fragment implements OrderServerStateListe
             @Override
             public void run() {
                 updateOrderCount();
-                adapter.notifyServerStateChanged();
-                adapter.notifyDataSetChanged();
+                adapter.setOrders(orderServer.ordersInQueue());
             }
         });
     }

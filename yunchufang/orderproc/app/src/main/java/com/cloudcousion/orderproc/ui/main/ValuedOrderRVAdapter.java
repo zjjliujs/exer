@@ -8,20 +8,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudcousion.orderproc.R;
-import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.orderserver.model.OrderTemperature;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.shelf.ShelfManagerI;
 
 import java.util.List;
 
-public class ShelfOrderListRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ValuedOrderRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context context;
     private final OrderTemperature orderTemperature;
     private List<CookedOrder> orders;
 
-    public ShelfOrderListRVAdapter(Context context, ShelfManagerI shelfManager, OrderTemperature orderTemp) {
+    public ValuedOrderRVAdapter(Context context, ShelfManagerI shelfManager, OrderTemperature orderTemp) {
         this.context = context;
         this.orderTemperature = orderTemp;
         //deviceOrderList return a cloned list!
@@ -31,7 +30,7 @@ public class ShelfOrderListRVAdapter extends RecyclerView.Adapter<RecyclerView.V
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ValuedOrderHolder(LayoutInflater.from(context).inflate(R.layout.item_value_order, null));
+        return new ValuedOrderHolder(LayoutInflater.from(context).inflate(R.layout.item_valued_order, null));
     }
 
     @Override
