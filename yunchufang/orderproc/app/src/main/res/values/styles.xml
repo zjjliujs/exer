@@ -48,6 +48,11 @@
         <item name="android:textColor">@color/tab_title</item>
     </style>
 
+    <style name="config_edit_text" parent="list_item_title">
+        <item name="android:singleLine">true</item>
+        <item name="android:inputType">number</item>
+    </style>
+
 
     <dimen name="list_item_title_text_margin_h">30dp</dimen>
     <dimen name="list_item_title_text_margin_v">5dp</dimen>

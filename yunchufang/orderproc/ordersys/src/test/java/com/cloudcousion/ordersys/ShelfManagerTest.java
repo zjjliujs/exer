@@ -26,7 +26,7 @@ public class ShelfManagerTest {
     public void init() {
         SimulatorConfig kc = new SimulatorConfig();
         kc.overflowShelfCapacity = 1;
-        kc.tempShelfCapacity = 1;
+        kc.hotShelfCapacity = 1;
         shelfMgr = new ShelfManager(kc, SimpleOrderValueCalculator.getInstance());
 
         List<Order> orders = JSON.parseArray("[\n" +

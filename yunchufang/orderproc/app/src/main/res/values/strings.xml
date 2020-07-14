@@ -22,4 +22,7 @@
     <string name="header_value">value</string>
     <string name="tab_wasted_orders">wasted orders</string>
     <string name="tab_fullfilled_orders">Fullfill orders</string>
+    <string name="shelf_config">Shelf Config</string>
+    <string name="hot_shelf_capacity">Hot Shelf Capacity</string>
+    <string name="code_shelf_capacity">Cold shelf capacity</string>
 </resources>

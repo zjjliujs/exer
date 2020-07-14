@@ -6,8 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -25,21 +24,31 @@ import com.cloudcousion.orderproc.ui.main.TabPageAdapter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.List;
 
 public class OrderSimulatorActivity extends AppCompatActivity {
-    private Spinner spinner;
     private SimulatorConfig simulatorConfig;
     private OrderSimulator orderSimulator;
+    private EditText etDispatchRate;
+    private EditText etHotShelfCap;
+    private EditText etColdShelfCap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         simulatorConfig = new SimulatorConfig();
-        Integer defaultRate = PreferenceUtils.getDispatchRatePreference(this, simulatorConfig.defaultDispatchRate);
-        simulatorConfig.defaultDispatchRate = defaultRate;
+        Integer defaultRate = PreferenceUtils.getDispatchRatePref(this, simulatorConfig.dispatchRate);
+        simulatorConfig.dispatchRate = defaultRate;
+        Integer cap = PreferenceUtils.getHotShelfCapPref(this, simulatorConfig.hotShelfCapacity);
+        simulatorConfig.hotShelfCapacity = cap;
+        cap = PreferenceUtils.getColdShelfCapPref(this, simulatorConfig.coldShelfCapacity);
+        simulatorConfig.coldShelfCapacity = cap;
+        cap = PreferenceUtils.getFrozenShelfCapPref(this, simulatorConfig.frozenShelfCapacity);
+        simulatorConfig.frozenShelfCapacity = cap;
+        cap = PreferenceUtils.getOverflowShelfCapPref(this, simulatorConfig.overflowShelfCapacity);
+        simulatorConfig.overflowShelfCapacity = cap;
+
         showConfigDialog();
 
         setContentView(R.layout.activity_order_simulator);
@@ -70,10 +79,17 @@ public class OrderSimulatorActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.alert_dialog_start_simulator, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         try {
-                            int defaultDispatchRatePos = spinner.getSelectedItemPosition();
-                            int rate = simulatorConfig.dispatchRates[defaultDispatchRatePos];
-                            PreferenceUtils.saveDispatchRatePreference(OrderSimulatorActivity.this, rate);
-                            simulatorConfig.defaultDispatchRate = rate;
+                            int rate = Integer.parseInt(etDispatchRate.getText().toString());
+                            PreferenceUtils.saveDispatchRatePreference(getApplicationContext(), rate);
+                            simulatorConfig.dispatchRate = rate;
+
+                            int cap = Integer.parseInt(etHotShelfCap.getText().toString());
+                            PreferenceUtils.saveHotShelfCapPref(getApplicationContext(), cap);
+                            simulatorConfig.hotShelfCapacity = cap;
+
+                            cap = Integer.parseInt(etColdShelfCap.getText().toString());
+                            PreferenceUtils.saveColdShelfCapPref(getApplicationContext(), cap);
+                            simulatorConfig.coldShelfCapacity = cap;
 
                             List<Order> orders = readOrdersFromRes(R.raw.orders);
                             logDebug("showConfigDialog, order size:" + orders.size());
@@ -94,12 +110,17 @@ public class OrderSimulatorActivity extends AppCompatActivity {
                 .create();
         dialog.show();
 
-        spinner = dialog.findViewById(R.id.spinner_dispatch_rate);
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, simulatorConfig.dispatchRates);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        int defaultDispatchRatePos = Arrays.binarySearch(simulatorConfig.dispatchRates, simulatorConfig.defaultDispatchRate);
-        spinner.setSelection(defaultDispatchRatePos);
+        //Server order dispatch rate
+        etDispatchRate = dialog.findViewById(R.id.et_dispatch_rate);
+        etDispatchRate.setText(String.valueOf(simulatorConfig.dispatchRate));
+
+        etHotShelfCap = dialog.findViewById(R.id.et_hot_shelf_capacity);
+        etHotShelfCap.setText(String.valueOf(simulatorConfig.hotShelfCapacity));
+
+        etColdShelfCap = dialog.findViewById(R.id.et_cold_shelf_capacity);
+        etColdShelfCap.setText(String.valueOf(simulatorConfig.coldShelfCapacity));
+
+
     }
 
     private List<Order> readOrdersFromRes(int orderResId) throws IOException {

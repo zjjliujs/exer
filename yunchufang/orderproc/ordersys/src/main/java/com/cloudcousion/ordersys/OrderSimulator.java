@@ -1,16 +1,13 @@
 package com.cloudcousion.ordersys;
 
-import com.cloudcousion.orderserver.OrderServerI;
 import com.cloudcousion.orderserver.mockup.MockUpOrderServer;
 import com.cloudcousion.orderserver.model.Order;
 import com.cloudcousion.ordersys.config.SimulatorConfig;
 import com.cloudcousion.ordersys.courier.CourierManager;
 import com.cloudcousion.ordersys.kitchen.Kitchen;
 import com.cloudcousion.ordersys.shelf.ShelfManager;
-import com.cloudcousion.ordersys.utils.OrderValueCalculatorI;
 import com.cloudcousion.ordersys.utils.SimpleOrderValueCalculator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OrderSimulator {
@@ -32,7 +29,7 @@ public class OrderSimulator {
     }
 
     public void start(List<Order> orders) {
-        orderServer.setDispatchRate(config.defaultDispatchRate);
+        orderServer.setDispatchRate(config.dispatchRate);
         orderServer.putOrders(orders);
         orderServer.startDispatch();
         shelfManager.start();
