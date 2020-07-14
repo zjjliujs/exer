@@ -19,7 +19,10 @@ import com.cloudcousion.ordersys.OrderSimulator;
 public class TabPageAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_server_list, R.string.tab_shelf_list};
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_server_list
+            , R.string.tab_shelf_orders
+            , R.string.tab_fullfilled_orders
+            , R.string.tab_wasted_orders};
     private final Context mContext;
     private final OrderSimulator simulator;
 
@@ -39,8 +42,14 @@ public class TabPageAdapter extends FragmentPagerAdapter {
             case R.string.tab_server_list: {
                 return new ServerTabFragment(simulator.orderServer);
             }
-            case R.string.tab_shelf_list: {
+            case R.string.tab_shelf_orders: {
                 return new ShelfTabFragment(simulator.shelfManager);
+            }
+            case R.string.tab_wasted_orders: {
+                return new WastedTabFragment(simulator.shelfManager);
+            }
+            case R.string.tab_fullfilled_orders: {
+                return new FullFillTabFragment(simulator.courierManager);
             }
             default:
                 //Impossible!

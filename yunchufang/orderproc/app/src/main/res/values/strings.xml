@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Order Simulator</string>
     <string name="title_activity_order_simulator">OrderSimulatorActivity</string>
-    <string name="tab_server_list">Server</string>
-    <string name="tab_shelf_list">Shelf</string>
+    <string name="tab_server_list">Server Orders</string>
+    <string name="tab_shelf_orders">Shelf Orders</string>
     <string name="config">Configuration</string>
     <string name="alert_dialog_start_simulator">Start Simulator</string>
     <string name="alert_dialog_cancel">exit</string>
@@ -20,4 +20,6 @@
     <string name="tab_shelf_overflow_list">Overflow</string>
     <string name="fmt_order_count">Order count %1$d</string>
     <string name="header_value">value</string>
+    <string name="tab_wasted_orders">wasted orders</string>
+    <string name="tab_fullfilled_orders">Fullfill orders</string>
 </resources>

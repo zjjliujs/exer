@@ -29,12 +29,6 @@ public class ShelfTabFragment extends Fragment implements ShelfStateListenerI {
     private OrderLoggerI logger = AndroidLogger.getInstance();
 
     private final ShelfManagerI shelfManager;
-    /*
-    private final List<CookedOrder> hotOrderList;
-    private final List<CookedOrder> coldOrderList;
-    private final List<CookedOrder> frozenOrderList;
-    private final List<CookedOrder> overflowOrderList;
-    */
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
@@ -126,7 +120,7 @@ public class ShelfTabFragment extends Fragment implements ShelfStateListenerI {
     }
 
     private void initOrderListRV() {
-        orderRVAdapter = new ValuedOrderRVAdapter(getContext(), shelfManager, currentOrderTemp);
+        orderRVAdapter = new ValuedOrderRVAdapter(getContext(), shelfManager.deviceOrderList(currentOrderTemp));
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
         orderListRV.setLayoutManager(layoutManager);
@@ -185,12 +179,6 @@ public class ShelfTabFragment extends Fragment implements ShelfStateListenerI {
 
     public ShelfTabFragment(ShelfManagerI shelfManager) {
         this.shelfManager = shelfManager;
-        /*
-        hotOrderList = shelfManager.deviceOrderList(OrderTemperature.Hot);
-        coldOrderList = shelfManager.deviceOrderList(OrderTemperature.Cold);
-        frozenOrderList = shelfManager.deviceOrderList(OrderTemperature.Frozen);
-        overflowOrderList = shelfManager.deviceOrderList(OrderTemperature.None);
-        */
     }
 
     //This method will be called from shelf manager or courier manager or order server thread!

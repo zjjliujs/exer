@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudcousion.orderproc.R;
-import com.cloudcousion.orderserver.OrderServerI;
 import com.cloudcousion.orderserver.model.Order;
 
 import java.util.List;
@@ -17,12 +16,12 @@ public class OrderRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private final Context context;
     private List<Order> orders;
 
-    public OrderRVAdapter(Context context, OrderServerI server) {
+    public OrderRVAdapter(Context context, List<Order> orders) {
         this.context = context;
         /*
          * server return cloned order list
          */
-        this.orders = server.ordersInQueue();
+        this.orders = orders;
     }
 
     @NonNull
