@@ -13,6 +13,8 @@ public class PreferenceUtils {
     private static final String KEY_COLD_SHELF_CAP = "cold_shelf_cap";
     private static final String KEY_FROZEN_SHELF_CAP = "frozen_shelf_cap";
     private static final String KEY_OVERFLOW_SHELF_CAP = "overflow_shelf_cap";
+    private static final String KEY_COURIER_MIN_DELAY = "courier_min_delay";
+    private static final String KEY_COURIER_MAX_DELAY = "courier_max_delay";
 
     public static int getIntPreference(Context context, String key, int defaultValue) {
         SharedPreferences preferences = context.getSharedPreferences(PREF_ID, Context.MODE_PRIVATE);
@@ -66,5 +68,20 @@ public class PreferenceUtils {
         saveIntPreference(context, KEY_OVERFLOW_SHELF_CAP, value);
     }
 
+    public static Integer getCourierMinDelayPref(Context context, int value) {
+        return getIntPreference(context, KEY_COURIER_MIN_DELAY, value);
+    }
+
+    public static void saveCourierMinValue(Context context, int value) {
+        saveIntPreference(context, KEY_COURIER_MIN_DELAY, value);
+    }
+
+    public static Integer getCourierMaxDelayPref(Context context, int value) {
+        return getIntPreference(context, KEY_COURIER_MAX_DELAY, value);
+    }
+
+    public static void saveCourierMaxValue(Context context, int value) {
+        saveIntPreference(context, KEY_COURIER_MAX_DELAY, value);
+    }
 
 }

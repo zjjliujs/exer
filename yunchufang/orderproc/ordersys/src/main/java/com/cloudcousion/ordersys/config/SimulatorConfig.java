@@ -8,8 +8,8 @@ public class SimulatorConfig {
     public int overflowShelfCapacity = 15;
 
     //Courier config
-    public int courierDelayMin = 2000;  //milliseconds
-    public int courierDelayMax = 6000;  //milliseconds
+    public int courierDelayMin = 2;  //seconds
+    public int courierDelayMax = 6;  //seconds
 
     public Integer dispatchRate = 2;
 }

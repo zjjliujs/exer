@@ -24,5 +24,9 @@
     <string name="tab_fullfilled_orders">Fullfill orders</string>
     <string name="shelf_config">Shelf Config</string>
     <string name="hot_shelf_capacity">Hot Shelf Capacity</string>
-    <string name="code_shelf_capacity">Cold shelf capacity</string>
+    <string name="cold_shelf_capacity">Cold shelf capacity</string>
+    <string name="frozen_shelf_capacity">Frozen shelf capacity</string>
+    <string name="overflow_shelf_capacity">Overflow shelf capacity</string>
+    <string name="courier_min_delay">Courier min delay(seconds)</string>
+    <string name="courier_max_delay">Courier max delay(seconds)</string>
 </resources>

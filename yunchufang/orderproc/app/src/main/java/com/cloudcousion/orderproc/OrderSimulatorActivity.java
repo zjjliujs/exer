@@ -32,22 +32,30 @@ public class OrderSimulatorActivity extends AppCompatActivity {
     private EditText etDispatchRate;
     private EditText etHotShelfCap;
     private EditText etColdShelfCap;
+    private EditText etFrozenShelfCap;
+    private EditText etOverflowShelfCap;
+    private EditText etCourierMinDelay;
+    private EditText etCourierMaxDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         simulatorConfig = new SimulatorConfig();
-        Integer defaultRate = PreferenceUtils.getDispatchRatePref(this, simulatorConfig.dispatchRate);
-        simulatorConfig.dispatchRate = defaultRate;
-        Integer cap = PreferenceUtils.getHotShelfCapPref(this, simulatorConfig.hotShelfCapacity);
-        simulatorConfig.hotShelfCapacity = cap;
-        cap = PreferenceUtils.getColdShelfCapPref(this, simulatorConfig.coldShelfCapacity);
-        simulatorConfig.coldShelfCapacity = cap;
-        cap = PreferenceUtils.getFrozenShelfCapPref(this, simulatorConfig.frozenShelfCapacity);
-        simulatorConfig.frozenShelfCapacity = cap;
-        cap = PreferenceUtils.getOverflowShelfCapPref(this, simulatorConfig.overflowShelfCapacity);
-        simulatorConfig.overflowShelfCapacity = cap;
+        Integer v = PreferenceUtils.getDispatchRatePref(this, simulatorConfig.dispatchRate);
+        simulatorConfig.dispatchRate = v;
+        v = PreferenceUtils.getHotShelfCapPref(this, simulatorConfig.hotShelfCapacity);
+        simulatorConfig.hotShelfCapacity = v;
+        v = PreferenceUtils.getColdShelfCapPref(this, simulatorConfig.coldShelfCapacity);
+        simulatorConfig.coldShelfCapacity = v;
+        v = PreferenceUtils.getFrozenShelfCapPref(this, simulatorConfig.frozenShelfCapacity);
+        simulatorConfig.frozenShelfCapacity = v;
+        v = PreferenceUtils.getOverflowShelfCapPref(this, simulatorConfig.overflowShelfCapacity);
+        simulatorConfig.overflowShelfCapacity = v;
+        v = PreferenceUtils.getCourierMinDelayPref(this, simulatorConfig.courierDelayMin);
+        simulatorConfig.courierDelayMin = v;
+        v = PreferenceUtils.getCourierMaxDelayPref(this, simulatorConfig.courierDelayMax);
+        simulatorConfig.courierDelayMax = v;
 
         showConfigDialog();
 
@@ -83,13 +91,31 @@ public class OrderSimulatorActivity extends AppCompatActivity {
                             PreferenceUtils.saveDispatchRatePreference(getApplicationContext(), rate);
                             simulatorConfig.dispatchRate = rate;
 
-                            int cap = Integer.parseInt(etHotShelfCap.getText().toString());
-                            PreferenceUtils.saveHotShelfCapPref(getApplicationContext(), cap);
-                            simulatorConfig.hotShelfCapacity = cap;
+                            int value = Integer.parseInt(etHotShelfCap.getText().toString());
+                            PreferenceUtils.saveHotShelfCapPref(getApplicationContext(), value);
+                            simulatorConfig.hotShelfCapacity = value;
 
-                            cap = Integer.parseInt(etColdShelfCap.getText().toString());
-                            PreferenceUtils.saveColdShelfCapPref(getApplicationContext(), cap);
-                            simulatorConfig.coldShelfCapacity = cap;
+                            value = Integer.parseInt(etColdShelfCap.getText().toString());
+                            PreferenceUtils.saveColdShelfCapPref(getApplicationContext(), value);
+                            simulatorConfig.coldShelfCapacity = value;
+
+                            value = Integer.parseInt(etFrozenShelfCap.getText().toString());
+                            PreferenceUtils.saveFrozenShelfCapPref(getApplicationContext(), value);
+                            simulatorConfig.frozenShelfCapacity = value;
+
+                            value = Integer.parseInt(etOverflowShelfCap.getText().toString());
+                            PreferenceUtils.saveOverflowShelfCapPref(getApplicationContext(), value);
+                            simulatorConfig.overflowShelfCapacity = value;
+
+                            int min = Integer.parseInt(etCourierMinDelay.getText().toString());
+                            int max = Integer.parseInt(etCourierMaxDelay.getText().toString());
+                            value = Math.min(min, max);
+                            PreferenceUtils.saveCourierMinValue(getApplicationContext(), value);
+                            simulatorConfig.courierDelayMin = value;
+
+                            value = Math.max(min, max);
+                            PreferenceUtils.saveCourierMaxValue(getApplicationContext(), value);
+                            simulatorConfig.courierDelayMax = value;
 
                             List<Order> orders = readOrdersFromRes(R.raw.orders);
                             logDebug("showConfigDialog, order size:" + orders.size());
@@ -120,7 +146,17 @@ public class OrderSimulatorActivity extends AppCompatActivity {
         etColdShelfCap = dialog.findViewById(R.id.et_cold_shelf_capacity);
         etColdShelfCap.setText(String.valueOf(simulatorConfig.coldShelfCapacity));
 
+        etFrozenShelfCap = dialog.findViewById(R.id.et_frozen_shelf_capacity);
+        etFrozenShelfCap.setText(String.valueOf(simulatorConfig.frozenShelfCapacity));
 
+        etOverflowShelfCap = dialog.findViewById(R.id.et_overflow_shelf_capacity);
+        etOverflowShelfCap.setText(String.valueOf(simulatorConfig.overflowShelfCapacity));
+
+        etCourierMinDelay = dialog.findViewById(R.id.et_courier_min_delay);
+        etCourierMinDelay.setText(String.valueOf(simulatorConfig.courierDelayMin));
+
+        etCourierMaxDelay = dialog.findViewById(R.id.et_courier_max_delay);
+        etCourierMaxDelay.setText(String.valueOf(simulatorConfig.courierDelayMax));
     }
 
     private List<Order> readOrdersFromRes(int orderResId) throws IOException {

@@ -101,7 +101,9 @@ public class CourierManager extends Thread implements OrderListenerI {
         long now = calendar.getTimeInMillis();
         Random random = new Random();
         float r = random.nextFloat();
-        long f = (long) (simulatorConfig.courierDelayMin + (simulatorConfig.courierDelayMax - simulatorConfig.courierDelayMin) * r);
+        int min = simulatorConfig.courierDelayMin * 1000;
+        int max = simulatorConfig.courierDelayMax * 1000;
+        long f = (long) (min + (max - min) * r);
         //Set the pick up time!
         long v = now + f;
         //logger.logDebug("orderSendToKitchen, r:" + r + ", f:" + f + ", now:" + now + ", v:" + v);
