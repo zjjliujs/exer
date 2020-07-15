@@ -3,7 +3,7 @@ package com.cloudcousion.ordersys.shelf;
 import com.cloudcousion.orderserver.model.OrderTemperature;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
 
-public class TempShelfDevice extends ShelfDevice {
+public class TempShelfDevice extends SingleShelfDevice {
     /*
      * Overflow shelf device should have None temperature
      */
@@ -30,4 +30,5 @@ public class TempShelfDevice extends ShelfDevice {
     public OrderTemperature getTemperature() {
         return temperature;
     }
+
 }

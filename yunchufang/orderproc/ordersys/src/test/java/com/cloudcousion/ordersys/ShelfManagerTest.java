@@ -131,8 +131,10 @@ public class ShelfManagerTest {
         }
         shelfMgr.start();
         Thread.sleep(1100);
-        CookedOrder order = shelfMgr.peekOrder(UUID.fromString("a8cfcb76-7f24-4420-a5ba-d46dd77bdffd")
-                , OrderTemperature.Frozen);
+        UUID id = UUID.fromString("a8cfcb76-7f24-4420-a5ba-d46dd77bdffd");
+        OrderTemperature temp = OrderTemperature.Frozen;
+
+        CookedOrder order = shelfMgr.peekOrder(id, temp);
         Assert.assertNotNull(order);
         Assert.assertTrue(Math.abs(order.getValue() - 0.9185) < 0.00001);
 
@@ -141,8 +143,7 @@ public class ShelfManagerTest {
 
         Thread.sleep(13000);
         Assert.assertTrue(order.getValue() <= 0);
-        order = shelfMgr.peekOrder(UUID.fromString("a8cfcb76-7f24-4420-a5ba-d46dd77bdffd")
-                , OrderTemperature.Frozen);
+        order = shelfMgr.peekOrder(id, temp);
         Assert.assertNull(order);
     }
 

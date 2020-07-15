@@ -1,11 +1,14 @@
 package com.cloudcousion.ordersys.shelf;
 
+import com.cloudcousion.orderserver.model.OrderTemperature;
 import com.cloudcousion.orderserver.utils.ConsoleLogger;
 import com.cloudcousion.orderserver.utils.OrderLoggerI;
 import com.cloudcousion.ordersys.kitchen.CookedOrder;
+import com.cloudcousion.ordersys.utils.OrderValueCalculatorI;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.UUID;
@@ -14,32 +17,63 @@ public abstract class ShelfDevice {
     protected OrderLoggerI logger = ConsoleLogger.getInstance();
 
     protected int capacity;   /* Device capacity */
-    protected Queue<CookedOrder> orders;
 
     public ShelfDevice(int capacity) {
-        this.orders = new PriorityQueue<>();
         this.capacity = capacity;
     }
 
+    /**
+     * Put order on shelf
+     * @param order
+     * @return
+     */
+
     public abstract boolean putOrder(CookedOrder order);
 
-    public int getFree() {
-        return capacity - orders.size();
-    }
+    /**
+     * Free place in shelf
+     *
+     * @return free place in shelf
+     */
+    public abstract int getFree();
 
-    public CookedOrder takeOrder(UUID id) {
-        Iterator<CookedOrder> it = orders.iterator();
-        while (it.hasNext()) {
-            CookedOrder order = it.next();
-            if (order.getId().equals(id)) {
-                it.remove();
-                return order;
-            }
-        }
-        return null;
-    }
+    /**
+     * For courier to take out the order and deliver to customer!
+     *
+     * @param id
+     * @param temperature
+     * @return Cooked order or null is not found
+     */
+    public abstract CookedOrder takeOrder(UUID id, OrderTemperature temperature);
 
-    public int getCapacity() {
-        return capacity;
-    }
+    /**
+     *Order size in shelf
+     *
+     * @return order size
+     */
+    public abstract int orderSize();
+
+    /**
+     * All order list
+     *
+     * @return Cloned order list
+     */
+    public abstract List<CookedOrder> allOrders();
+
+    /**
+     * Peek the the order with lowest value
+     *
+     * @param orderId
+     * @param temperature
+     * @return order with lowest value
+     */
+    public abstract CookedOrder peekOrder(UUID orderId, OrderTemperature temperature);
+
+    /**
+     * Evaluate the order value and drop the order with value < 0
+     *
+     * @param evaluator
+     * @return All orders with value < 0
+     */
+    public abstract List<CookedOrder> evaluate(OrderValueCalculatorI evaluator);
 }

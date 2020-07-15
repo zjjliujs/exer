@@ -45,3 +45,8 @@ Design idea:
     2.kitchen thread
     3.shelf manager thread
     4.courier manager thread
+
+How and why you chose to handle moving orders to and from the overflow shelf
+    If the single shelf is full, then put cooked order on overflow shelf
+    If overflow shelf is full, choose the lowest value order to a single shelf which have place.
+    If all single shelf is full, take out the lowest value order from overflow shelf and set as wasted, then put the new order on overflow shelf

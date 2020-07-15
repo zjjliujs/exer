@@ -1,6 +1,7 @@
 package com.cloudcousion.ordersys.shelf;
 
 import com.cloudcousion.orderserver.model.OrderTemperature;
+import com.cloudcousion.orderserver.utils.AndroidLogger;
 import com.cloudcousion.orderserver.utils.ConsoleLogger;
 import com.cloudcousion.orderserver.utils.OrderLoggerI;
 import com.cloudcousion.ordersys.config.SimulatorConfig;
@@ -8,9 +9,7 @@ import com.cloudcousion.ordersys.kitchen.CookedOrder;
 import com.cloudcousion.ordersys.utils.OrderValueCalculatorI;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Queue;
 import java.util.UUID;
 
 public class ShelfManager extends Thread implements ShelfManagerI {
@@ -72,17 +71,8 @@ public class ShelfManager extends Thread implements ShelfManagerI {
      * @return true if order moved to waste
      */
     private void EvaluateOrders(ShelfDevice shelfDevice) {
-        Iterator<CookedOrder> it = shelfDevice.orders.iterator();
-        while (it.hasNext()) {
-            CookedOrder order = it.next();
-            float v = evaluator.calculateOrderValue(order);
-            order.setValue(v);
-            if (v <= 0) {
-                setAsWasted(order);
-                it.remove();
-            }
-            logger.logDebug("EvaluateOrders value:" + v + ", order id:" + order.getId());
-        }
+        List<CookedOrder> ords = shelfDevice.evaluate(evaluator);
+        wastedOrders.addAll(ords);
     }
 
     @Override
@@ -93,25 +83,19 @@ public class ShelfManager extends Thread implements ShelfManagerI {
 
     @Override
     public synchronized CookedOrder peekOrder(UUID orderId, OrderTemperature temperature) {
-        Queue<CookedOrder> orders;
         switch (temperature) {
             case Hot:
-                orders = hotShelfDev.orders;
-                break;
+                return hotShelfDev.peekOrder(orderId, temperature);
             case Cold:
-                orders = coldShelfDev.orders;
-                break;
+                return coldShelfDev.peekOrder(orderId, temperature);
             case Frozen:
-                orders = frozenShelfDev.orders;
-                break;
+                return frozenShelfDev.peekOrder(orderId, temperature);
+            case None:
+                return overflowShelfDev.peekOrder(orderId, temperature);
             default:
-                orders = overflowShelfDev.orders;
+                //Impossible!
+                throw new RuntimeException("Error temperature:" + temperature);
         }
-        for (CookedOrder order : orders) {
-            if (order.getId().equals(orderId))
-                return order;
-        }
-        return null;
     }
 
     @Override
@@ -119,20 +103,20 @@ public class ShelfManager extends Thread implements ShelfManagerI {
         CookedOrder order;
         switch (temperature) {
             case Hot:
-                order = hotShelfDev.takeOrder(orderId);
+                order = hotShelfDev.takeOrder(orderId, temperature);
                 break;
             case Cold:
-                order = coldShelfDev.takeOrder(orderId);
+                order = coldShelfDev.takeOrder(orderId, temperature);
                 break;
             case Frozen:
-                order = frozenShelfDev.takeOrder(orderId);
+                order = frozenShelfDev.takeOrder(orderId, temperature);
                 break;
             default:
                 //Impossible
                 throw new RuntimeException("takeOrder, error temperature:" + temperature);
         }
         if (order == null) {
-            order = overflowShelfDev.takeOrder(orderId);
+            order = overflowShelfDev.takeOrder(orderId, temperature);
         }
         if (order != null) {
             notifyStateListeners();
@@ -144,16 +128,16 @@ public class ShelfManager extends Thread implements ShelfManagerI {
     public synchronized List<CookedOrder> deviceOrderList(OrderTemperature temperature) {
         switch (temperature) {
             case Cold: {
-                return new ArrayList<>(coldShelfDev.orders);
+                return new ArrayList<>(coldShelfDev.allOrders());
             }
             case Hot: {
-                return new ArrayList<>(hotShelfDev.orders);
+                return new ArrayList<>(hotShelfDev.allOrders());
             }
             case Frozen: {
-                return new ArrayList<>(frozenShelfDev.orders);
+                return new ArrayList<>(frozenShelfDev.allOrders());
             }
             case None: {
-                return new ArrayList<>(overflowShelfDev.orders);
+                return new ArrayList<>(overflowShelfDev.allOrders());
             }
             default:
                 //Impossible!
@@ -176,13 +160,13 @@ public class ShelfManager extends Thread implements ShelfManagerI {
     private void doShelfOrder(CookedOrder order, boolean fromOverflow) {
         switch (order.getTemp()) {
             case Hot:
-                putToDevice(hotShelfDev, order, fromOverflow);
+                putToDevice(hotShelfDev, order);
                 break;
             case Cold:
-                putToDevice(coldShelfDev, order, fromOverflow);
+                putToDevice(coldShelfDev, order);
                 break;
             case Frozen:
-                putToDevice(frozenShelfDev, order, fromOverflow);
+                putToDevice(frozenShelfDev, order);
                 break;
             default:
                 //Impossible!
@@ -190,41 +174,93 @@ public class ShelfManager extends Thread implements ShelfManagerI {
         }
     }
 
-    private void putToDevice(TempShelfDevice tempDev, CookedOrder order, boolean fromOverflow) {
+    private void putToDevice(TempShelfDevice tempDev, CookedOrder order) {
         boolean ok = tempDev.putOrder(order);
         if (!ok) {
-            //temp device is full
-            if (fromOverflow) {
-                //wasted!
-                setAsWasted(order);
-            } else {
+            ok = overflowShelfDev.putOrder(order);
+            if (!ok) {
+                //overflow device is full aussi!
+                boolean shiftOk;
+                switch (order.getTemp()) {
+                    case Hot:
+                        //Hot shelf already full
+                        shiftOk = shiftOrder(coldShelfDev);
+                        if (!shiftOk)
+                            shiftOk = shiftOrder(frozenShelfDev);
+                        break;
+                    case Cold:
+                        //Cold shelf already full
+                        shiftOk = shiftOrder(hotShelfDev);
+                        if (!shiftOk)
+                            shiftOk = shiftOrder(frozenShelfDev);
+                        break;
+                    case Frozen:
+                        //Frozen shelf alread full
+                        shiftOk = shiftOrder(hotShelfDev);
+                        if (!shiftOk)
+                            shiftOk = shiftOrder(coldShelfDev);
+                        break;
+                    default:
+                        //Impossible
+                        throw new RuntimeException("Error temperature!");
+                }
+                logger.logDebug("putToDevice, shiftOK:" + shiftOk);
+                if (!shiftOk) {
+                    //All shelf is full, move order with lowest value to wast list
+                    CookedOrder lowVOrd = overflowShelfDev.pollOrder();
+                    wastedOrders.add(lowVOrd);
+                }
+                //Should have place now!
+                logger.logDebug("putToDevice, overflowShelfDev size:" + overflowShelfDev.orderSize());
                 ok = overflowShelfDev.putOrder(order);
                 if (!ok) {
-                    //overflow device is full aussi!
-                    CookedOrder o = overflowShelfDev.takeOne();
-                    doShelfOrder(o, true);
-                    //Should have place now!
-                    ok = overflowShelfDev.putOrder(order);
-                    if (!ok) {
-                        //Impossible!
-                        throw new RuntimeException("putToDevice, overflow shelf devce still full!");
-                    }
+                    //Impossible!
+                    throw new RuntimeException("putToDevice, overflow shelf devce still full!");
                 }
             }
         }
+    }
+
+    /**
+     * Shift order from overflow shelf to a temp shelf!
+     *
+     * @param targetShelfDev
+     * @return true if shift ok， false is can't shift (shelf is full)
+     */
+    private boolean shiftOrder(TempShelfDevice targetShelfDev) {
+        OrderTemperature temperature;
+        if (targetShelfDev == hotShelfDev) {
+            temperature = OrderTemperature.Hot;
+        } else if (targetShelfDev == coldShelfDev) {
+            temperature = OrderTemperature.Cold;
+        } else if (targetShelfDev == frozenShelfDev) {
+            temperature = OrderTemperature.Frozen;
+        } else {
+            //impossible!
+            throw new RuntimeException("Wrong shelf dev!");
+        }
+        if (targetShelfDev.getFree() > 0) {
+            if (overflowShelfDev.haveOrder(temperature)) {
+                CookedOrder o = overflowShelfDev.pollOrder(temperature);
+                //o should not be null!
+                targetShelfDev.putOrder(o);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public int deviceOrderSize(OrderTemperature temperature) {
         switch (temperature) {
             case Cold:
-                return coldShelfDev.orders.size();
+                return coldShelfDev.orderSize();
             case Frozen:
-                return frozenShelfDev.orders.size();
+                return frozenShelfDev.orderSize();
             case Hot:
-                return hotShelfDev.orders.size();
+                return hotShelfDev.orderSize();
             case None:
-                return overflowShelfDev.orders.size();
+                return overflowShelfDev.orderSize();
             default:
                 //Impossible
                 throw new RuntimeException("Error temperature:" + temperature);
@@ -233,14 +269,10 @@ public class ShelfManager extends Thread implements ShelfManagerI {
 
     @Override
     public synchronized int totalOrderSize() {
-        return hotShelfDev.orders.size()
-                + coldShelfDev.orders.size()
-                + frozenShelfDev.orders.size()
-                + overflowShelfDev.orders.size();
-    }
-
-    private void setAsWasted(CookedOrder order) {
-        wastedOrders.add(order);
+        return hotShelfDev.orderSize()
+                + coldShelfDev.orderSize()
+                + frozenShelfDev.orderSize()
+                + overflowShelfDev.orderSize();
     }
 
     @Override
