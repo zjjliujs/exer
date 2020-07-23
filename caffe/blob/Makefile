@@ -5,4 +5,4 @@ blob_demo: blob_demo.cpp
 
 .PHONY:clean
 clean:
-    rm -rf *.o blob_demo
+	rm -rf *.o blob_demo
