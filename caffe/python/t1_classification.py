@@ -29,3 +29,14 @@ else:
     print ('Downloading pre-trained CaffeNet model...')
     #!../scripts/download_model_binary.py ../models/bvlc_reference_caffenet
     os.system("python ../scripts/download_model_binary.py ../models/bvlc_reference_caffenet")
+
+caffe.set_mode_cpu()
+
+model_def = caffe_root + 'models/bvlc_reference_caffenet/deploy.prototxt'
+model_weights = caffe_root + 'models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel'
+
+net = caffe.Net(model_def,      # defines the structure of the model
+                model_weights,  # contains the trained weights
+                caffe.TEST)     # use test mode (e.g., don't perform dropout)
+
+
