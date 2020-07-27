@@ -21,3 +21,10 @@ print(sys.path)
 
 import caffe
 # If you get "No module named _caffe", either you have not built pycaffe or you have the wrong path.
+
+import os
+if os.path.isfile(caffe_root + 'models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel'):
+    print 'CaffeNet found.'
+else:
+    print 'Downloading pre-trained CaffeNet model...'
+    !../scripts/download_model_binary.py ../models/bvlc_reference_caffenet
