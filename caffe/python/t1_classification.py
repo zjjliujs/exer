@@ -27,4 +27,5 @@ if os.path.isfile(caffe_root + 'models/bvlc_reference_caffenet/bvlc_reference_ca
     print ('CaffeNet found.')
 else:
     print ('Downloading pre-trained CaffeNet model...')
-    !../scripts/download_model_binary.py ../models/bvlc_reference_caffenet
+    #!../scripts/download_model_binary.py ../models/bvlc_reference_caffenet
+    os.system("python ../scripts/download_model_binary.py ../models/bvlc_reference_caffenet")
