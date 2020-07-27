@@ -1,3 +1,6 @@
+#!python
+# -*- coding=utf-8 -*-
+
 # set up Python environment: numpy for numerical routines, and matplotlib for plotting
 import numpy as np
 #import matplotlib.pyplot as plt
@@ -14,6 +17,7 @@ import numpy as np
 import sys
 caffe_root = '../'  # this file should be run from {caffe_root}/examples (otherwise change this line)
 sys.path.insert(0, caffe_root + 'python')
+print(sys.path)
 
 import caffe
 # If you get "No module named _caffe", either you have not built pycaffe or you have the wrong path.
