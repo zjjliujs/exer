@@ -13,4 +13,4 @@ while it<10000:
     input_data = solver.net.blobs['data'].data
     loss = solver.net.blobs['loss'].data
     accuracy = solver.test_nets[0].blobs['accuracy'].data
-    print ('iter: %d loss: %f, accuracy:%d', it, loss, accuracy)
+    print ('iter: %d loss: %f, accuracy:%d' % (it, loss, accuracy))
