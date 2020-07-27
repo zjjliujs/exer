@@ -24,7 +24,7 @@ import caffe
 
 import os
 if os.path.isfile(caffe_root + 'models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel'):
-    print 'CaffeNet found.'
+    print ('CaffeNet found.')
 else:
-    print 'Downloading pre-trained CaffeNet model...'
+    print ('Downloading pre-trained CaffeNet model...')
     !../scripts/download_model_binary.py ../models/bvlc_reference_caffenet
