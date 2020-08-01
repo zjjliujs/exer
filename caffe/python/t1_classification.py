@@ -3,33 +3,23 @@
 
 # set up Python environment: numpy for numerical routines, and matplotlib for plotting
 import numpy as np
-#import matplotlib.pyplot as plt
-# display plots in this notebook
-# %matplotlib inline
+import matplotlib.pyplot as plt
 
 # set display defaults
-#plt.rcParams['figure.figsize'] = (10, 10)        # large images
-#plt.rcParams['image.interpolation'] = 'nearest'  # don't interpolate: show square pixels
-#plt.rcParams['image.cmap'] = 'gray'  # use grayscale output rather than a (potentially misleading) color heatmap
+plt.rcParams['figure.figsize'] = (10, 10)        # large images
+plt.rcParams['image.interpolation'] = 'nearest'  # don't interpolate: show square pixels
+plt.rcParams['image.cmap'] = 'gray'  # use grayscale output rather than a (potentially misleading) color heatmap
 
-# The caffe module needs to be on the Python path;
-#  we'll add it here explicitly.
+caffe_root="../"
+
+import os
 import sys
-caffe_root = '../'  # this file should be run from {caffe_root}/examples (otherwise change this line)
-sys.path.insert(0, caffe_root + 'python')
-print(sys.path)
+if os.path.isfile(caffe_root + 'models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel'):
+    print ('CaffeNet found.')
+    sys.exit()
 
 import caffe
 # If you get "No module named _caffe", either you have not built pycaffe or you have the wrong path.
-
-import os
-if os.path.isfile(caffe_root + 'models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel'):
-    print ('CaffeNet found.')
-else:
-    print ('Downloading pre-trained CaffeNet model...')
-    #!../scripts/download_model_binary.py ../models/bvlc_reference_caffenet
-    os.system("python ../scripts/download_model_binary.py ../models/bvlc_reference_caffenet")
-
 caffe.set_mode_cpu()
 
 model_def = caffe_root + 'models/bvlc_reference_caffenet/deploy.prototxt'
@@ -75,7 +65,9 @@ print('predicted class is: %f' % output_prob.argmax())
 # load ImageNet labels
 labels_file = caffe_root + 'data/ilsvrc12/synset_words.txt'
 if not os.path.exists(labels_file):
-    !../data/ilsvrc12/get_ilsvrc_aux.sh
+    print("Couldn't find label file:{}".format(labels_file))
+    sys.exit()
+    #!../data/ilsvrc12/get_ilsvrc_aux.sh
 
 labels = np.loadtxt(labels_file, str, delimiter='\t')
 
@@ -84,8 +76,5 @@ print ('output label: %f' % labels[output_prob.argmax()])
 # sort top five predictions from softmax output
 top_inds = output_prob.argsort()[::-1][:5]  # reverse sort and take five largest items
 
-print 'probabilities and labels:'
-zip(output_prob[top_inds], labels[top_inds])
-
-
+print ('probabilities and labels:{}'.format(zip(output_prob[top_inds], labels[top_inds])))
 
