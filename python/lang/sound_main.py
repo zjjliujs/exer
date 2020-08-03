@@ -12,3 +12,5 @@ wav = formats.wavread.Wav()
 wav.read()
 
 from sound.effects import *
+
+from sound.filters import *
