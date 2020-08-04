@@ -3,6 +3,12 @@ import abc
 class PluginBase(object):
     __metaclass__ = abc.ABCMeta
 
+    def base_func():
+        print("base function called!")
+
+    def base_method(self):
+        print("base method called!")
+
     @abc.abstractmethod
     def load(self, input):
         """Retrieve data from the input source and return an object."""

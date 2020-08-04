@@ -9,6 +9,12 @@ class SubclassImplementation(PluginBase):
     def save(self, output, data):
         return output.write(data)
 
+    def call_test(self):
+        PluginBase.base_func()
+        self.base_method()
+
 if __name__ == '__main__':
+    a = SubclassImplementation()
     print ('Subclass:{}'.format(issubclass(SubclassImplementation, PluginBase)))
-    print ('Instance:{}'.format(isinstance(SubclassImplementation(), PluginBase)))
+    print ('Instance:{}'.format(isinstance(a, PluginBase)))
+    a.call_test()
