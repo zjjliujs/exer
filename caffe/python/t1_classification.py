@@ -23,6 +23,9 @@ import caffe
 caffe.set_mode_cpu()
 
 model_def = caffe_root + 'models/bvlc_reference_caffenet/deploy.prototxt'
+if os.path.exists(model_def):
+    print("File not found:{}".format(model_def))
+
 model_weights = caffe_root + 'models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel'
 
 net = caffe.Net(model_def,      # defines the structure of the model
@@ -32,7 +35,7 @@ net = caffe.Net(model_def,      # defines the structure of the model
 # load the mean ImageNet image (as distributed with Caffe) for subtraction
 mu = np.load(caffe_root + 'python/caffe/imagenet/ilsvrc_2012_mean.npy')
 mu = mu.mean(1).mean(1)  # average over pixels to obtain the mean (BGR) pixel values
-print 'mean-subtracted values:', zip('BGR', mu)
+print('mean-subtracted values:', zip('BGR', mu))
 
 # create transformer for the input called 'data'
 transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})
