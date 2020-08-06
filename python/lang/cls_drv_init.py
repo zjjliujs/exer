@@ -1,13 +1,13 @@
 class Base(object):
     
-    def __init__(self):
-        print ("Base init")
+    def __init__(self, msg):
+        print ("Base init:{}".format(msg))
 
 
 class Drived(Base):
 
     def __init__(self):
-        super(Drived, self).__init__()
+        super(Drived, self).__init__("msg from derived class!")
         print ("Derived init")
 
 
