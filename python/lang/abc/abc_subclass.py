@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import abc
 from abc_base import PluginBase
 

@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import logging
 
 # assuming loglevel is bound to the string value obtained from the

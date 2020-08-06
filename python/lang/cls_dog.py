@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 class Dog:
 
     def __init__(self, name):

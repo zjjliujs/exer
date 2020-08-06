@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 class Base(object):
     
     def __init__(self, msg):

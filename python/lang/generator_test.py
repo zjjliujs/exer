@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 def reverse(data):
     for index in range(len(data)-1, -1, -1):
         print("index:{}".format(index))

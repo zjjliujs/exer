@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 def scope_test():
     def do_local():
         spam = "local spam"

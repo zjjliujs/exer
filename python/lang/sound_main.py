@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import sound
 
 print ("sound package name:{}".format(sound.__name__))

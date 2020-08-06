@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 # myapp.py
 import logging
 import log_mod as mylib

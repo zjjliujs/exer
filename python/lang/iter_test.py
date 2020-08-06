@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 class Reverse:
     """Iterator for looping over a sequence backwards."""
     def __init__(self, data):

@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 a = sum(i*i for i in range(10))                 # sum of squares
 print (a)
 

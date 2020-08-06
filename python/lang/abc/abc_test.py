@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from abc import abstractmethod, ABCMeta     #接口类中定义了一些接口名：Pay，且并未实现接口的功能，子类继承接口类，并且实现接口中的功能
 class Payment(metaclass=ABCMeta):    #抽象出的共同功能Pay
     @abstractmethod
